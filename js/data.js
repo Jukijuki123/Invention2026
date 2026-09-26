@@ -13,102 +13,142 @@
 const checkupQuestions = [
     {
         id: 1,
-        question: "Kamu menerima pesan WhatsApp dari nomor tak dikenal berisi link 'Klaim hadiah undian BCA sekarang!'. Apa reaksi pertamamu?",
+        categoryLabel: "Smishing & Banking Vectors",
+        urgency: "High Urgency Trigger",
+        vector: "safety",
+        question: "Kamu menerima pesan WhatsApp dari nomor tak dikenal berisi tautan klaim hadiah undian bank. Apa reaksi pertamamu?",
+        snippet: '[ALERT] "Selamat! Nomor Anda terpilih mendapatkan hadiah tunai Rp5.000.000 dari BCA. Klik bit.ly/klaim-bca-resmi dalam 15 menit."',
         options: [
-            { text: "Langsung klik karena penasaran", points: { safety: 0, criticalThinking: 0 } },
-            { text: "Cek nomor & link-nya dulu sebelum bertindak", points: { safety: 2, criticalThinking: 2 } },
-            { text: "Abaikan tanpa memeriksa apa pun", points: { safety: 1, criticalThinking: 0 } },
-            { text: "Forward ke teman untuk minta pendapat lebih dulu", points: { safety: 1, criticalThinking: 1 } }
+            { text: "Langsung klik link untuk melihat info lengkap hadiahnya", points: { safety: 0, criticalThinking: 0 } },
+            { text: "Cek nomor pengirim & format tautan sebelum mengambil tindakan", points: { safety: 2, criticalThinking: 2 } },
+            { text: "Abaikan pesan tersebut dan hapus dari riwayat chat", points: { safety: 1, criticalThinking: 0 } },
+            { text: "Forward pesan ke grup teman untuk menanyakan keasliannya", points: { safety: 1, criticalThinking: 1 } }
         ]
     },
     {
         id: 2,
-        question: "Saat scroll media sosial, kamu menemukan berita mengejutkan tanpa nama media yang jelas. Apa yang kamu lakukan?",
+        categoryLabel: "Disinformation & Misinformation",
+        urgency: "Medium Urgency Trigger",
+        vector: "criticalThinking",
+        question: "Saat scroll media sosial, kamu menemukan berita mengejutkan dari akun anonim tanpa rujukan media terpercaya. Reaksimu?",
+        snippet: '[VIRAL POST] "GEMPAR! Ditemukan efek samping berbahaya dari produk populer ini yang disembunyikan media resmi! Repost sebelum dihapus!"',
         options: [
-            { text: "Langsung percaya dan share", points: { criticalThinking: 0 } },
-            { text: "Cek ke minimal satu sumber terpercaya lain", points: { criticalThinking: 2 } },
-            { text: "Baca judulnya saja lalu lupakan", points: { criticalThinking: 1 } },
-            { text: "Komentar skeptis tanpa verifikasi", points: { criticalThinking: 1 } }
+            { text: "Langsung percayai dan bagikan ke media sosial agar orang tahu", points: { criticalThinking: 0 } },
+            { text: "Verifikasi klaim berita ke minimal dua sumber media arus utama terpercaya", points: { criticalThinking: 2 } },
+            { text: "Hanya membaca judulnya saja lalu mengabaikannya", points: { criticalThinking: 1 } },
+            { text: "Menulis komentar skeptis tanpa melakukan verifikasi terlebih dahulu", points: { criticalThinking: 1 } }
         ]
     },
     {
         id: 3,
-        question: "Kamu diminta transfer 'DP' untuk barang murah dari akun online shop baru tanpa testimoni. Kamu akan...",
+        categoryLabel: "E-Commerce & Digital Payment Scam",
+        urgency: "High Urgency Trigger",
+        vector: "financialSecurity",
+        question: "Kamu diminta mentransfer DP untuk barang bermerek berharga sangat murah oleh toko online baru tanpa testimoni. Tindakanmu?",
+        snippet: '[DM INSTAGRAM] "Kak stok barangnya sisa 1 unit lagi ya! Siapa cepat dia dapat. Transfer DP Rp200.000 sekarang ke rekening pribadi Admin."',
         options: [
-            { text: "Transfer karena harganya menarik", points: { financialSecurity: 0, safety: 0 } },
-            { text: "Cek reputasi toko & gunakan rekber/COD jika bisa", points: { financialSecurity: 2, safety: 1 } },
-            { text: "Tanya teman dulu", points: { financialSecurity: 1 } },
-            { text: "Batal tanpa cek apa pun", points: { financialSecurity: 1 } }
+            { text: "Langsung transfer DP karena khawatir kehabisan barang murah tersebut", points: { financialSecurity: 0, safety: 0 } },
+            { text: "Periksa reputasi toko di platfon resmi & desak pembayaran via Rekber / COD", points: { financialSecurity: 2, safety: 1 } },
+            { text: "Menanyakan pendapat teman terdekat terlebih dahulu", points: { financialSecurity: 1 } },
+            { text: "Membatalkan pembelian tanpa melakukan pengecekan", points: { financialSecurity: 1 } }
         ]
     },
     {
         id: 4,
-        question: "Sebuah video menunjukkan tokoh publik mengatakan hal kontroversial. Videonya terlihat sedikit aneh gerakannya. Reaksimu?",
+        categoryLabel: "AI Deepfake & Synthetic Media",
+        urgency: "High Urgency Trigger",
+        vector: "aiLiteracy",
+        question: "Beredar video tokoh publik membagikan uang cuma-cuma, namun gerakan bibirnya terasa sedikit kaku dan tak sinkron. Sikapmu?",
+        snippet: '[VIDEO PREVIEW] "Halo warga Indonesia, saya akan membagikan bantuan Rp50.000.000 tunai. Segera klik link di bio untuk klaim kuota terbatas!"',
         options: [
-            { text: "Anggap asli karena wajah & suaranya mirip", points: { aiLiteracy: 0 } },
-            { text: "Curiga kemungkinan deepfake dan cek sumber resmi", points: { aiLiteracy: 2 } },
-            { text: "Share dulu, klarifikasi belakangan", points: { aiLiteracy: 0 } },
-            { text: "Abaikan videonya sepenuhnya", points: { aiLiteracy: 1 } }
+            { text: "Anggap video asli karena raut wajah dan intonasi suaranya sangat mirip", points: { aiLiteracy: 0 } },
+            { text: "Curiga sebagai manipulasi AI (deepfake) dan mengecek ke saluran informasi resmi", points: { aiLiteracy: 2 } },
+            { text: "Bagikan videonya terlebih dahulu, klarifikasi bisa dilakukan belakangan", points: { aiLiteracy: 0 } },
+            { text: "Abaikan video tersebut tanpa mencari tahu kebenarannya", points: { aiLiteracy: 1 } }
         ]
     },
     {
         id: 5,
-        question: "Aplikasi minta izin akses kontak & galeri padahal fungsinya cuma kalkulator. Kamu akan...",
+        categoryLabel: "Malware & Excessive Permissions",
+        urgency: "Critical Risk Alert",
+        vector: "safety",
+        question: "Aplikasi kalkulator yang baru kamu unduh meminta akses penuh ke Kontak, Galeri Foto, dan Lokasi Presisi. Apa yang kamu lakukan?",
+        snippet: '[SYSTEM DIALOG] "Calculator Pro v2.1 requests access to: Contacts, Photo Gallery, and Precise Location to continue initialization."',
         options: [
-            { text: "Izinkan semua supaya cepat", points: { safety: 0 } },
-            { text: "Tolak izin yang tidak relevan", points: { safety: 2 } },
-            { text: "Izinkan lalu cek nanti", points: { safety: 1 } },
-            { text: "Uninstall tanpa cek permission", points: { safety: 1 } }
+            { text: "Berikan semua izin agar aplikasi bisa cepat digunakan", points: { safety: 0 } },
+            { text: "Tolak seluruh izin yang tidak relevan dengan fungsi dasar kalkulator", points: { safety: 2 } },
+            { text: "Berikan izin sementara, lalu berniat mengubahnya nanti", points: { safety: 1 } },
+            { text: "Langsung copot (uninstall) aplikasi tanpa memeriksa ulang", points: { safety: 1 } }
         ]
     },
     {
         id: 6,
-        question: "Kamu chat dengan 'admin bank' yang minta OTP untuk 'verifikasi akun'. Apa yang kamu lakukan?",
+        categoryLabel: "Social Engineering & OTP Fraud",
+        urgency: "Critical Risk Alert",
+        vector: "financialSecurity",
+        question: "Penelepon yang mengaku sebagai 'Admin Keamanan Bank' meminta 6 digit OTP yang baru masuk ke HP-mu untuk membatalkan transaksi. Tindakanmu?",
+        snippet: '[CALL LOG / SMS] "Kami mendeteksi aktivitas mencurigakan Rp4.500.000. Mohon sebutkan kode OTP yang kami kirimkan untuk pembatalan otomatis."',
         options: [
-            { text: "Kirim OTP karena mendesak", points: { safety: 0, financialSecurity: 0 } },
-            { text: "Tidak pernah kirim OTP ke siapa pun", points: { safety: 2, financialSecurity: 2 } },
-            { text: "Tanya balik identitasnya dulu", points: { safety: 1 } },
-            { text: "Blokir tanpa konfirmasi", points: { safety: 1 } }
+            { text: "Memberikan kode OTP karena merasa situasi sangat mendesak", points: { safety: 0, financialSecurity: 0 } },
+            { text: "Menolak memberikan OTP dan langsung mengakhiri panggilan", points: { safety: 2, financialSecurity: 2 } },
+            { text: "Menanyakan kembali identitas resmi penelepon", points: { safety: 1 } },
+            { text: "Memblokir nomor tanpa memberikan konfirmasi", points: { safety: 1 } }
         ]
     },
     {
         id: 7,
-        question: "Teman minta bantu 'like & follow' akun investasi dengan janji profit 20%/minggu. Sikapmu?",
+        categoryLabel: "Ponzi & Illegal Investment",
+        urgency: "Medium Urgency Trigger",
+        vector: "financialSecurity",
+        question: "Temanmu mengajak bergabung ke platform investasi yang menjanjikan keuntungan pasti 20% setiap minggu tanpa risiko. Reaksimu?",
+        snippet: '[CHAT GROUP] "Guys! Join platform ini modal 1jt bisa cair 1.2jt per minggu terbukti cair terus! Kuota terbatas sisa 2 member lagi."',
         options: [
-            { text: "Ikut karena temanmu sendiri", points: { financialSecurity: 0, criticalThinking: 0 } },
-            { text: "Cek legalitas OJK/izin resmi dulu", points: { financialSecurity: 2, criticalThinking: 1 } },
-            { text: "Follow saja, tidak invest", points: { financialSecurity: 1 } },
-            { text: "Tolak tanpa menjelaskan alasan", points: { financialSecurity: 1 } }
+            { text: "Langsung ikut mendaftar karena diajad oleh teman dekat sendiri", points: { financialSecurity: 0, criticalThinking: 0 } },
+            { text: "Mengecek legalitas perizinan perusahaan tersebut di website resmi OJK", points: { financialSecurity: 2, criticalThinking: 1 } },
+            { text: "Mengikuti akun media sosialnya saja tanpa menginvestasikan uang", points: { financialSecurity: 1 } },
+            { text: "Menolak ajakan tersebut tanpa memberikan alasan ilmiah", points: { financialSecurity: 1 } }
         ]
     },
     {
         id: 8,
-        question: "Kamu pakai chatbot AI untuk kerjakan tugas. Jawabannya terdengar meyakinkan tapi kamu tidak yakin faktanya benar. Kamu akan...",
+        categoryLabel: "AI Hallucination & Fact Check",
+        urgency: "Medium Urgency Trigger",
+        vector: "aiLiteracy",
+        question: "Chatbot AI memberikan jawaban tugas sekolah dengan gaya bahasa meyakinkan, namun mencantumkan angka statistik yang tercium aneh. Reaksimu?",
+        snippet: '[AI GENERATED RESPONSE] "Berdasarkan Studi Harvard 2025, 94.2% remaja mengalami kelelahan digital karena frekuensi Wi-Fi 5GHz (Kutipan: J-Mind p.44)."',
         options: [
-            { text: "Langsung kumpulkan tanpa cek", points: { aiLiteracy: 0, criticalThinking: 0 } },
-            { text: "Verifikasi fakta pentingnya ke sumber lain", points: { aiLiteracy: 2, criticalThinking: 2 } },
-            { text: "Edit sedikit kalimatnya saja", points: { aiLiteracy: 0 } },
-            { text: "Tanyakan ke chatbot yang sama untuk mengecek ulang", points: { aiLiteracy: 1 } }
+            { text: "Langsung menyalin dan menyetorkan tugas karena terdengar sangat ilmiah", points: { aiLiteracy: 0, criticalThinking: 0 } },
+            { text: "Memverifikasi kutipan data & jurnal tersebut ke mesin pencari/sumber resmi", points: { aiLiteracy: 2, criticalThinking: 2 } },
+            { text: "Mengedit sedikit susunan kalimatnya lalu menyetorkannya", points: { aiLiteracy: 0 } },
+            { text: "Menanyakan kembali pertanyaan yang sama ke chatbot AI tersebut", points: { aiLiteracy: 1 } }
         ]
     },
     {
         id: 9,
-        question: "Grup temanmu ramai membully satu orang secara online. Kamu akan...",
+        categoryLabel: "Cyberbullying & Peer Pressure",
+        urgency: "High Urgency Trigger",
+        vector: "socialMedia",
+        question: "Di grup percakapan, teman-temanmu ramai mengejek satu anggota dan memintamu ikut berkomentar kasar agar dianggap kompak. Tindakanmu?",
+        snippet: '[GROUP CHAT ALERT] "Wkwkwk liat deh foto si X, parah banget! Ayo semuanya wajib spam komentar ejekan di akunnya biar kapok!"',
         options: [
-            { text: "Ikut komentar agar tidak dianggap aneh", points: { safety: 0 } },
-            { text: "Tidak ikut serta dan cari cara membantu korban", points: { safety: 2 } },
-            { text: "Diam saja tanpa bertindak", points: { safety: 1 } },
-            { text: "Keluar dari grup tanpa berkata apa-apa", points: { safety: 1 } }
+            { text: "Ikut mengirimkan komentar ejekan agar tidak dimusuhi grup", points: { socialMedia: 0 } },
+            { text: "Menolak ikut serta dan mendukung korban secara pribadi lewat jalur pribadi", points: { socialMedia: 2 } },
+            { text: "Hanya menyimak tanpa memberikan komentar apa pun", points: { socialMedia: 1 } },
+            { text: "Keluar dari grup chat secara diam-diam", points: { socialMedia: 1 } }
         ]
     },
     {
         id: 10,
-        question: "Sebelum posting sesuatu yang sensitif tentang dirimu, apa kebiasaanmu?",
+        categoryLabel: "Privacy & Digital Oversharing",
+        urgency: "Medium Urgency Trigger",
+        vector: "socialMedia",
+        question: "Kamu baru saja mendapatkan tiket konser impian dan dokumen identitas baru. Apa yang kamu lakukan sebelum mengunggahnya ke story?",
+        snippet: '[STORY DRAFT] "Akhirnya dapet tiket VIP konser & KTP baru! Selesai urusan paspor bareng nomor NIK & nomor KK keliatan jelas!"',
         options: [
-            { text: "Posting langsung, pikirkan nanti", points: { safety: 0, criticalThinking: 0 } },
-            { text: "Pikirkan dampak & cek pengaturan privasi dulu", points: { safety: 2, criticalThinking: 1 } },
-            { text: "Posting lalu hapus jika ada masalah", points: { safety: 1 } },
-            { text: "Tanya pendapat orang lain dulu", points: { safety: 1 } }
+            { text: "Langsung mengunggahnya agar teman-teman mengetahui kabar bahagiamu", points: { socialMedia: 0, safety: 0 } },
+            { text: "Menutup (blur/censor) seluruh kode QR, NIK, dan data pribadi sebelum posting", points: { socialMedia: 2, safety: 2 } },
+            { text: "Posting terlebih dahulu, lalu menghapusnya jika ada yang mengingatkan", points: { socialMedia: 1 } },
+            { text: "Mengirimkannya hanya ke fitur Close Friends tanpa sensor data", points: { socialMedia: 1 } }
         ]
     }
 ];

@@ -1,0 +1,189 @@
+<!-- ============================================================ -->
+<!-- survival.html — Halaman Survival SIAGA -->
+<!-- ============================================================ -->
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survival — SIAGA</title>
+    <meta name="description" content="Latih insting keputusanmu lewat skenario harian Survival SIAGA." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide-static/0.294.0/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased">
+
+    <!-- ============================ NAVBAR ============================ -->
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div
+            class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-md shrink-0">
+                <img alt="SIAGA Logo" class="h-8 w-auto object-contain"
+                    src="https://lh3.googleusercontent.com/aida/AEtjO1XK81ZLILOIYnMbHhgVFXfcM8RvSDcq1vy3tEpv_ionWkfXjxlZlq9Uwais5TwA9G1uPb-jmyCqkwq6DDvl0MU336-r-fXTSbkgihlM_UjCsi0Kjw2QHoGkLB8_649ilEpHPFTTMkzDKJnE5vV0kFa53u9Qc57CmnyjrPSGyAKuDOYpFKCI_A-AIb6lnfDRDy2kyUh7ntIz8u-w5fcIVgxDfdPqxxD7FxbWPZSHLM9YxDrOXA_Pk5-JbHJc" />
+                <a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold" data-path="home"
+                    href="index.html">SIAGA</a>
+            </div>
+            <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold">
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="checkup" href="checkup.html">Check-Up</a>
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="learn" href="learn.html">Learn</a>
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="challenge" href="challenge.html">Challenge</a>
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="survival" href="survival.html">Survival</a>
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="community" href="community.html">Community</a>
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="my-siaga" href="dashboard.html">My SIAGA</a>
+            </nav>
+            <div class="flex items-center gap-space-md shrink-0">
+                <a class="inline-flex items-center justify-center px-space-lg py-space-xs rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-sm font-semibold shadow-sm hover:bg-primary transition-colors"
+                    data-path="challenge" href="challenge.html">Start Training</a>
+                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================ MAIN ============================ -->
+    <main class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop pt-space-4xl pb-space-3xl">
+
+        <!-- ---------- DAILY SURVIVAL HERO BANNER ---------- -->
+        <section id="daily-hero"
+            class="bg-primary text-on-primary rounded-xl p-space-lg md:p-space-2xl mb-space-2xl relative overflow-hidden">
+            <div class="relative z-10 max-w-xl">
+                <p class="font-label-caps opacity-80 mb-space-2xs">SKENARIO HARI INI</p>
+                <h1 id="daily-title" class="font-headline-lg-mobile md:font-headline-lg mb-space-xs"></h1>
+                <p id="daily-situation-preview" class="font-body-sm opacity-90 mb-space-lg line-clamp-2"></p>
+                <button id="daily-cta" type="button"
+                    class="inline-flex items-center gap-space-2xs bg-on-primary text-primary font-body-sm font-semibold px-space-lg py-space-sm rounded-lg hover:opacity-90 transition-opacity">
+                    <span id="daily-cta-text">Mulai Sekarang</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <i data-lucide="shield-alert" class="absolute -right-4 -bottom-4 w-32 h-32 opacity-10"></i>
+        </section>
+
+        <!-- ---------- FILTER TAGS ---------- -->
+        <section class="mb-space-lg">
+            <div id="category-filters" class="flex flex-wrap gap-space-xs" role="tablist"></div>
+        </section>
+
+        <!-- ---------- SCENARIO CARD GRID ---------- -->
+        <section>
+            <h2 class="font-headline-sm text-on-surface mb-space-lg">Semua Skenario</h2>
+            <div id="scenario-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md"></div>
+        </section>
+
+    </main>
+
+    <!-- ============================ SIMULATOR MODAL ============================ -->
+    <div id="simulator-modal" class="siaga-modal hidden fixed inset-0 z-[100]" data-modal>
+        <div class="siaga-modal-backdrop absolute inset-0 bg-on-background/40 backdrop-blur-sm" data-modal-backdrop>
+        </div>
+        <div
+            class="siaga-modal-panel relative z-10 max-w-lg mx-auto mt-space-3xl md:mt-space-4xl bg-surface rounded-xl shadow-lg mx-space-md md:mx-auto max-h-[80vh] overflow-y-auto">
+            <div class="p-space-lg md:p-space-xl">
+                <div class="flex items-start justify-between mb-space-md">
+                    <span id="modal-category-badge"
+                        class="font-label-badge bg-surface-container text-on-surface-variant px-space-sm py-space-2xs rounded-full"></span>
+                    <button type="button" data-modal-close class="text-on-surface-variant hover:text-on-surface">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- STAGE 1: Situation -->
+                <div id="stage-situation">
+                    <h3 id="modal-title" class="font-headline-sm mb-space-sm"></h3>
+                    <p id="modal-situation" class="font-body-md text-on-surface-variant mb-space-lg"></p>
+                    <div id="modal-options" class="flex flex-col gap-space-xs"></div>
+                </div>
+
+                <!-- STAGE 2: Consequence & Feedback -->
+                <div id="stage-feedback" class="hidden">
+                    <div id="feedback-result-badge"
+                        class="inline-flex items-center gap-space-2xs px-space-md py-space-xs rounded-full font-label-badge mb-space-md">
+                        <i id="feedback-icon" data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span id="feedback-verdict"></span>
+                    </div>
+                    <p id="modal-feedback-text" class="font-body-md text-on-surface mb-space-lg"></p>
+                    <div class="bg-surface-container-low rounded-lg p-space-md mb-space-lg">
+                        <p class="font-label-caps text-primary mb-space-2xs">LEARNING BRIDGE</p>
+                        <p id="modal-learning-bridge" class="font-body-sm text-on-surface-variant"></p>
+                    </div>
+                    <button type="button" data-modal-close
+                        class="w-full bg-primary text-on-primary font-body-sm font-semibold px-space-lg py-space-sm rounded-lg hover:opacity-90 transition-opacity">
+                        Selesai
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="w-full bg-surface-container-low border-t border-outline-variant/20 py-space-3xl">
+        <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+            <div
+                class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-2xl pb-space-2xl border-b border-outline-variant/30">
+                <div class="max-w-md">
+                    <div class="flex items-center gap-space-sm mb-space-sm">
+                        <img alt="SIAGA Logo" class="h-8 w-auto object-contain"
+                            src="https://lh3.googleusercontent.com/aida/AEtjO1XK81ZLILOIYnMbHhgVFXfcM8RvSDcq1vy3tEpv_ionWkfXjxlZlq9Uwais5TwA9G1uPb-jmyCqkwq6DDvl0MU336-r-fXTSbkgihlM_UjCsi0Kjw2QHoGkLB8_649ilEpHPFTTMkzDKJnE5vV0kFa53u9Qc57CmnyjrPSGyAKuDOYpFKCI_A-AIb6lnfDRDy2kyUh7ntIz8u-w5fcIVgxDfdPqxxD7FxbWPZSHLM9YxDrOXA_Pk5-JbHJc" />
+                        <span class="font-headline-sm text-headline-sm font-bold text-on-surface">SIAGA</span>
+                    </div>
+                    <p class="font-body-md text-body-sm text-on-surface-variant leading-relaxed">
+                        The digital survival simulator helping the next generation
+                        navigate online threats with confidence.
+                    </p>
+                </div>
+                <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
+                    <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        data-path="survival" href="survival.html">Survival Scenarios</a>
+                    <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        data-path="learn" href="learn.html">Interactive Learning</a>
+                    <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        data-path="community" href="community.html">Community Stories</a>
+                    <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        data-path="challenge" href="challenge.html">Defense Hub</a>
+                    <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="#">Privacy Policy</a>
+                    <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="#">Terms of Service</a>
+                </nav>
+            </div>
+            <div
+                class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left">
+                <p class="font-body-sm text-body-sm text-on-surface-variant">© 2026 SIAGA. Built for digital resilience.
+                </p>
+                <div
+                    class="flex items-center gap-space-sm font-code-telemetry text-code-telemetry text-on-surface-variant">
+                    <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span>SYSTEM_SECURE
+                        // READY</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/survival.js"></script>
+    <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+
+</html>
