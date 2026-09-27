@@ -1,15 +1,5 @@
-// ============================================================
-// js/data.js
-// Core Data Layer — SIAGA
-// Semua konten statis: soal Check-Up, skenario Survival,
-// microlesson Learn, Weekly Challenge, Badge, dan Community Stories
-// ============================================================
-
-// ------------------------------------------------------------
-// 1. CHECK-UP QUESTIONS
-// Setiap jawaban punya bobot poin ke salah satu dari 4 skill:
-// safety, criticalThinking, aiLiteracy, financialSecurity
-// ------------------------------------------------------------
+// js/data.js — Core Data Layer — SIAGA Semua konten statis: soal Check-Up, skenario Survival, microlesson Learn, We...
+// --- CHECK-UP QUESTIONS ---
 const checkupQuestions = [
     {
         id: 1,
@@ -122,41 +112,10 @@ const checkupQuestions = [
             { text: "Mengedit sedikit susunan kalimatnya lalu menyetorkannya", points: { aiLiteracy: 0 } },
             { text: "Menanyakan kembali pertanyaan yang sama ke chatbot AI tersebut", points: { aiLiteracy: 1 } }
         ]
-    },
-    {
-        id: 9,
-        categoryLabel: "Cyberbullying & Peer Pressure",
-        urgency: "High Urgency Trigger",
-        vector: "socialMedia",
-        question: "Di grup percakapan, teman-temanmu ramai mengejek satu anggota dan memintamu ikut berkomentar kasar agar dianggap kompak. Tindakanmu?",
-        snippet: '[GROUP CHAT ALERT] "Wkwkwk liat deh foto si X, parah banget! Ayo semuanya wajib spam komentar ejekan di akunnya biar kapok!"',
-        options: [
-            { text: "Ikut mengirimkan komentar ejekan agar tidak dimusuhi grup", points: { socialMedia: 0 } },
-            { text: "Menolak ikut serta dan mendukung korban secara pribadi lewat jalur pribadi", points: { socialMedia: 2 } },
-            { text: "Hanya menyimak tanpa memberikan komentar apa pun", points: { socialMedia: 1 } },
-            { text: "Keluar dari grup chat secara diam-diam", points: { socialMedia: 1 } }
-        ]
-    },
-    {
-        id: 10,
-        categoryLabel: "Privacy & Digital Oversharing",
-        urgency: "Medium Urgency Trigger",
-        vector: "socialMedia",
-        question: "Kamu baru saja mendapatkan tiket konser impian dan dokumen identitas baru. Apa yang kamu lakukan sebelum mengunggahnya ke story?",
-        snippet: '[STORY DRAFT] "Akhirnya dapet tiket VIP konser & KTP baru! Selesai urusan paspor bareng nomor NIK & nomor KK keliatan jelas!"',
-        options: [
-            { text: "Langsung mengunggahnya agar teman-teman mengetahui kabar bahagiamu", points: { socialMedia: 0, safety: 0 } },
-            { text: "Menutup (blur/censor) seluruh kode QR, NIK, dan data pribadi sebelum posting", points: { socialMedia: 2, safety: 2 } },
-            { text: "Posting terlebih dahulu, lalu menghapusnya jika ada yang mengingatkan", points: { socialMedia: 1 } },
-            { text: "Mengirimkannya hanya ke fitur Close Friends tanpa sensor data", points: { socialMedia: 1 } }
-        ]
     }
 ];
 
-// ------------------------------------------------------------
-// 2. SURVIVAL SCENARIOS
-// Kategori: safety | information | ai | finance | social
-// ------------------------------------------------------------
+// --- SURVIVAL SCENARIOS ---
 const scenarios = [
     {
         id: 1,
@@ -230,20 +189,6 @@ const scenarios = [
     },
     {
         id: 6,
-        title: "Tekanan Sosial untuk Ikut Perundungan Online",
-        category: "social",
-        difficulty: "Easy",
-        xp: 50,
-        situation: "Di grup chat kelas, banyak teman mengejek satu orang secara terbuka. Beberapa memintamu ikut berkomentar agar 'seru'.",
-        options: [
-            { text: "Ikut berkomentar supaya tidak dijauhi", correct: false, feedback: "Ikut serta memperkuat perundungan dan bisa berdampak hukum maupun psikologis bagi korban." },
-            { text: "Tidak ikut & cari cara mendukung korban secara pribadi", correct: true, feedback: "Tepat. Tidak berpartisipasi dan mendukung korban secara personal adalah langkah paling aman dan etis." },
-            { text: "Diam saja tanpa melakukan apa pun", correct: false, feedback: "Diam mengurangi risiko langsung untukmu, tapi tidak membantu korban — masih ada ruang untuk bertindak lebih baik." }
-        ],
-        learningBridge: "Tekanan sosial di grup adalah pemicu umum keputusan buruk — berhenti sejenak sebelum ikut arus."
-    },
-    {
-        id: 7,
         title: "Aplikasi Kalkulator Minta Akses Kontak",
         category: "safety",
         difficulty: "Easy",
@@ -257,7 +202,7 @@ const scenarios = [
         learningBridge: "Selalu cek kesesuaian antara fungsi aplikasi dan izin yang diminta sebelum menyetujui."
     },
     {
-        id: 8,
+        id: 7,
         title: "Jawaban AI yang Terdengar Meyakinkan",
         category: "ai",
         difficulty: "Medium",
@@ -272,10 +217,7 @@ const scenarios = [
     }
 ];
 
-// ------------------------------------------------------------
-// 3. MICROLESSONS (Learn)
-// tag skill dipakai untuk sistem rekomendasi dari hasil Check-Up
-// ------------------------------------------------------------
+// --- MICROLESSONS (Learn) ---
 const lessons = [
     {
         id: 1,
@@ -347,23 +289,19 @@ const lessons = [
     }
 ];
 
-// ------------------------------------------------------------
-// 4. WEEKLY CHALLENGES
-// ------------------------------------------------------------
+// --- WEEKLY CHALLENGES ---
 const weeklyChallenges = [
     {
         id: 1,
         title: "Minggu Ketahanan Digital #1",
         description: "Hadapi 5 skenario campuran untuk menguji seluruh skill SIAGA-mu minggu ini.",
-        scenarioIds: [1, 3, 4, 5, 6],
+        scenarioIds: [1, 3, 4, 5, 7],
         rewardXp: 250,
         rewardBadgeId: "digital-guardian"
     }
 ];
 
-// ------------------------------------------------------------
-// 5. BADGES
-// ------------------------------------------------------------
+// --- BADGES ---
 const badges = [
     { id: "first-decision", title: "First Decision", description: "Selesaikan skenario pertamamu.", icon: "shield" },
     { id: "scam-survivor", title: "Scam Survivor", description: "Selesaikan 5 skenario kategori safety.", icon: "shield-check" },
@@ -373,9 +311,7 @@ const badges = [
     { id: "digital-guardian", title: "Digital Guardian", description: "Capai rata-rata skill di atas ambang tertentu.", icon: "trophy" }
 ];
 
-// ------------------------------------------------------------
-// 6. DEFAULT COMMUNITY STORIES
-// ------------------------------------------------------------
+// --- DEFAULT COMMUNITY STORIES ---
 const defaultStories = [
     {
         id: "default-1",
@@ -403,9 +339,7 @@ const defaultStories = [
     }
 ];
 
-// ------------------------------------------------------------
-// EXPORT (diakses global lewat window jika tanpa module bundler)
-// ------------------------------------------------------------
+// --- EXPORT (diakses global lewat window jika tanpa module bundler) ---
 window.SIAGA_DATA = {
     checkupQuestions,
     scenarios,

@@ -1,10 +1,5 @@
-// ============================================================
-// js/checkup.js
-// Logic Halaman Check-Up — Google Stitch Interactive Flow
-// (Intro → Incident Drill Wizard → Diagnostic Debrief Results)
-// ============================================================
-
-/** Labels & metadata untuk 5 Vector Ketahanan Digital */
+// js/checkup.js — Logic Halaman Check-Up — Google Stitch Interactive Flow (Intro → Incident Drill Wizard → Diagnostic...
+//
 const VECTOR_META = {
     safety: {
         label: "Digital Safety",
@@ -29,16 +24,10 @@ const VECTOR_META = {
         subtext: "Payment Gateways & Scams",
         icon: "account_balance_wallet",
         colorClass: "bg-secondary-container"
-    },
-    socialMedia: {
-        label: "Social Media",
-        subtext: "Privacy & Oversharing",
-        icon: "share",
-        colorClass: "bg-primary"
     }
 };
 
-/** Persona Tactical Classifications */
+// Klasifikasi persona taktis berdasarkan skor akhir (4 vektor).
 const PERSONA_TYPES = [
     {
         min: 0, max: 39,
@@ -85,21 +74,13 @@ let drillStartTime = null;
 let questionTimer = 0;
 let timerInterval = null;
 
-// ============================================================
-// ISOLATED MODE HELPERS
-// Activates browser restrictions during the active quiz session:
-// - Disables right-click context menu
-// - Blocks common copy/select keyboard shortcuts (Ctrl+C, Ctrl+A, Ctrl+U)
-// - Prevents printing
-// These are applied as CSS via body class (see style.css / <style> block)
-// ============================================================
-
-/** Handles contextmenu event — suppressed during isolated mode */
+// ISOLATED MODE HELPERS — Activates browser restrictions during the active quiz session: - Disables right-click context menu -...
+//
 function preventContextMenu(e) {
     e.preventDefault();
 }
 
-/** Handles keyboard shortcuts that could break isolation */
+//
 function preventIsolationKeys(e) {
     const blockedCombinations = [
         { ctrl: true, key: "c" },  // Copy
@@ -118,14 +99,14 @@ function preventIsolationKeys(e) {
     }
 }
 
-/** Activates full isolated check-up mode on the browser */
+//
 function enableIsolatedMode() {
     document.body.classList.add("checkup-isolated-mode");
     document.addEventListener("contextmenu", preventContextMenu);
     document.addEventListener("keydown", preventIsolationKeys);
 }
 
-/** Restores normal browser behavior when quiz ends or user exits */
+//
 function disableIsolatedMode() {
     document.body.classList.remove("checkup-isolated-mode");
     document.removeEventListener("contextmenu", preventContextMenu);
@@ -183,9 +164,7 @@ const dom = {
     shareBtn: document.getElementById("shareBtn")
 };
 
-// ============================================================
 // INITIALIZATION & EVENT LISTENERS
-// ============================================================
 document.addEventListener("DOMContentLoaded", () => {
     if (window.SIAGA_STORAGE) {
         window.SIAGA_STORAGE.initializeIfFirstVisit();
@@ -237,10 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// ============================================================
 // DRILL FLOW LOGIC
-// ============================================================
-
 function startCheckupDrill() {
     currentIndex = 0;
     userAnswers = [];
@@ -413,13 +389,10 @@ function startQuestionTimer() {
     }, 1000);
 }
 
-// ============================================================
 // CALCULATE & RENDER DIAGNOSTIC RESULTS
-// ============================================================
-
 function calculateResults() {
-    const vectors = { safety: 0, criticalThinking: 0, aiLiteracy: 0, financialSecurity: 0, socialMedia: 0 };
-    const maxVectors = { safety: 0, criticalThinking: 0, aiLiteracy: 0, financialSecurity: 0, socialMedia: 0 };
+    const vectors = { safety: 0, criticalThinking: 0, aiLiteracy: 0, financialSecurity: 0 };
+    const maxVectors = { safety: 0, criticalThinking: 0, aiLiteracy: 0, financialSecurity: 0 };
 
     questions.forEach((q) => {
         // Find max possible points per vector for this question
@@ -501,6 +474,11 @@ function renderResults({ overallScore, vectorPercents, persona }) {
     // Session ID
     const randomSession = "SG-" + Math.floor(1000 + Math.random() * 9000) + "-A";
     dom.sessionIdDisplay.textContent = `SESSION_ID: #${randomSession}`;
+
+    // Jumlah skenario yang dijawab (dinamis mengikuti TOTAL_QUESTIONS)
+    if (dom.scenariosNeutralizedBadge) {
+        dom.scenariosNeutralizedBadge.innerHTML = `<span class="material-symbols-outlined text-[16px] text-emerald-400">task_alt</span><span>${userAnswers.length} dari ${TOTAL_QUESTIONS} Skenario Dinilai</span>`;
+    }
 
     // Score Counter Animation
     animateScoreCounter(overallScore);
@@ -623,6 +601,10 @@ function resetCheckupDrill() {
 
 function handleShareResults() {
     const shareUrl = window.location.href;
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        alert("Salin link halaman ini untuk membagikan hasil Check-Up kamu!");
+        return;
+    }
     navigator.clipboard.writeText(shareUrl).then(() => {
         const originalText = dom.shareBtn.innerHTML;
         dom.shareBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">check</span> Tautan Tersalin!`;

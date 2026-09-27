@@ -1,11 +1,4 @@
-// ============================================================
-// js/storage.js
-// Core Storage Engine — SIAGA
-// Modul helper terisolasi untuk manipulasi LocalStorage.
-// Semua fungsi lain di seluruh halaman WAJIB lewat modul ini,
-// tidak boleh akses localStorage langsung di file lain (DRY & clean).
-// ============================================================
-
+// js/storage.js — Core Storage Engine — SIAGA Modul helper terisolasi untuk manipulasi LocalStorage. Semua fungsi lain...
 const STORAGE_KEYS = {
     USER: "siaga_user",
     SCORE: "siaga_score",
@@ -16,12 +9,11 @@ const STORAGE_KEYS = {
     BADGES: "siaga_badges",
     DAILY: "siaga_daily",
     CHALLENGE: "siaga_challenge",
-    STORIES: "siaga_stories"
+    STORIES: "siaga_stories",
+    STREAK: "siaga_streak"
 };
 
-// ------------------------------------------------------------
-// Level thresholds (sesuai PRD §9.2)
-// ------------------------------------------------------------
+// --- Level thresholds (sesuai PRD §9.2) ---
 const LEVEL_THRESHOLDS = [
     { min: 0, max: 199, name: "Digital Rookie" },
     { min: 200, max: 499, name: "Aware User" },
@@ -31,9 +23,7 @@ const LEVEL_THRESHOLDS = [
     { min: 2500, max: Infinity, name: "Community Protector" }
 ];
 
-// ------------------------------------------------------------
-// Helper baca/tulis generik + fallback jika parsing gagal
-// ------------------------------------------------------------
+// --- Helper baca/tulis generik + fallback jika parsing gagal ---
 function readJSON(key, fallback) {
     try {
         const raw = localStorage.getItem(key);
@@ -55,9 +45,7 @@ function writeJSON(key, value) {
     }
 }
 
-// ------------------------------------------------------------
-// Inisialisasi otomatis untuk pengguna pertama kali
-// ------------------------------------------------------------
+// --- Inisialisasi otomatis untuk pengguna pertama kali ---
 function initializeIfFirstVisit() {
     if (localStorage.getItem(STORAGE_KEYS.USER) === null) {
         writeJSON(STORAGE_KEYS.USER, {
@@ -78,12 +66,11 @@ function initializeIfFirstVisit() {
         writeJSON(STORAGE_KEYS.DAILY, { date: null, scenarioId: null, done: false });
         writeJSON(STORAGE_KEYS.CHALLENGE, { challengeId: null, progress: 0, done: false });
         writeJSON(STORAGE_KEYS.STORIES, []);
+        writeJSON(STORAGE_KEYS.STREAK, { count: 0, lastActiveDate: null });
     }
 }
 
-// ------------------------------------------------------------
-// USER PROFILE
-// ------------------------------------------------------------
+// --- USER PROFILE ---
 function getUserProfile() {
     initializeIfFirstVisit();
     return readJSON(STORAGE_KEYS.USER, {});
@@ -94,9 +81,7 @@ function updateUserProfile(patch) {
     return writeJSON(STORAGE_KEYS.USER, { ...current, ...patch });
 }
 
-// ------------------------------------------------------------
-// CHECK-UP
-// ------------------------------------------------------------
+// --- CHECK-UP ---
 function saveCheckupResult({ score, skills, survivalType }) {
     initializeIfFirstVisit();
     writeJSON(STORAGE_KEYS.SCORE, score);
@@ -114,11 +99,34 @@ function getCheckupResult() {
     };
 }
 
-// ------------------------------------------------------------
-// XP & LEVEL
-// ------------------------------------------------------------
+// --- STREAK (hari aktif berturut-turut) — dibutuhkan oleh Hub Survival ---
+
+// Mengambil data streak saat ini: jumlah hari berturut-turut aktif.
+function getStreakData() {
+    return readJSON(STORAGE_KEYS.STREAK, { count: 0, lastActiveDate: null });
+}
+
+// Memperbarui streak: +1 jika aktif hari ini melanjutkan dari kemarin,.
+function updateStreak() {
+    const todayStr = new Date().toISOString().split("T")[0];
+    const streakData = getStreakData();
+
+    if (streakData.lastActiveDate === todayStr) return streakData;
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split("T")[0];
+
+    const newCount = streakData.lastActiveDate === yesterdayStr ? streakData.count + 1 : 1;
+    const newStreak = { count: newCount, lastActiveDate: todayStr };
+    writeJSON(STORAGE_KEYS.STREAK, newStreak);
+    return newStreak;
+}
+
+// --- XP & LEVEL ---
 function addXP(amount) {
     initializeIfFirstVisit();
+    updateStreak();
     const currentXP = readJSON(STORAGE_KEYS.XP, 0);
     const newXP = currentXP + amount;
     writeJSON(STORAGE_KEYS.XP, newXP);
@@ -143,9 +151,17 @@ function getLevel() {
     return readJSON(STORAGE_KEYS.LEVEL, LEVEL_THRESHOLDS[0].name);
 }
 
-// ------------------------------------------------------------
-// SKILLS (per-kategori dari hasil scenario/lesson)
-// ------------------------------------------------------------
+// --- STATS GABUNGAN — dipakai oleh Telemetry Widget di Hub Survival ---
+
+// Mengembalikan ringkasan statistik untuk widget telemetry.
+function getStats() {
+    return {
+        totalXp: getXP(),
+        streak: getStreakData().count
+    };
+}
+
+// --- SKILLS (per-kategori dari hasil scenario/lesson) ---
 function updateSkillPoints(skillKey, points) {
     const skills = readJSON(STORAGE_KEYS.SKILLS, {
         safety: 0, criticalThinking: 0, aiLiteracy: 0, financialSecurity: 0
@@ -161,9 +177,7 @@ function getSkills() {
     });
 }
 
-// ------------------------------------------------------------
-// SCENARIO / LESSON COMPLETION
-// ------------------------------------------------------------
+// --- SCENARIO / LESSON COMPLETION ---
 function getCompletedScenarios() {
     return readJSON(STORAGE_KEYS.COMPLETED, []);
 }
@@ -181,9 +195,7 @@ function isScenarioCompleted(scenarioId) {
     return getCompletedScenarios().some(c => c.scenarioId === scenarioId);
 }
 
-// ------------------------------------------------------------
-// BADGES
-// ------------------------------------------------------------
+// --- BADGES ---
 function getBadges() {
     return readJSON(STORAGE_KEYS.BADGES, []);
 }
@@ -200,9 +212,7 @@ function hasBadge(badgeId) {
     return getBadges().includes(badgeId);
 }
 
-// ------------------------------------------------------------
-// DAILY SURVIVAL
-// ------------------------------------------------------------
+// --- DAILY SURVIVAL ---
 function getDailyStatus() {
     return readJSON(STORAGE_KEYS.DAILY, { date: null, scenarioId: null, done: false });
 }
@@ -211,9 +221,7 @@ function setDailyStatus({ date, scenarioId, done }) {
     return writeJSON(STORAGE_KEYS.DAILY, { date, scenarioId, done });
 }
 
-// ------------------------------------------------------------
-// WEEKLY CHALLENGE
-// ------------------------------------------------------------
+// --- WEEKLY CHALLENGE ---
 function getChallengeStatus() {
     return readJSON(STORAGE_KEYS.CHALLENGE, { challengeId: null, progress: 0, done: false });
 }
@@ -222,9 +230,7 @@ function setChallengeStatus({ challengeId, progress, done }) {
     return writeJSON(STORAGE_KEYS.CHALLENGE, { challengeId, progress, done });
 }
 
-// ------------------------------------------------------------
-// COMMUNITY STORIES (input pengguna, disimpan lokal)
-// ------------------------------------------------------------
+// --- COMMUNITY STORIES (input pengguna, disimpan lokal) ---
 function getUserStories() {
     return readJSON(STORAGE_KEYS.STORIES, []);
 }
@@ -243,17 +249,13 @@ function saveUserStory(story) {
     return newStory;
 }
 
-// ------------------------------------------------------------
-// RESET (untuk keperluan testing / fitur "Reset Progress")
-// ------------------------------------------------------------
+// --- RESET (untuk keperluan testing / fitur "Reset Progress") ---
 function resetAllProgress() {
     Object.values(STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
     initializeIfFirstVisit();
 }
 
-// ------------------------------------------------------------
-// EXPORT
-// ------------------------------------------------------------
+// --- EXPORT ---
 window.SIAGA_STORAGE = {
     initializeIfFirstVisit,
     getUserProfile,
@@ -261,8 +263,11 @@ window.SIAGA_STORAGE = {
     saveCheckupResult,
     getCheckupResult,
     addXP,
+    addXp: addXP, // alias huruf kecil, untuk kompatibilitas dengan survival.js versi baru
     getXP,
     getLevel,
+    getStats,
+    getStreakData,
     updateSkillPoints,
     getSkills,
     getCompletedScenarios,
