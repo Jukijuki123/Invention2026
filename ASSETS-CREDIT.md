@@ -8,6 +8,7 @@ Komentar inline juga dicantumkan tepat di lokasi pemakaian di setiap file HTML/C
 | Aset | Lokasi pakai | Keterangan |
 |---|---|---|
 | Logo SIAGA (`assets/images/logo.png`, perisai navy–cyan) | Navbar + footer semua halaman (`index.html`, `checkup.html`, `survival.html`, `learn.html`, `challenge.html`, `community.html`, `progress.html`) | Original asset — dibuat oleh tim SIAGA, disimpan lokal di repo. |
+| Ilustrasi Tentang SIAGA (`assets/images/siaga.svg`) | Section Tentang di `index.html` | Original asset — milik tim SIAGA, disimpan lokal di repo. |
 | Ilustrasi perisai / grid pertahanan (`...AEtjO1XusVpV...`) | Hero `index.html` (backdrop kanan) | Original asset — dibuat oleh tim SIAGA (AI-generated untuk prototipe lomba). |
 | Ilustrasi shield Check-Up (`...AEtjO1VjrN...`) | Intro `checkup.html` | Original asset — dibuat oleh tim SIAGA (AI-generated untuk prototipe lomba). |
 

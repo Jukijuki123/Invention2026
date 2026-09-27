@@ -82,24 +82,26 @@
           href="index.html">SIAGA</a>
       </div>
       <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold">
-        <a aria-current="page"
+        <a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          data-path="learn" href="#learn">Belajar</a><a
+          href="#tentang">Tentang</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          data-path="challenge" href="#challenge">Tantangan</a><a
+          href="#learn">Belajar</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          data-path="survival" href="#survival">Survival</a><a
+          href="#challenge">Tantangan</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          data-path="community" href="#community">Komunitas</a><a
+          href="#survival">Survival</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          data-path="my-siaga" href="#my-siaga">My SIAGA</a>
+          href="#community">Komunitas</a><a
+          class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+          href="#faq">FAQ</a><a
+          class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+          href="checkup.html">Check-Up</a>
       </nav>
       <div class="flex items-center gap-space-md shrink-0">
-        <a class="inline-flex items-center justify-center px-space-lg py-space-xs rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-sm font-semibold shadow-sm hover:bg-primary transition-colors"
-          data-path="challenge" href="#challenge">Mulai Pelatihan</a>
-        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+        <a href="progress.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center" aria-label="SIAGA Saya">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
-        </div>
+        </a>
         <button id="btn-mobile-nav"
           class="lg:hidden w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center"
           aria-label="Buka navigasi" aria-expanded="false">
@@ -107,18 +109,16 @@
         </button>
       </div>
     </div>
-    <nav id="mobile-nav"
+        <nav id="mobile-nav"
       class="hidden lg:hidden border-t border-outline-variant/30 bg-surface px-margin-mobile py-space-sm flex flex-col gap-1">
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
-        href="#learn">Belajar</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
-        href="#challenge">Tantangan</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
-        href="#survival">Survival</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
-        href="#community">Komunitas</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
-        href="#my-siaga">My SIAGA</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#tentang">Tentang</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#learn">Belajar</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#challenge">Tantangan</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#survival">Survival</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#community">Komunitas</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#faq">FAQ</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="checkup.html">Check-Up</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="progress.html">My SIAGA</a>
     </nav>
   </header>
   <main class="w-full pt-20 bg-surface min-h-screen">
@@ -286,9 +286,9 @@
               Dunia Digital Bergerak Cepat. Keputusanmu Menentukan.
             </h2>
             <p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
-              Penipuan berkembang setiap hari. Menghafal aturan saja tidak cukup — kamu
-              butuh memori otot instingtif untuk mengenali tipuan dan
-              manipulasi.
+              Dari link hadiah palsu hingga suara kloningan AI — penipuan berkembang
+              setiap hari. Satu-satunya pertahanan yang menempel adalah refleks:
+              berhenti, periksa, lalu putuskan.
             </p>
           </div>
           <!-- 4 Threat Vector Interactive Cards -->
@@ -394,133 +394,31 @@
               </div>
             </div>
           </div>
-          <!-- Dramatic Impact Banner -->
-          <div
-            class="mt-space-2xl text-center py-space-md px-space-xl rounded-2xl bg-primary-fixed/30 backdrop-blur-sm border border-primary/20">
-            <span class="font-headline-md text-headline-md font-black text-primary tracking-wide">
-              ⚡ Satu klik bisa mengubah segalanya.
-            </span>
-          </div>
         </div>
       </section>
-      <section
-        class="w-full bg-surface py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop border-b border-outline-variant/20">
-        <div class="max-w-[1280px] mx-auto flex flex-col items-center">
-          <div class="text-center max-w-xl mx-auto mb-space-xl">
+      <!-- TENTANG SIAGA -->
+      <section id="tentang"
+        class="w-full bg-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop border-b border-outline-variant/20">
+        <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+          <div class="lg:col-span-5">
+            <!-- Ilustrasi SIAGA — aset tim (assets/images/siaga.svg) | Lihat ASSETS-CREDIT.md -->
+            <img alt="Ilustrasi SIAGA tentang ketahanan digital" loading="lazy"
+              class="w-full h-auto object-contain" src="assets/images/siaga.svg" />
+          </div>
+          <div class="lg:col-span-7 flex flex-col items-start">
             <span
-              class="font-label-caps text-label-caps text-primary uppercase tracking-widest font-extrabold block mb-space-2xs">REALITAS
-              ESKALASI</span>
+              class="font-label-caps text-label-caps text-primary uppercase tracking-widest font-extrabold mb-space-xs block">TENTANG
+              SIAGA</span>
             <h2
-              class="font-headline-lg text-headline-sm md:text-headline-lg text-on-surface font-extrabold tracking-tight">
-              Kenapa SIAGA Ada
+              class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface font-extrabold tracking-tight">
+              Latihan Bertahan Digital, Bukan Sekadar Membaca
             </h2>
-          </div>
-          <div
-            class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between gap-space-sm md:gap-space-xs relative">
-            <div
-              class="flex-1 w-full flex items-center justify-between bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-space-md shadow-sm hover:border-primary transition-colors group">
-              <div class="flex items-center gap-space-sm">
-                <div
-                  class="w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <span class="material-symbols-outlined text-[22px]">devices</span>
-                </div>
-                <div class="min-w-0">
-                  <span
-                    class="font-label-badge text-label-badge text-primary uppercase tracking-wider block font-bold">Tahap
-                    01</span>
-                  <h3 class="font-headline-sm text-body-sm font-bold text-on-surface">
-                    Akses Makin Luas
-                  </h3>
-                  <p class="font-body-sm text-[12px] text-on-surface-variant leading-snug">
-                    Smartphone & jaringan di mana-mana
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="hidden md:flex items-center justify-center text-outline shrink-0 px-space-2xs">
-              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-            </div>
-            <div class="flex md:hidden text-outline py-space-2xs">
-              <span class="material-symbols-outlined text-[20px]">arrow_downward</span>
-            </div>
-            <div
-              class="flex-1 w-full flex items-center justify-between bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-space-md shadow-sm hover:border-secondary transition-colors group">
-              <div class="flex items-center gap-space-sm">
-                <div
-                  class="w-10 h-10 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <span class="material-symbols-outlined text-[22px]">bolt</span>
-                </div>
-                <div class="min-w-0">
-                  <span
-                    class="font-label-badge text-label-badge text-secondary uppercase tracking-wider block font-bold">Tahap
-                    02</span>
-                  <h3 class="font-headline-sm text-body-sm font-bold text-on-surface">
-                    Aktivitas Makin Banyak
-                  </h3>
-                  <p class="font-body-sm text-[12px] text-on-surface-variant leading-snug">
-                    Transaksi harian & pesan instan
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="hidden md:flex items-center justify-center text-outline shrink-0 px-space-2xs">
-              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-            </div>
-            <div class="flex md:hidden text-outline py-space-2xs">
-              <span class="material-symbols-outlined text-[20px]">arrow_downward</span>
-            </div>
-            <div
-              class="flex-1 w-full flex items-center justify-between bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-space-md shadow-sm hover:border-error transition-colors group">
-              <div class="flex items-center gap-space-sm">
-                <div
-                  class="w-10 h-10 rounded-xl bg-error-container/60 text-error flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <span class="material-symbols-outlined text-[22px]">warning</span>
-                </div>
-                <div class="min-w-0">
-                  <span
-                    class="font-label-badge text-label-badge text-error uppercase tracking-wider block font-bold">Tahap
-                    03</span>
-                  <h3 class="font-headline-sm text-body-sm font-bold text-on-surface">
-                    Risiko Digital Makin Besar
-                  </h3>
-                  <p class="font-body-sm text-[12px] text-on-surface-variant leading-snug">
-                    Phishing otomatis & deepfake
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="hidden md:flex items-center justify-center text-secondary-container shrink-0 px-space-2xs">
-              <span class="material-symbols-outlined text-[20px] text-secondary font-bold">arrow_forward</span>
-            </div>
-            <div class="flex md:hidden text-secondary-container py-space-2xs">
-              <span class="material-symbols-outlined text-[20px] text-secondary font-bold">arrow_downward</span>
-            </div>
-            <div
-              class="flex-1 w-full flex items-center justify-between bg-inverse-surface border border-secondary/40 rounded-2xl p-space-md shadow-lg group">
-              <div class="flex items-center gap-space-sm">
-                <div
-                  class="w-10 h-10 rounded-xl bg-secondary-container/20 text-secondary-container flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <span class="material-symbols-outlined text-[22px]">psychology</span>
-                </div>
-                <div class="min-w-0">
-                  <span
-                    class="font-label-badge text-label-badge text-secondary-container uppercase tracking-wider block font-bold">Tahap
-                    04</span>
-                  <h3 class="font-headline-sm text-body-sm font-bold text-inverse-on-surface">
-                    Butuh Keputusan Lebih Baik
-                  </h3>
-                  <p class="font-body-sm text-[12px] text-surface-variant/80 leading-snug">
-                    Pertahanan instingtif saat tiap detik menentukan
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="mt-space-xl text-center max-w-2xl">
-            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-              <span class="font-semibold text-primary">Seiring paparan digital yang melesat pesat,</span>
-              SIAGA menjembatani kesenjangan antara pengetahuan teori dan
-              pertahanan instingtif.
+            <p class="font-body-md text-body-md text-on-surface-variant mt-space-sm max-w-xl">
+              SIAGA (Sistem Informasi &amp; Gamifikasi Aman Digital) adalah platform
+              latihan pengambilan keputusan digital. Tahu bahaya saja tidak cukup —
+              kamu dilatih menghadapi situasi nyata: pesan menipu, berita palsu,
+              suara kloningan AI, dan tawaran investasi bodong, lalu mengambil
+              keputusan yang aman sebelum hal itu menimpamu.
             </p>
           </div>
         </div>
@@ -975,6 +873,134 @@
           </div>
         </div>
       </section>
+      <!-- FAQ -->
+      <section id="faq"
+        class="w-full bg-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-start">
+          <!-- Left: heading -->
+          <div class="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
+            <div class="inline-flex items-center gap-space-xs mb-space-md">
+              <span class="material-symbols-outlined text-[20px] text-secondary">shield</span>
+              <span class="font-body-md text-body-md text-on-surface-variant">Pertanyaan dan Jawaban</span>
+            </div>
+            <h2
+              class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface font-extrabold tracking-tight">
+              Pertanyaan yang Sering Diajukan
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-space-sm max-w-md">
+              Berikut beberapa pertanyaan yang sering muncul tentang cara kerja SIAGA.
+            </p>
+            <div
+              class="relative overflow-hidden w-full max-w-md mt-space-xl rounded-3xl bg-inverse-surface text-inverse-on-surface p-space-lg shadow-xl">
+              <div
+                class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none">
+              </div>
+              <div class="relative z-10 flex flex-col gap-space-sm">
+                <h3 class="font-headline-sm text-headline-sm font-bold">
+                  Masih bingung setelah baca FAQ?
+                </h3>
+                <p class="font-body-sm text-body-sm text-surface-variant/80 leading-relaxed">
+                  Cara tercepat memahami SIAGA adalah mencobanya langsung —
+                  cukup 3 menit untuk Check-Up pertama.
+                </p>
+                <div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+                  <a class="inline-flex items-center justify-center px-space-lg py-space-xs rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    href="checkup.html">
+                    Coba Check-Up Gratis
+                  </a>
+                  <a class="inline-flex items-center gap-1 font-headline-sm text-body-sm font-semibold text-secondary-fixed hover:text-secondary-container transition-colors"
+                    href="progress.html">
+                    Panduan Darurat
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-space-md gap-y-space-2xs mt-space-lg font-code-telemetry text-code-telemetry text-on-surface-variant">
+              <span class="inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+                100% Gratis
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+                Tanpa akun
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+                Data tersimpan lokal
+              </span>
+            </div>
+          </div>
+          <!-- Right: accordion -->
+          <div class="lg:col-span-7 flex flex-col gap-space-sm">
+            <details
+              class="group bg-surface-container-lowest rounded-3xl border border-outline-variant/40 p-space-md md:p-space-lg transition-all hover:border-primary/60 hover:shadow-md open:border-primary open:shadow-md open:bg-primary-fixed/20">
+              <summary
+                class="flex items-center justify-between gap-space-md cursor-pointer list-none font-headline-sm text-body-md md:text-headline-sm font-bold text-on-surface [&::-webkit-details-marker]:hidden">
+                <span>Apa itu SIAGA?</span>
+                <span
+                  class="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center shrink-0 transition-all duration-200 group-open:bg-primary group-open:text-on-primary group-open:rotate-180"><span
+                    class="material-symbols-outlined text-[20px]">expand_more</span></span>
+              </summary>
+              <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
+                SIAGA adalah platform latihan pengambilan keputusan digital. Alih-alih membaca materi panjang, kamu menghadapi simulasi situasi nyata — lalu belajar dari konsekuensi tiap pilihanmu.
+              </p>
+            </details>
+            <details
+              class="group bg-surface-container-lowest rounded-3xl border border-outline-variant/40 p-space-md md:p-space-lg transition-all hover:border-primary/60 hover:shadow-md open:border-primary open:shadow-md open:bg-primary-fixed/20">
+              <summary
+                class="flex items-center justify-between gap-space-md cursor-pointer list-none font-headline-sm text-body-md md:text-headline-sm font-bold text-on-surface [&::-webkit-details-marker]:hidden">
+                <span>Apakah SIAGA gratis? Perlu akun?</span>
+                <span
+                  class="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center shrink-0 transition-all duration-200 group-open:bg-primary group-open:text-on-primary group-open:rotate-180"><span
+                    class="material-symbols-outlined text-[20px]">expand_more</span></span>
+              </summary>
+              <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
+                Gratis dan tanpa akun, tanpa unduhan. Cukup buka website-nya dan mulai dari Check-Up. Progres belajarmu tersimpan otomatis di browser perangkatmu.
+              </p>
+            </details>
+            <details
+              class="group bg-surface-container-lowest rounded-3xl border border-outline-variant/40 p-space-md md:p-space-lg transition-all hover:border-primary/60 hover:shadow-md open:border-primary open:shadow-md open:bg-primary-fixed/20">
+              <summary
+                class="flex items-center justify-between gap-space-md cursor-pointer list-none font-headline-sm text-body-md md:text-headline-sm font-bold text-on-surface [&::-webkit-details-marker]:hidden">
+                <span>Bagaimana cara memakai SIAGA?</span>
+                <span
+                  class="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center shrink-0 transition-all duration-200 group-open:bg-primary group-open:text-on-primary group-open:rotate-180"><span
+                    class="material-symbols-outlined text-[20px]">expand_more</span></span>
+              </summary>
+              <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
+                Mulai dari Check-Up untuk mengukur kesiapanmu, latih refleks di Survival dan Learn, uji kemampuan di Challenge, lalu pantau perkembangan (XP, level, badge) di My SIAGA.
+              </p>
+            </details>
+            <details
+              class="group bg-surface-container-lowest rounded-3xl border border-outline-variant/40 p-space-md md:p-space-lg transition-all hover:border-primary/60 hover:shadow-md open:border-primary open:shadow-md open:bg-primary-fixed/20">
+              <summary
+                class="flex items-center justify-between gap-space-md cursor-pointer list-none font-headline-sm text-body-md md:text-headline-sm font-bold text-on-surface [&::-webkit-details-marker]:hidden">
+                <span>Apakah dataku aman?</span>
+                <span
+                  class="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center shrink-0 transition-all duration-200 group-open:bg-primary group-open:text-on-primary group-open:rotate-180"><span
+                    class="material-symbols-outlined text-[20px]">expand_more</span></span>
+              </summary>
+              <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
+                Ya. SIAGA tidak meminta data pribadi dan tidak mengirim apa pun ke server — seluruh progres tersimpan lokal di browser-mu dan bisa dihapus kapan saja lewat Reset Progress di My SIAGA.
+              </p>
+            </details>
+            <details
+              class="group bg-surface-container-lowest rounded-3xl border border-outline-variant/40 p-space-md md:p-space-lg transition-all hover:border-primary/60 hover:shadow-md open:border-primary open:shadow-md open:bg-primary-fixed/20">
+              <summary
+                class="flex items-center justify-between gap-space-md cursor-pointer list-none font-headline-sm text-body-md md:text-headline-sm font-bold text-on-surface [&::-webkit-details-marker]:hidden">
+                <span>Aku sudah terlanjur kena tipu, harus apa?</span>
+                <span
+                  class="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center shrink-0 transition-all duration-200 group-open:bg-primary group-open:text-on-primary group-open:rotate-180"><span
+                    class="material-symbols-outlined text-[20px]">expand_more</span></span>
+              </summary>
+              <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
+                Tetap tenang: amankan akunmu (ganti kata sandi, aktifkan verifikasi 2 langkah), simpan semua bukti, lalu laporkan ke pihak terkait. Panduan langkah-demi-langkah ada di Panduan Darurat pada halaman My SIAGA.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
       <!-- FINAL CTA SECTION: High Agency Night Cockpit Canvas -->
       <section id="my-siaga"
         class="relative w-full bg-inverse-surface text-inverse-on-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop overflow-hidden">
@@ -1045,18 +1071,7 @@
           </p>
         </div>
         <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
-          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
-            href="checkup.html">Check-Up</a><a
-            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
-            href="learn.html">Belajar</a><a
-            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
-            href="challenge.html">Tantangan</a><a
-            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
-            href="survival.html">Survival</a><a
-            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
-            href="community.html">Komunitas</a><a
-            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
-            href="progress.html">My SIAGA</a>
+          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#tentang">Tentang</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#learn">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#challenge">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#survival">Survival</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#community">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#faq">FAQ</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#my-siaga">My SIAGA</a>
         </nav>
       </div>
       <div

@@ -1,6 +1,6 @@
 
       (() => {
-        const sectionIds = ['survival', 'learn', 'challenge', 'community', 'my-siaga'];
+        const sectionIds = ['survival', 'learn', 'challenge', 'community', 'tentang', 'faq', 'my-siaga'];
         const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
         const navLinks = [...document.querySelectorAll('header nav a[href^="#"]')];
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
