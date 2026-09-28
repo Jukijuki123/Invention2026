@@ -303,13 +303,13 @@ function renderOptions(question, selectedIndex) {
 
         btn.innerHTML = `
             <div class="flex items-center gap-4">
-                <div class="${isSelected ? 'bg-primary text-white' : 'bg-slate-100 group-hover:bg-blue-100/70 text-brand-navy group-hover:text-primary'} w-9 h-9 rounded-lg border border-slate-200 font-bold text-sm flex items-center justify-center shrink-0 transition-colors">
+                <div class="${isSelected ? 'bg-primary text-white' : 'bg-surface-container-low group-hover:bg-primary-fixed/60 text-on-surface group-hover:text-primary'} w-9 h-9 rounded-lg border border-outline-variant font-bold text-sm flex items-center justify-center shrink-0 transition-colors">
                     ${letter}
                 </div>
                 <div>
-                    <div class="text-base md:text-lg font-semibold text-on-surface group-hover:text-brand-navy tracking-tight flex items-center gap-2">
+                    <div class="text-base md:text-lg font-semibold text-on-surface group-hover:text-on-surface tracking-tight flex items-center gap-2">
                         <span>${opt.text}</span>
-                        ${isSelected ? '<span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-cyan-100 text-teal-800 border border-cyan-300">Selected</span>' : ''}
+                        ${isSelected ? '<span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed border border-secondary/40">Selected</span>' : ''}
                     </div>
                 </div>
             </div>
@@ -328,7 +328,7 @@ function getOptionButtonClasses(isSelected) {
     if (isSelected) {
         return base + "bg-blue-50/40 border-2 border-primary shadow-active-glow ring-1 ring-primary/30";
     } else {
-        return base + "bg-white hover:bg-blue-50/30 border-2 border-outline-variant hover:border-primary/60 shadow-sm hover:shadow-card-hover";
+        return base + "bg-surface-container-lowest hover:bg-primary-fixed/30 border-2 border-outline-variant hover:border-primary/60 shadow-sm hover:shadow-card-hover";
     }
 }
 
@@ -443,6 +443,15 @@ function determinePersona(score) {
 
 function finishCheckupDrill() {
     if (timerInterval) clearInterval(timerInterval);
+
+    if (userAnswers.length === 0) {
+        if (window.SIAGA_COMPONENTS?.showToast) {
+            window.SIAGA_COMPONENTS.showToast("Jawab minimal 1 soal dulu sebelum melihat hasil.", "warning");
+        }
+        currentIndex = 0;
+        renderQuestion(currentIndex);
+        return;
+    }
 
     // Disable isolation: user has completed the quiz
     disableIsolatedMode();
@@ -600,18 +609,29 @@ function resetCheckupDrill() {
 }
 
 function handleShareResults() {
-    const shareUrl = window.location.href;
-    if (!navigator.clipboard || !navigator.clipboard.writeText) {
-        alert("Salin link halaman ini untuk membagikan hasil Check-Up kamu!");
-        return;
-    }
-    navigator.clipboard.writeText(shareUrl).then(() => {
+    const scoreText = dom.scoreCounter ? dom.scoreCounter.textContent : "";
+    const personaText = dom.resultPersonaName ? dom.resultPersonaName.textContent : "";
+    const shareData = {
+        title: "Hasil Check-Up SIAGA",
+        text: `Skor SIAGA-ku ${scoreText}/100 (${personaText}). Cek kesiapsiagaan digitalmu juga!`,
+        url: window.location.href
+    };
+    const flashCopied = () => {
         const originalText = dom.shareBtn.innerHTML;
         dom.shareBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">check</span> Tautan Tersalin!`;
         setTimeout(() => {
             dom.shareBtn.innerHTML = originalText;
         }, 2000);
-    }).catch(() => {
+    };
+    if (navigator.share) {
+        navigator.share(shareData).catch(() => { /* dibatalkan pengguna */ });
+        return;
+    }
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        alert("Salin link halaman ini untuk membagikan hasil Check-Up kamu!");
+        return;
+    }
+    navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`).then(flashCopied).catch(() => {
         alert("Salin link halaman ini untuk membagikan hasil Check-Up kamu!");
     });
 }

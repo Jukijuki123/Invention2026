@@ -5,7 +5,7 @@
     "use strict";
 
     var SEEN_KEY = "siaga_splash_seen";
-    var MIN_MS = 5000;
+    var MIN_MS = 4000;
     var EXIT_MS = 500;
 
     function alreadySeen() {

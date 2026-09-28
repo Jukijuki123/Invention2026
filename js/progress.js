@@ -65,6 +65,35 @@
     }).join("");
   }
 
+  // Misi berikutnya personal: arahkan ke modul skill terlemah.
+  // Bila belum ada poin sama sekali, tampilkan ajakan Check-Up di peta skill.
+  function renderNextMission(skills) {
+    var keys = ["safety", "criticalThinking", "aiLiteracy", "financialSecurity"];
+    var total = keys.reduce(function (s, k) { return s + Number(skills[k] || 0); }, 0);
+    var wrap = document.getElementById("skill-map");
+    if (wrap && total === 0) {
+      var cta = document.createElement("a");
+      cta.href = "checkup.html";
+      cta.className = "flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-primary text-on-primary font-headline-sm text-body-sm font-bold shadow-md transition-all hover:bg-primary-container mb-space-md";
+      cta.innerHTML = '<span class="material-symbols-outlined text-[20px]">track_changes</span><span>Mulai Check-Up untuk memetakan skill-mu</span>';
+      wrap.insertBefore(cta, wrap.firstChild);
+    }
+    var weakest = keys.slice().sort(function (a, b) {
+      return Number(skills[a] || 0) - Number(skills[b] || 0);
+    })[0];
+    var lessons = (window.SIAGA_DATA && window.SIAGA_DATA.lessons) || [];
+    var match = lessons.filter(function (l) { return l.skillTag === weakest; })[0] || lessons[0];
+    var btn = document.getElementById("btn-next-learn");
+    var desc = document.getElementById("next-mission-desc");
+    if (total > 0 && match && btn) {
+      btn.href = "learn.html?lesson=" + match.id;
+      btn.textContent = "Fokus: " + match.title;
+    }
+    if (total > 0 && match && desc) {
+      desc.textContent = "Titik lemahmu terdeteksi. Perkuat lewat modul \"" + match.title + "\" atau uji langsung di Tantangan.";
+    }
+  }
+
   function renderBadges(unlocked) {
     var grid = document.getElementById("badges-grid");
     var count = document.getElementById("badges-count");
@@ -78,7 +107,7 @@
           (has ? "border-primary/30 bg-primary-fixed/30" : "border-outline-variant/50 bg-surface-container-low opacity-70") + '">' +
           '<div class="w-11 h-11 rounded-xl flex items-center justify-center ' +
             (has ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant") + '">' +
-            '<span class="material-symbols-outlined text-[24px]">' + esc(b.icon || "military_tech") + "</span>" +
+            '<span class="material-symbols-outlined text-[24px]" aria-hidden="true">' + esc(b.icon || "military_tech") + "</span>" +
           "</div>" +
           '<p class="font-headline-sm text-body-sm font-bold leading-tight">' + esc(b.title) + "</p>" +
           '<p class="font-body-sm text-[12px] text-on-surface-variant leading-snug">' + esc(b.description) + "</p>" +
@@ -177,6 +206,7 @@
     renderSkillMap(skills);
     renderBadges(badges);
     renderActivity(completed);
+    renderNextMission(skills);
 
     var input = document.getElementById("input-name");
     if (input && document.activeElement !== input) input.value = profile.name || "";

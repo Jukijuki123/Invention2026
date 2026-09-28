@@ -304,11 +304,11 @@ const weeklyChallenges = [
 // --- BADGES ---
 const badges = [
     { id: "first-decision", title: "First Decision", description: "Selesaikan skenario pertamamu.", icon: "shield" },
-    { id: "scam-survivor", title: "Scam Survivor", description: "Selesaikan 5 skenario kategori safety.", icon: "shield-check" },
-    { id: "fact-finder", title: "Fact Finder", description: "Selesaikan 5 skenario kategori information.", icon: "search" },
-    { id: "ai-detector", title: "AI Detector", description: "Selesaikan 5 skenario kategori AI.", icon: "sparkles" },
+    { id: "scam-survivor", title: "Scam Survivor", description: "Selesaikan 5 skenario kategori safety.", icon: "verified_user" },
+    { id: "fact-finder", title: "Fact Finder", description: "Selesaikan 5 skenario kategori information.", icon: "fact_check" },
+    { id: "ai-detector", title: "AI Detector", description: "Selesaikan 5 skenario kategori AI.", icon: "auto_awesome" },
     { id: "safe-trader", title: "Safe Trader", description: "Selesaikan 5 skenario kategori finance.", icon: "wallet" },
-    { id: "digital-guardian", title: "Digital Guardian", description: "Capai rata-rata skill di atas ambang tertentu.", icon: "trophy" }
+    { id: "digital-guardian", title: "Digital Guardian", description: "Capai rata-rata skill di atas ambang tertentu.", icon: "emoji_events" }
 ];
 
 // --- DEFAULT COMMUNITY STORIES ---

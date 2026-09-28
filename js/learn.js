@@ -175,7 +175,7 @@
     lesson.content.quickCheck.options.forEach(function (opt, idx) {
       var b = document.createElement("button");
       b.type = "button";
-      b.className = "text-left px-5 py-4 rounded-xl border-2 border-outline-variant bg-white hover:border-primary hover:bg-blue-50/50 transition-all font-body-md text-body-md font-medium";
+      b.className = "text-left px-5 py-4 rounded-xl border-2 border-outline-variant bg-surface-container-lowest hover:border-primary hover:bg-primary-fixed/30 transition-all font-body-md text-body-md font-medium";
       b.textContent = opt;
       b.addEventListener("click", function () {
         var correct = idx === lesson.content.quickCheck.correctIndex;

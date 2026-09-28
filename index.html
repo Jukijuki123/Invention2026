@@ -6,30 +6,34 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>SIAGA — Latihan Bertahan di Dunia Digital</title>
-    <!-- Favicon: logo SIAGA lokal (assets/images/logo.png) -->
-    <link rel="icon" type="image/png" href="assets/images/logo.png" />
-    <link rel="apple-touch-icon" href="assets/images/logo.png" />
-    <meta name="theme-color" content="#0B1220" />
-    <!-- SEO: ganti og:url & og:image ke URL absolut setelah domain deploy final -->
-    <meta name="description" content="SIAGA adalah platform latihan pengambilan keputusan digital untuk Gen Z: ikuti Check-Up, latih refleks di Survival, pelajari microlesson, dan uji kemampuan lewat Challenge." />
-    <meta name="author" content="Tim SIAGA" />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="id_ID" />
-    <meta property="og:site_name" content="SIAGA" />
-    <meta property="og:title" content="SIAGA — Latihan Bertahan di Dunia Digital" />
-    <meta property="og:description" content="SIAGA adalah platform latihan pengambilan keputusan digital untuk Gen Z: ikuti Check-Up, latih refleks di Survival, pelajari microlesson, dan uji kemampuan lewat Challenge." />
-    <meta property="og:image" content="assets/images/logo.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="SIAGA — Latihan Bertahan di Dunia Digital" />
-    <meta name="twitter:description" content="SIAGA adalah platform latihan pengambilan keputusan digital untuk Gen Z: ikuti Check-Up, latih refleks di Survival, pelajari microlesson, dan uji kemampuan lewat Challenge." />
-    <meta name="twitter:image" content="assets/images/logo.png" />
+  <!-- Favicon: logo SIAGA lokal (assets/images/logo.png) -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="apple-touch-icon" href="assets/images/logo.png" />
+  <meta name="theme-color" content="#0B1220" />
+  <!-- SEO: ganti og:url & og:image ke URL absolut setelah domain deploy final -->
+  <meta name="description"
+    content="SIAGA adalah platform latihan pengambilan keputusan digital untuk Gen Z: ikuti Check-Up, latih refleks di Survival, pelajari microlesson, dan uji kemampuan lewat Challenge." />
+  <meta name="author" content="Tim SIAGA" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:site_name" content="SIAGA" />
+  <meta property="og:title" content="SIAGA — Latihan Bertahan di Dunia Digital" />
+  <meta property="og:description"
+    content="SIAGA adalah platform latihan pengambilan keputusan digital untuk Gen Z: ikuti Check-Up, latih refleks di Survival, pelajari microlesson, dan uji kemampuan lewat Challenge." />
+  <meta property="og:image" content="assets/images/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SIAGA — Latihan Bertahan di Dunia Digital" />
+  <meta name="twitter:description"
+    content="SIAGA adalah platform latihan pengambilan keputusan digital untuk Gen Z: ikuti Check-Up, latih refleks di Survival, pelajari microlesson, dan uji kemampuan lewat Challenge." />
+  <meta name="twitter:image" content="assets/images/logo.png" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block"
     rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -90,6 +94,7 @@
 </head>
 
 <body class="bg-surface font-body-md text-on-surface antialiased">
+  <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
   <!-- Splashscreen: dimuat paling awal agar overlay langsung tampil -->
   <script src="js/splash.js"></script>
   <header id="site-header"
@@ -98,12 +103,10 @@
       class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md">
       <div class="flex items-center gap-space-md shrink-0">
         <img alt="Logo SIAGA" class="h-8 w-8 object-contain rounded-lg" src="assets/images/logo.png" /><a
-          class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold"
-          href="index.html">SIAGA</a>
+          class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold" href="index.html">SIAGA</a>
       </div>
       <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold">
-        <a
-          class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+        <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
           href="#tentang">Tentang</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
           href="#learn">Belajar</a><a
@@ -117,7 +120,8 @@
           href="checkup.html">Check-Up</a>
       </nav>
       <div class="flex items-center gap-space-md shrink-0">
-        <a href="progress.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center" aria-label="SIAGA Saya">
+        <a href="progress.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+          aria-label="SIAGA Saya">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
         </a>
         <button id="btn-mobile-nav"
@@ -127,23 +131,30 @@
         </button>
       </div>
     </div>
-        <nav id="mobile-nav"
+    <nav id="mobile-nav"
       class="hidden lg:hidden border-t border-outline-variant/30 bg-surface px-margin-mobile py-space-sm flex flex-col gap-1">
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#tentang">Tentang</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#learn">Belajar</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#challenge">Tantangan</a>
-      
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#community">Komunitas</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="#faq">FAQ</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="checkup.html">Check-Up</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="progress.html">My SIAGA</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+        href="#tentang">Tentang</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+        href="#learn">Belajar</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+        href="#challenge">Tantangan</a>
+
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+        href="#community">Komunitas</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+        href="#faq">FAQ</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+        href="checkup.html">Check-Up</a>
+      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+        href="progress.html">My SIAGA</a>
     </nav>
   </header>
-  <main class="w-full pt-20 bg-surface min-h-screen">
+  <main id="main-content" class="w-full pt-20 bg-surface min-h-screen">
     <div class="flex flex-col w-full overflow-hidden">
       <!-- HERO SECTION -->
       <section
-        class="relative w-full bg-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        class="relative w-full bg-surface py-space-2xl md:py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
         <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
           <!-- Left Column: Copy & Actions -->
           <div class="lg:col-span-7 flex flex-col items-start">
@@ -154,25 +165,25 @@
                 DIGITALMU</span>
             </div>
             <h1
-              class="font-display-hero text-headline-xl md:text-display-hero text-on-surface font-extrabold tracking-tight leading-tight">
+              class="font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface font-extrabold tracking-tight leading-tight">
               Siapkah Kamu untuk
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-container">Bertahan</span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Bertahan</span>
               di Dunia Digital?
             </h1>
-            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mt-space-md mb-space-xl">
+            <p
+              class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-xl mt-space-md mb-space-xl">
               Latih situasi digital nyata sebelum hal itu menimpamu.
               Asah refleks taktis melawan rekayasa sosial,
               pemerasan deepfake, dan jebakan kripto.
             </p>
-            <div class="flex flex-wrap items-center gap-space-md w-full sm:w-auto mb-space-2xl">
-              <a class="inline-flex items-center justify-center px-space-xl py-space-md rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-md font-bold shadow-xl shadow-primary/25 hover:bg-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            <div class="flex flex-row flex-wrap items-center gap-space-sm sm:gap-space-md mb-space-xl sm:mb-space-2xl">
+              <a class="inline-flex items-center justify-center px-space-lg py-3 sm:px-space-xl sm:py-space-md rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-sm sm:text-body-md font-bold shadow-xl shadow-primary/25 hover:bg-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 href="checkup.html">
                 Ikuti Check-Up
               </a>
-              <a class="inline-flex items-center gap-space-xs font-headline-sm text-body-md font-semibold text-primary hover:text-secondary transition-colors group"
+              <a class="inline-flex items-center gap-space-xs font-headline-sm text-body-sm sm:text-body-md font-semibold text-primary hover:text-secondary transition-colors group"
                 href="challenge.html">
-                Coba Tantangan Hari Ini
+                Coba Tantangan
                 <span
                   class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </a>
@@ -180,20 +191,20 @@
             <!-- Telemetry Pill Badges -->
             <div class="flex flex-wrap items-center gap-space-sm pt-space-md border-t border-outline-variant/30 w-full">
               <div
-                class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-low text-on-surface font-code-telemetry text-code-telemetry shadow-sm">
-                <span class="text-lg">🎮</span>
+                class="inline-flex items-center gap-space-xs px-space-sm sm:px-space-md py-space-xs rounded-full bg-surface-container-low text-on-surface font-code-telemetry text-code-telemetry shadow-sm">
+                <span class="material-symbols-outlined text-[18px] text-primary">sports_esports</span>
                 <span class="font-semibold">12.000+</span> serangan tersimulasi
                 berhasil diatasi
               </div>
               <div
-                class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-low text-on-surface font-code-telemetry text-code-telemetry shadow-sm">
-                <span class="text-lg">🛡️</span>
+                class="inline-flex items-center gap-space-xs px-space-sm sm:px-space-md py-space-xs rounded-full bg-surface-container-low text-on-surface font-code-telemetry text-code-telemetry shadow-sm">
+                <span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
                 <span class="font-semibold">98%</span> peningkatan akurasi
               </div>
             </div>
           </div>
           <!-- Right Column: Interactive Cockpit Realistic UI Cards -->
-          <div class="lg:col-span-5 relative flex justify-center items-center min-h-[440px]">
+          <div class="lg:col-span-5 relative flex justify-center items-center min-h-[320px] lg:min-h-[440px]">
             <!-- Decorative Backdrop Graphic -->
             <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none scale-110">
 
@@ -206,7 +217,7 @@
                 <div class="flex items-center justify-between mb-space-xs">
                   <div class="flex items-center gap-space-xs">
                     <span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
-                    <span class="font-label-badge text-label-badge uppercase font-bold text-error">⚠️ Keamanan
+                    <span class="font-label-badge text-label-badge uppercase font-bold text-error">Keamanan
                       Mendesak</span>
                   </div>
                   <span class="font-code-telemetry text-[11px] text-outline-variant">T-MINUS 23:59:12</span>
@@ -248,16 +259,18 @@
                   untuk pendaftaran ID dispatch."
                 </div>
                 <div class="flex items-center gap-space-xs">
-                  <button
-                    class="flex-1 py-space-2xs px-space-xs rounded-lg bg-error/10 text-error font-label-badge text-[12px] font-bold hover:bg-error/20 transition-colors flex items-center justify-center gap-1">
+                  <span
+                    class="flex-1 py-space-2xs px-space-xs rounded-lg bg-error/10 text-error font-label-badge text-[12px] font-bold flex items-center justify-center gap-1"
+                    aria-hidden="true">
                     <span class="material-symbols-outlined text-[14px]">flag</span>
                     Tandai Penipuan
-                  </button>
-                  <button
-                    class="flex-1 py-space-2xs px-space-xs rounded-lg bg-surface-variant text-on-surface-variant font-label-badge text-[12px] font-bold hover:bg-outline-variant transition-colors flex items-center justify-center gap-1">
+                  </span>
+                  <span
+                    class="flex-1 py-space-2xs px-space-xs rounded-lg bg-surface-variant text-on-surface-variant font-label-badge text-[12px] font-bold flex items-center justify-center gap-1"
+                    aria-hidden="true">
                     <span class="material-symbols-outlined text-[14px]">block</span>
                     Blokir Pengirim
-                  </button>
+                  </span>
                 </div>
               </div>
               <!-- Card 3: Deepfake Audio Synthetic Trap -->
@@ -293,7 +306,7 @@
       </section>
       <!-- PROBLEM SECTION: Threat Landscape (Light Slate) -->
       <section
-        class="w-full bg-surface-container-low py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        class="w-full bg-surface-container-low py-space-2xl md:py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
         <div class="max-w-[1280px] mx-auto flex flex-col items-center">
           <div class="text-center max-w-2xl mb-space-2xl">
             <span
@@ -416,34 +429,116 @@
       </section>
       <!-- TENTANG SIAGA -->
       <section id="tentang"
-        class="w-full bg-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop border-b border-outline-variant/20">
+        class="w-full bg-surface py-space-md md:py-space-xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop border-b border-outline-variant/20">
         <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
           <div class="lg:col-span-5">
             <!-- Ilustrasi SIAGA — aset tim (assets/images/siaga.svg) | Lihat ASSETS-CREDIT.md -->
-            <img alt="Ilustrasi SIAGA tentang ketahanan digital" loading="lazy"
-              class="w-full h-auto object-contain" src="assets/images/siaga.svg" />
+            <img alt="Ilustrasi SIAGA tentang ketahanan digital" loading="lazy" class="w-full h-auto object-contain"
+              src="assets/images/siaga.svg" />
           </div>
           <div class="lg:col-span-7 flex flex-col items-start">
             <span
               class="font-label-caps text-label-caps text-primary uppercase tracking-widest font-extrabold mb-space-xs block">TENTANG
               SIAGA</span>
-            <h2
-              class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface font-extrabold tracking-tight">
-              Latihan Bertahan Digital, Bukan Sekadar Membaca
-            </h2>
-            <p class="font-body-md text-body-md text-on-surface-variant mt-space-sm max-w-xl">
-              SIAGA (Sistem Informasi &amp; Gamifikasi Aman Digital) adalah platform
-              latihan pengambilan keputusan digital. Tahu bahaya saja tidak cukup —
-              kamu dilatih menghadapi situasi nyata: pesan menipu, berita palsu,
-              suara kloningan AI, dan tawaran investasi bodong, lalu mengambil
-              keputusan yang aman sebelum hal itu menimpamu.
-            </p>
+            <div
+              class="inline-flex items-center gap-1 p-1 rounded-full bg-surface-container-low border border-outline-variant/40 mb-space-md"
+              role="tablist" aria-label="Pilihan informasi tentang">
+              <button type="button" id="tab-tentang" role="tab" aria-selected="true" aria-controls="panel-tentang"
+                class="px-space-lg py-space-xs rounded-full font-headline-sm text-body-sm font-bold bg-primary text-on-primary shadow-sm transition-all">
+                Tentang SIAGA
+              </button>
+              <button type="button" id="tab-visimisi" role="tab" aria-selected="false" aria-controls="panel-visimisi"
+                class="px-space-lg py-space-xs rounded-full font-headline-sm text-body-sm font-semibold text-on-surface-variant hover:text-on-surface transition-all">
+                Visi &amp; Misi
+              </button>
+            </div>
+            <div id="panel-tentang" role="tabpanel" aria-labelledby="tab-tentang">
+              <h2
+                class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface font-extrabold tracking-tight">
+                Latihan Bertahan Digital, Bukan Sekadar Membaca
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-space-sm max-w-xl">
+                SIAGA (Sistem Informasi &amp; Gamifikasi Aman Digital) adalah platform
+                latihan pengambilan keputusan digital. Tahu bahaya saja tidak cukup —
+                kamu dilatih menghadapi situasi nyata: pesan menipu, berita palsu,
+                suara kloningan AI, dan tawaran investasi bodong, lalu mengambil
+                keputusan yang aman sebelum hal itu menimpamu.
+              </p>
+            </div>
+            <div id="panel-visimisi" role="tabpanel" aria-labelledby="tab-visimisi" class="hidden">
+              <h2
+                class="font-headline-xl text-headline-lg-mobile md:text-headline-xl-mobile text-on-surface font-extrabold tracking-tight">
+                Visi &amp; Misi SIAGA
+              </h2>
+              <div class="mt-space-md max-w-2xl rounded-2xl bg-primary-fixed/30 p-space-md">
+                <p class="font-label-caps text-label-caps text-primary uppercase tracking-widest font-extrabold mb-1">
+                  Visi</p>
+                <p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                  Generasi muda Indonesia yang berdaya dan kebal terhadap ancaman
+                  digital serta mampu mengambil keputusan aman secara mandiri setiap hari.
+                </p>
+              </div>
+              <div class="mt-space-md max-w-2xl">
+                <p
+                  class="font-label-caps text-label-caps text-primary uppercase tracking-widest font-extrabold mb-space-sm">
+                  Misi</p>
+                <ol class="space-y-space-sm">
+                  <li class="flex items-start gap-space-sm">
+                    <span
+                      class="w-8 h-8 rounded-lg bg-primary-fixed/30 text-primary font-headline-sm text-body-sm font-bold flex items-center justify-center shrink-0">1</span>
+                    <span class="font-body-md text-body-md text-on-surface-variant pt-1">Melatih pengambilan keputusan
+                      lewat simulasi situasi nyata, bukan hafalan materi.</span>
+                  </li>
+                  <li class="flex items-start gap-space-sm">
+                    <span
+                      class="w-8 h-8 rounded-lg bg-primary-fixed/30 text-primary font-headline-sm text-body-sm font-bold flex items-center justify-center shrink-0">2</span>
+                    <span class="font-body-md text-body-md text-on-surface-variant pt-1">Membangun kebiasaan verifikasi:
+                      berhenti, periksa, lalu putuskan.</span>
+                  </li>
+                  <li class="flex items-start gap-space-sm">
+                    <span
+                      class="w-8 h-8 rounded-lg bg-primary-fixed/30 text-primary font-headline-sm text-body-sm font-bold flex items-center justify-center shrink-0">3</span>
+                    <span class="font-body-md text-body-md text-on-surface-variant pt-1">Menumbuhkan komunitas yang
+                      saling berbagi pengalaman ancaman digital.</span>
+                  </li>
+                  <li class="flex items-start gap-space-sm">
+                    <span
+                      class="w-8 h-8 rounded-lg bg-primary-fixed/30 text-primary font-headline-sm text-body-sm font-bold flex items-center justify-center shrink-0">4</span>
+                    <span class="font-body-md text-body-md text-on-surface-variant pt-1">Menjangkau pelajar lewat media
+                      interaktif yang gratis dan mudah diakses.</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+      <!-- MARQUEE TEKS BERJALAN (miring: kanan lebih tinggi) -->
+      <div
+        class="siaga-marquee siaga-marquee-tilt w-full bg-inverse-surface border-y border-secondary/20 py-space-sm overflow-hidden"
+        aria-label="Prinsip SIAGA">
+        <div class="siaga-marquee-track">
+          <div class="siaga-marquee-group">
+            <span>Siap Hadapi Ancaman</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Cek Sebelum Klik</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Putuskan Dengan Tenang</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Aman di Dunia Digital</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Saring Sebelum Sharing</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Lapor dan Lindungi</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+          </div>
+          <div class="siaga-marquee-group" aria-hidden="true">
+            <span>Siap Hadapi Ancaman</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Cek Sebelum Klik</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Putuskan Dengan Tenang</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Aman di Dunia Digital</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Saring Sebelum Sharing</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+            <span>Lapor dan Lindungi</span><span class="material-symbols-outlined" aria-hidden="true">shield</span>
+          </div>
+        </div>
+      </div>
       <!-- HOW SIAGA WORKS SECTION (5-Step Interactive Framework) -->
       <section id="learn"
-        class="w-full bg-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        class="w-full bg-surface py-space-2xl md:py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
         <div class="max-w-[1280px] mx-auto">
           <div class="text-center max-w-2xl mx-auto mb-space-3xl">
             <span
@@ -539,7 +634,7 @@
       </section>
       <!-- TODAY'S SURVIVAL: LIVE DAILY CHALLENGE -->
       <section id="challenge"
-        class="w-full bg-surface-container-low py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        class="w-full bg-surface-container-low py-space-2xl md:py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
         <div class="max-w-5xl mx-auto">
           <!-- Section Top Header & Countdown Ticker -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-xl">
@@ -547,62 +642,56 @@
               <span
                 class="font-label-caps text-label-caps text-primary uppercase tracking-widest font-extrabold block">LATIHAN
                 INSIDEN LANGSUNG</span>
-              <h2 class="font-headline-xl text-headline-lg font-extrabold text-on-surface">
+              <h2 class="font-headline-xl text-headline-lg-mobile md:text-headline-lg font-extrabold text-on-surface">
                 Tantangan Harian Hari Ini
               </h2>
             </div>
             <div
-              class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-inverse-surface text-secondary-fixed font-code-telemetry text-code-telemetry shadow-md">
+              class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-surface-container-lowest text-secondary border border-outline-variant/30 font-code-telemetry text-code-telemetry shadow-md">
               <span class="w-2.5 h-2.5 rounded-full bg-secondary-container animate-ping"></span>
-              <span>RESET DALAM 06j 42m 18d</span>
+              <span id="daily-countdown">RESET DALAM --j --m --d</span>
             </div>
           </div>
           <!-- Large Cyber Simulator Cockpit Card -->
           <div
-            class="relative bg-gradient-to-br from-inverse-surface via-[#0d172a] to-[#082032] text-inverse-on-surface rounded-3xl p-space-xl md:p-space-2xl shadow-2xl overflow-hidden border border-secondary/30">
-            <!-- Ambient Cybernetic Glow -->
-            <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-secondary/15 blur-3xl pointer-events-none">
-            </div>
+            class="relative bg-surface-container-lowest rounded-3xl p-space-md sm:p-space-lg md:p-space-2xl shadow-xl overflow-hidden border border-outline-variant/30">
             <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
               <!-- Left Scenario Info -->
               <div class="lg:col-span-7 flex flex-col">
                 <div class="flex flex-wrap items-center gap-space-xs mb-space-md">
                   <span
-                    class="px-space-sm py-[3px] rounded-full bg-error/20 text-error font-label-caps text-label-badge font-black uppercase">
-                    🚨 Phishing & Rekayasa Sosial
-                  </span>
-                  <span
-                    class="px-space-sm py-[3px] rounded-full bg-secondary-container/20 text-secondary-container font-label-caps text-label-badge font-bold uppercase">
-                    Sedang • Latihan 2 Menit
+                    class="px-space-sm py-[3px] rounded-full bg-error-container/60 text-on-error-container font-label-caps text-label-badge font-black uppercase">
+                    Phishing & Rekayasa Sosial
                   </span>
                 </div>
                 <h3
-                  class="font-headline-xl text-headline-lg md:text-headline-xl font-black text-inverse-on-surface tracking-tight mb-space-sm">
+                  class="font-headline-xl text-headline-lg md:text-headline-xl font-black text-on-surface tracking-tight mb-space-sm">
                   Tawaran Kerja Mencurigakan: Dispatcher Bayangan
                 </h3>
-                <p class="font-body-md text-body-md text-surface-variant/80 leading-relaxed mb-space-lg">
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
                   Sebuah agensi game remote global menghubungimu dengan kontrak
                   $50/jam untuk menguji game pre-rilis. Untuk mencatat jam
                   kerjamu, mereka mewajibkan menjalankan file yang diobfuskasi
                   <code
-                    class="bg-surface-variant/20 px-1.5 py-0.5 rounded text-secondary-container font-code-telemetry">tracker_setup.exe</code>
+                    class="bg-surface-container-low px-1.5 py-0.5 rounded text-primary font-code-telemetry">tracker_setup.exe</code>
                   file biner.
                 </p>
                 <div class="flex items-center gap-space-md mb-space-xl">
-                  <div class="flex items-center gap-space-xs bg-surface-variant/10 px-space-md py-space-xs rounded-xl">
-                    <span class="material-symbols-outlined text-secondary-container text-[20px]">military_tech</span>
-                    <span class="font-headline-sm text-body-sm font-bold text-inverse-on-surface">+50 XP Imbalan
+                  <div
+                    class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-xl">
+                    <span class="material-symbols-outlined text-secondary text-[20px]">military_tech</span>
+                    <span class="font-headline-sm text-body-sm font-bold text-on-surface">+50 XP Imbalan
                       Pertahanan</span>
                   </div>
                   <div
-                    class="flex items-center gap-space-xs font-code-telemetry text-code-telemetry text-surface-variant">
+                    class="flex items-center gap-space-xs font-code-telemetry text-code-telemetry text-on-surface-variant">
                     <span class="material-symbols-outlined text-[16px]">groups</span>
                     <span>3.412 orang selamat hari ini</span>
                   </div>
                 </div>
                 <div>
-                  <a class="inline-flex items-center justify-center px-space-xl py-space-md rounded-xl bg-gradient-to-r from-primary to-secondary text-on-primary font-headline-sm text-body-md font-bold shadow-lg shadow-primary/30 hover:brightness-110 transition-all hover:scale-[1.02] active:scale-[0.98]"
-                    href="challenge.html">
+                  <a class="inline-flex items-center justify-center w-full sm:w-auto px-space-xl py-3 sm:py-space-md rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-sm sm:text-body-md font-bold shadow-lg shadow-primary/25 hover:bg-primary transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    href="challenge.html#misi-harian">
                     Coba Skenario Sekarang
                     <span class="material-symbols-outlined ml-2 text-[18px]">play_arrow</span>
                   </a>
@@ -610,11 +699,11 @@
               </div>
               <!-- Right Interactive Inspector Preview -->
               <div
-                class="lg:col-span-5 bg-surface-container-lowest/10 backdrop-blur-md rounded-2xl p-space-md border border-outline-variant/20 flex flex-col gap-space-sm">
-                <div class="flex items-center justify-between pb-space-xs border-b border-surface-variant/20">
-                  <span class="font-code-telemetry text-code-telemetry text-secondary-container uppercase">Inspektur
+                class="lg:col-span-5 bg-surface-container-low rounded-2xl p-space-md border border-outline-variant/40 flex flex-col gap-space-sm">
+                <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/30">
+                  <span class="font-code-telemetry text-code-telemetry text-secondary uppercase">Inspektur
                     Petunjuk Sandbox</span>
-                  <span class="material-symbols-outlined text-surface-variant text-[18px]">bug_report</span>
+                  <span class="material-symbols-outlined text-on-surface-variant text-[18px]">bug_report</span>
                 </div>
                 <!-- Inspectable Payload Mock -->
                 <div
@@ -622,7 +711,7 @@
                   <div class="text-secondary-fixed">
                     URL: dispatch-portal-secure.net/download
                   </div>
-                  <div class="text-error">
+                  <div class="text-error-container">
                     SHA256: 4f8a...e91c [Matches RAT Trojan]
                   </div>
                   <div class="text-surface-variant">
@@ -630,16 +719,16 @@
                   </div>
                 </div>
                 <div class="space-y-1 pt-space-xs">
-                  <div class="flex items-center justify-between font-label-caps text-[11px] text-surface-variant">
+                  <div class="flex items-center justify-between font-label-caps text-[11px] text-on-surface-variant">
                     <span>Konsensus Ancaman</span>
                     <span class="text-error font-bold">96% Risiko Tinggi</span>
                   </div>
-                  <div class="w-full h-2 rounded-full bg-surface-variant/20 overflow-hidden flex">
+                  <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
                     <div class="h-full bg-error rounded-full w-[96%]"></div>
                   </div>
                 </div>
                 <div
-                  class="p-space-xs rounded-lg bg-secondary-container/10 text-secondary-container font-body-sm text-[12px] flex items-center gap-space-xs">
+                  class="p-space-xs rounded-lg bg-secondary-fixed/40 text-on-secondary-fixed font-body-sm text-[12px] flex items-center gap-space-xs">
                   <span class="material-symbols-outlined text-[16px]">psychology</span>
                   <span>Tips taktis: Agensi resmi tidak pernah meminta kontraktor
                     menjalankan file executable yang tidak ditandatangani.</span>
@@ -651,7 +740,7 @@
       </section>
       <!-- SURVIVAL CATEGORIES SECTION -->
       <section id="survival"
-        class="w-full bg-surface py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        class="w-full bg-surface py-space-2xl md:py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
         <div class="max-w-[1280px] mx-auto">
           <div class="text-center max-w-2xl mx-auto mb-space-2xl">
             <span
@@ -667,7 +756,7 @@
             </p>
           </div>
           <!-- 4 Category Cards Grid -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-space-xs md:gap-space-md">
             <!-- Cat 1: Safety -->
             <a class="flex flex-col justify-between bg-surface-container-lowest rounded-2xl p-space-md border border-outline-variant/30 hover:border-primary shadow-sm hover:shadow-lg transition-all duration-200 group"
               href="challenge.html#jelajahi">
@@ -749,7 +838,7 @@
                 </div>
                 <h3
                   class="font-headline-sm text-body-md font-bold text-on-surface mb-space-xs group-hover:text-secondary transition-colors">
-                  Kripto, P2P & Penipuan Transfer
+                  Penipuan Transfer
                 </h3>
                 <p class="font-body-sm text-[13px] text-on-surface-variant leading-snug">
                   Jebakan reversal overpayment, persetujuan berbahaya, dan
@@ -768,7 +857,7 @@
       </section>
       <!-- COMMUNITY STORIES SECTION -->
       <section id="community"
-        class="w-full bg-surface-container-low py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        class="w-full bg-surface-container-low py-space-2xl md:py-space-3xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
         <div class="max-w-[1280px] mx-auto">
           <div class="text-center max-w-2xl mx-auto mb-space-2xl">
             <span
@@ -782,12 +871,15 @@
               Bagaimana pengguna SIAGA mengenali dan melawan serangan predator
               nyata di lapangan.
             </p>
+            <p class="font-code-telemetry text-code-telemetry text-on-surface-variant mt-space-xs">
+              *Cerita berikut bersifat ilustratif sebagai gambaran pengalaman komunitas.
+            </p>
           </div>
           <!-- 3 Testimonial Story Cards -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
             <!-- Story 1 -->
             <div
-              class="flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-xl shadow-sm hover:shadow-xl transition-all duration-300">
+              class="flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-md md:p-space-xl shadow-sm hover:shadow-xl transition-all duration-300">
               <div>
                 <div class="flex items-center gap-space-sm mb-space-md">
                   <div
@@ -819,7 +911,7 @@
             </div>
             <!-- Story 2 -->
             <div
-              class="flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-xl shadow-sm hover:shadow-xl transition-all duration-300">
+              class="flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-md md:p-space-xl shadow-sm hover:shadow-xl transition-all duration-300">
               <div>
                 <div class="flex items-center gap-space-sm mb-space-md">
                   <div
@@ -851,7 +943,7 @@
             </div>
             <!-- Story 3 -->
             <div
-              class="flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-xl shadow-sm hover:shadow-xl transition-all duration-300">
+              class="flex flex-col justify-between bg-surface-container-lowest rounded-3xl p-space-md md:p-space-xl shadow-sm hover:shadow-xl transition-all duration-300">
               <div>
                 <div class="flex items-center gap-space-sm mb-space-md">
                   <div
@@ -893,7 +985,7 @@
       </section>
       <!-- FAQ -->
       <section id="faq"
-        class="w-full bg-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+        class="w-full bg-surface py-space-2xl md:py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
         <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-start">
           <!-- Left: heading -->
           <div class="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
@@ -924,17 +1016,13 @@
                 <div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
                   <a class="inline-flex items-center justify-center px-space-lg py-space-xs rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary transition-all hover:scale-[1.02] active:scale-[0.98]"
                     href="checkup.html">
-                    Coba Check-Up Gratis
-                  </a>
-                  <a class="inline-flex items-center gap-1 font-headline-sm text-body-sm font-semibold text-secondary-fixed hover:text-secondary-container transition-colors"
-                    href="progress.html">
-                    Panduan Darurat
-                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    Coba Check-Up
                   </a>
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap items-center gap-x-space-md gap-y-space-2xs mt-space-lg font-code-telemetry text-code-telemetry text-on-surface-variant">
+            <div
+              class="flex flex-wrap items-center gap-x-space-md gap-y-space-2xs mt-space-lg font-code-telemetry text-code-telemetry text-on-surface-variant">
               <span class="inline-flex items-center gap-1">
                 <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
                 100% Gratis
@@ -961,7 +1049,8 @@
                     class="material-symbols-outlined text-[20px]">expand_more</span></span>
               </summary>
               <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
-                SIAGA adalah platform latihan pengambilan keputusan digital. Alih-alih membaca materi panjang, kamu menghadapi simulasi situasi nyata — lalu belajar dari konsekuensi tiap pilihanmu.
+                SIAGA adalah platform latihan pengambilan keputusan digital. Alih-alih membaca materi panjang, kamu
+                menghadapi simulasi situasi nyata — lalu belajar dari konsekuensi tiap pilihanmu.
               </p>
             </details>
             <details
@@ -974,7 +1063,8 @@
                     class="material-symbols-outlined text-[20px]">expand_more</span></span>
               </summary>
               <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
-                Gratis dan tanpa akun, tanpa unduhan. Cukup buka website-nya dan mulai dari Check-Up. Progres belajarmu tersimpan otomatis di browser perangkatmu.
+                Gratis dan tanpa akun, tanpa unduhan. Cukup buka website-nya dan mulai dari Check-Up. Progres belajarmu
+                tersimpan otomatis di browser perangkatmu.
               </p>
             </details>
             <details
@@ -987,7 +1077,8 @@
                     class="material-symbols-outlined text-[20px]">expand_more</span></span>
               </summary>
               <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
-                Mulai dari Check-Up untuk mengukur kesiapanmu, latih refleks di Survival dan Learn, uji kemampuan di Challenge, lalu pantau perkembangan (XP, level, badge) di My SIAGA.
+                Mulai dari Check-Up untuk mengukur kesiapanmu, latih refleks di Survival dan Learn, uji kemampuan di
+                Challenge, lalu pantau perkembangan (XP, level, badge) di My SIAGA.
               </p>
             </details>
             <details
@@ -1000,7 +1091,8 @@
                     class="material-symbols-outlined text-[20px]">expand_more</span></span>
               </summary>
               <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
-                Ya. SIAGA tidak meminta data pribadi dan tidak mengirim apa pun ke server — seluruh progres tersimpan lokal di browser-mu dan bisa dihapus kapan saja lewat Reset Progress di My SIAGA.
+                Ya. SIAGA tidak meminta data pribadi dan tidak mengirim apa pun ke server — seluruh progres tersimpan
+                lokal di browser-mu dan bisa dihapus kapan saja lewat Reset Progress di My SIAGA.
               </p>
             </details>
             <details
@@ -1013,7 +1105,8 @@
                     class="material-symbols-outlined text-[20px]">expand_more</span></span>
               </summary>
               <p class="font-body-md text-body-md text-on-surface-variant pt-space-sm leading-relaxed">
-                Tetap tenang: amankan akunmu (ganti kata sandi, aktifkan verifikasi 2 langkah), simpan semua bukti, lalu laporkan ke pihak terkait. Panduan langkah-demi-langkah ada di Panduan Darurat pada halaman My SIAGA.
+                Tetap tenang: amankan akunmu (ganti kata sandi, aktifkan verifikasi 2 langkah), simpan semua bukti, lalu
+                laporkan ke pihak terkait. Panduan langkah-demi-langkah ada di Panduan Darurat pada halaman My SIAGA.
               </p>
             </details>
           </div>
@@ -1021,7 +1114,7 @@
       </section>
       <!-- FINAL CTA SECTION: High Agency Night Cockpit Canvas -->
       <section id="my-siaga"
-        class="relative w-full bg-inverse-surface text-inverse-on-surface py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop overflow-hidden">
+        class="relative w-full bg-inverse-surface text-inverse-on-surface py-space-2xl md:py-space-3xl lg:py-space-4xl px-margin-mobile md:px-margin-tablet lg:px-margin-desktop overflow-hidden">
         <!-- Ambient Radial Glow Spots -->
         <div
           class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] pointer-events-none">
@@ -1030,13 +1123,8 @@
           class="absolute right-10 bottom-0 w-80 h-80 bg-secondary-container/15 rounded-full blur-[90px] pointer-events-none">
         </div>
         <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
-          <div
-            class="inline-flex items-center gap-space-xs px-space-md py-space-2xs rounded-full bg-primary/20 border border-primary/40 text-secondary-fixed mb-space-lg">
-            <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
-            <span class="font-code-telemetry text-code-telemetry">AKTIFKAN PERTAHANAN // AKSES INSTAN</span>
-          </div>
           <h2
-            class="font-display-hero text-headline-xl md:text-display-hero font-black text-inverse-on-surface tracking-tight leading-tight mb-space-md">
+            class="font-display-hero text-headline-xl-mobile md:text-display-hero font-black text-inverse-on-surface tracking-tight leading-tight mb-space-md">
             Jangan Sekadar Memakai Dunia Digital.<br class="hidden sm:inline" />
             Belajarlah untuk
             <span
@@ -1048,7 +1136,7 @@
             dan scam zero-day.
           </p>
           <div class="flex flex-col sm:flex-row items-center gap-space-md mb-space-xl">
-            <a class="inline-flex items-center justify-center px-space-2xl py-space-md rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-lg font-extrabold shadow-2xl shadow-primary/40 hover:bg-primary transition-all duration-200 hover:scale-105 active:scale-95"
+            <a class="inline-flex w-full sm:w-auto items-center justify-center px-space-xl sm:px-space-2xl py-3 sm:py-space-md rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-md sm:text-body-lg font-extrabold shadow-2xl shadow-primary/40 hover:bg-primary transition-all duration-200 hover:scale-105 active:scale-95"
               href="checkup.html">
               Mulai Perjalanan SIAGA-mu
               <span class="material-symbols-outlined ml-2 text-[22px]">bolt</span>
@@ -1089,18 +1177,27 @@
           </p>
         </div>
         <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
-          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#tentang">Tentang</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#learn">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#challenge">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#community">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#faq">FAQ</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#my-siaga">My SIAGA</a>
+          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#tentang">Tentang</a><a
+            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#learn">Belajar</a><a
+            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#challenge">Tantangan</a><a
+            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#community">Komunitas</a><a
+            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#faq">FAQ</a><a
+            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="checkup.html">Check-Up</a><a
+            class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#my-siaga">My SIAGA</a>
         </nav>
       </div>
       <div
         class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left">
         <p class="font-body-sm text-body-sm text-on-surface-variant">
-          © 2025 SIAGA. Built for digital resilience.
+          © 2026 SIAGA. Built for digital resilience.
         </p>
-        <div class="flex items-center gap-space-sm font-code-telemetry text-code-telemetry text-on-surface-variant">
-          <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span>SYSTEM_SECURE //
-            READY</span>
-        </div>
       </div>
     </div>
   </footer>

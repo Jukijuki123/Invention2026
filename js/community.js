@@ -2,7 +2,9 @@
 (function () {
   "use strict";
 
-  var HELPFUL_KEY = "siaga_helpful_extra";
+  var HELPFUL_KEY = "siaga_helpful_voted";
+  var STORY_COOLDOWN_KEY = "siaga_story_last_at";
+  var STORY_COOLDOWN_MS = 24 * 60 * 60 * 1000; // XP +75 hanya 1x per 24 jam
   var activeStoryId = null;
 
   // ---------- Helpers ----------
@@ -40,17 +42,25 @@
     } catch (e) { /* abaikan: kuota penuh */ }
   }
 
-  function getHelpfulCount(story) {
-    var map = readHelpfulMap();
-    var extra = Number(map[story.id] || 0);
-    return Number(story.helpfulCount || 0) + extra;
+  // Satu vote per cerita per perangkat (toggle: klik lagi untuk batal).
+  function hasVoted(storyId) {
+    return !!readHelpfulMap()[String(storyId)];
   }
 
-  function incrementHelpful(storyId) {
+  function getHelpfulCount(story) {
+    return Number(story.helpfulCount || 0) + (hasVoted(story.id) ? 1 : 0);
+  }
+
+  function toggleHelpful(storyId) {
     var map = readHelpfulMap();
-    map[storyId] = Number(map[storyId] || 0) + 1;
+    var key = String(storyId);
+    if (map[key]) {
+      delete map[key];
+    } else {
+      map[key] = 1;
+    }
     writeHelpfulMap(map);
-    return map[storyId];
+    return !!map[key];
   }
 
   function getScenarioTitle(id) {
@@ -141,7 +151,7 @@
         '<p class="font-body-md text-body-sm text-on-surface-variant leading-relaxed line-clamp-3">' + esc(story.whatHappened) + '</p>' +
         '<div class="pt-1 mt-auto flex items-center justify-between gap-2">' +
           '<span class="inline-flex items-center gap-1.5 font-headline-sm text-body-sm font-semibold text-primary">Baca cerita <span class="material-symbols-outlined text-[18px]">arrow_forward</span></span>' +
-          '<button type="button" data-helpful="' + esc(story.id) + '" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-body-sm text-body-sm font-medium transition-colors" aria-label="Tandai membantu">' +
+          '<button type="button" data-helpful="' + esc(story.id) + '" aria-pressed="' + (hasVoted(story.id) ? "true" : "false") + '" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-body-sm text-body-sm font-medium transition-colors" aria-label="Tandai membantu: ' + esc(story.title) + '">' +
             '<span class="material-symbols-outlined text-[16px]">thumb_up</span>' +
             '<span data-helpful-count="' + esc(story.id) + '">' + getHelpfulCount(story) + '</span>' +
           '</button>' +
@@ -162,9 +172,9 @@
       if (helpfulBtn) {
         helpfulBtn.addEventListener("click", function (e) {
           e.stopPropagation();
-          incrementHelpful(story.id);
+          var voted = toggleHelpful(story.id);
           refreshHelpfulLabels(story.id);
-          showToast("Terima kasih! Cerita ditandai membantu.");
+          showToast(voted ? "Terima kasih! Cerita ditandai membantu." : "Vote dibatalkan.");
         });
       }
 
@@ -177,8 +187,18 @@
     var story = stories.find(function (s) { return String(s.id) === String(storyId); });
     if (!story) return;
     var count = getHelpfulCount(story);
+    var voted = hasVoted(storyId);
     document.querySelectorAll('[data-helpful-count="' + CSS.escape(String(storyId)) + '"]').forEach(function (el) {
       el.textContent = String(count);
+    });
+    var feedBtn = document.querySelector('[data-helpful="' + CSS.escape(String(storyId)) + '"]');
+    if (feedBtn) feedBtn.setAttribute("aria-pressed", String(voted));
+    ["modal-helpful-btn", "detail-helpful-btn"].forEach(function (bid) {
+      var b = document.getElementById(bid);
+      if (b && String(activeStoryId) === String(storyId)) {
+        b.setAttribute("aria-pressed", String(voted));
+        b.setAttribute("aria-label", (voted ? "Batalkan vote: " : "Tandai membantu: ") + story.title);
+      }
     });
     if (String(activeStoryId) === String(storyId)) {
       var mc = document.getElementById("modal-helpful-count");
@@ -275,18 +295,18 @@
     if (modalHelpful) {
       modalHelpful.addEventListener("click", function () {
         if (!activeStoryId) return;
-        incrementHelpful(activeStoryId);
+        var voted = toggleHelpful(activeStoryId);
         refreshHelpfulLabels(activeStoryId);
-        showToast("Terima kasih! Cerita ditandai membantu.");
+        showToast(voted ? "Terima kasih! Cerita ditandai membantu." : "Vote dibatalkan.");
       });
     }
     var detailHelpful = document.getElementById("detail-helpful-btn");
     if (detailHelpful) {
       detailHelpful.addEventListener("click", function () {
         if (!activeStoryId) return;
-        incrementHelpful(activeStoryId);
+        var voted = toggleHelpful(activeStoryId);
         refreshHelpfulLabels(activeStoryId);
-        showToast("Terima kasih! Cerita ditandai membantu.");
+        showToast(voted ? "Terima kasih! Cerita ditandai membantu." : "Vote dibatalkan.");
       });
     }
   }
@@ -314,6 +334,22 @@
         return;
       }
 
+      // Anti-spam: tiap bagian minimal 20 karakter, tolak tautan, judul/nama wajar.
+      var longFields = [happened, decision, wrong, learned];
+      if (author.length < 3 || title.length < 10) {
+        showFormError("Nama minimal 3 karakter dan judul minimal 10 karakter.");
+        return;
+      }
+      if (longFields.some(function (v) { return v.length < 20; })) {
+        showFormError("Keempat bagian cerita minimal 20 karakter agar bermanfaat bagi pembaca.");
+        return;
+      }
+      var urlPattern = /(https?:\/\/|www\.)/i;
+      if ([author, title, happened, decision, wrong, learned].some(function (v) { return urlPattern.test(v); })) {
+        showFormError("Cerita tidak boleh berisi tautan/URL. Tulis pengalamanmu dengan kata-katamu sendiri.");
+        return;
+      }
+
       var store = getStore();
       if (!store) {
         showFormError("Penyimpanan tidak tersedia di browser ini.");
@@ -329,11 +365,25 @@
         whatWentWrong: wrong,
         whatILearned: learned
       });
-      store.addXP(75);
+
+      // XP +75 hanya untuk cerita pertama dalam 24 jam terakhir (anti-farming).
+      var now = Date.now();
+      var lastAt = 0;
+      try {
+        lastAt = Number(localStorage.getItem(STORY_COOLDOWN_KEY) || 0);
+      } catch (e) { /* abaikan */ }
+      if (now - lastAt >= STORY_COOLDOWN_MS) {
+        store.addXP(75);
+        try {
+          localStorage.setItem(STORY_COOLDOWN_KEY, String(now));
+        } catch (e) { /* abaikan */ }
+        showToast("Cerita terkirim! +75 XP untukmu.");
+      } else {
+        showToast("Cerita terkirim! Bonus XP berikutnya tersedia dalam 24 jam.");
+      }
 
       form.reset();
       renderFeed();
-      showToast("Cerita terkirim! +75 XP untukmu.");
       document.getElementById("story-feed").scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }

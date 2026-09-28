@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (btnStartChallenge) {
       btnStartChallenge.querySelector("span").textContent =
-        progress > 0 && !status.done ? "Lanjutkan Misi" : (status.done ? "Ulangi Misi" : "Mulai Misi");
+        progress > 0 && !status.done ? "Mulai Ulang Misi" : (status.done ? "Ulangi Misi" : "Mulai Misi");
     }
   }
 
