@@ -101,9 +101,9 @@
       log.innerHTML =
         '<div class="rounded-xl bg-surface-container-low p-space-md text-center">' +
           '<p class="font-headline-sm text-body-sm font-semibold">Belum ada aktivitas.</p>' +
-          '<p class="font-body-sm text-body-sm text-on-surface-variant">Selesaikan skenario Survival untuk mengisi riwayatmu.</p>' +
-          '<a href="survival.html" class="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary font-headline-sm text-body-sm font-semibold">' +
-            "<span>Mulai Survival</span>" +
+          '<p class="font-body-sm text-body-sm text-on-surface-variant">Selesaikan skenario Tantangan untuk mengisi riwayatmu.</p>' +
+          '<a href="challenge.html" class="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary font-headline-sm text-body-sm font-semibold">' +
+            "<span>Mulai Tantangan</span>" +
             '<span class="material-symbols-outlined text-[18px]">arrow_forward</span>' +
           "</a>" +
         "</div>";

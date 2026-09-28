@@ -11,15 +11,14 @@ mengikuti framework **STOP → THINK → CHECK → DECIDE → SHARE**.
 Fokus pembelajaran (4 vektor): **Keamanan Digital**, **Informasi & Berita**,
 **AI & Sintetis**, dan **Finansial**.
 
-## Fitur & Halaman (7 halaman)
+## Fitur & Halaman (6 halaman)
 
 | Halaman | File | Fungsi |
 |---|---|---|
-| Home | `index.html` | Hero, lanskap ancaman, cara kerja, tantangan harian, kategori, cerita komunitas |
+| Home | `index.html` | Hero, lanskap ancaman, Tentang, cara kerja, tantangan harian, kategori, cerita komunitas, FAQ |
 | Check-Up | `checkup.html` | Tes 8 situasi → skor SIAGA, breakdown 4 skill, persona taktis, rekomendasi modul |
-| Survival | `survival.html` | Fitur inti: Daily Survival (rotasi harian by-date) + library skenario + filter 4 kategori |
+| Tantangan | `challenge.html` | Misi harian (rotasi by-date), misi mingguan 5 skenario + reward, library skenario + filter 4 kategori |
 | Learn | `learn.html` | Microlesson ±4 menit (Situation → Signals → What To Do → Quick Check → +40 XP) |
-| Challenge | `challenge.html` | Weekly Challenge 5 skenario + umpan balik 3 tingkat + 250 XP + badge |
 | Community | `community.html` | Story feed, story detail 4 alur, form Share Experience (+75 XP, LocalStorage) |
 | My SIAGA | `progress.html` | Skor, level & XP, skill map, badges, activity log, Panduan Darurat, reset progres |
 
@@ -50,8 +49,8 @@ untuk daftar dan atribusi aset lengkap.
 
 ```
 SIAGA/
-├── index.html / checkup.html / survival.html / learn.html
-├── challenge.html / community.html / progress.html
+├── index.html / checkup.html / challenge.html / learn.html
+├── community.html / progress.html (6 halaman)
 ├── assets/images/logo.png
 ├── css/style.css
 ├── js/
@@ -60,8 +59,9 @@ SIAGA/
 │   ├── storage.js           (satu-satunya akses LocalStorage)
 │   ├── components.js        (toast, modal, nav aktif, hamburger, feedback)
 │   ├── app.js               (animasi & nav Home)
-│   └── checkup.js / survival.js / learn.js
-│       / challenge.js / community.js / progress.js
+│   ├── splash.js            (splashscreen sekali-per-sesi, khusus index)
+│   └── checkup.js / learn.js / challenge.js
+│       / community.js / progress.js
 ├── ASSETS-CREDIT.md
 ├── SIAGA-PRD.md / DESIGN-SIAGA.md
 └── README.md

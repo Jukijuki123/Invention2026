@@ -3,7 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>SIAGA - Weekly Challenge</title>
+  <title>Tantangan SIAGA — Misi Harian, Mingguan & Library Skenario</title>
+    <!-- Favicon: logo SIAGA lokal (assets/images/logo.png) -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png" />
+    <link rel="apple-touch-icon" href="assets/images/logo.png" />
+    <meta name="theme-color" content="#0B1220" />
+    <!-- SEO: ganti og:url & og:image ke URL absolut setelah domain deploy final -->
+    <meta name="description" content="Latih refleks digital lewat misi harian, misi mingguan 5 skenario berhadiah 250 XP, dan library skenario interaktif." />
+    <meta name="author" content="Tim SIAGA" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="SIAGA" />
+    <meta property="og:title" content="Tantangan SIAGA — Misi Harian, Mingguan & Library Skenario" />
+    <meta property="og:description" content="Latih refleks digital lewat misi harian, misi mingguan 5 skenario berhadiah 250 XP, dan library skenario interaktif." />
+    <meta property="og:image" content="assets/images/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Tantangan SIAGA — Misi Harian, Mingguan & Library Skenario" />
+    <meta name="twitter:description" content="Latih refleks digital lewat misi harian, misi mingguan 5 skenario berhadiah 250 XP, dan library skenario interaktif." />
+    <meta name="twitter:image" content="assets/images/logo.png" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet" />
@@ -26,7 +44,7 @@
 <body class="bg-surface font-body-md text-on-surface antialiased">
 
   <!-- NAVBAR -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
     <div class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md">
       <div class="flex items-center gap-space-md shrink-0">
         <!-- Logo SIAGA — aset tim (assets/images/logo.png) | Lihat ASSETS-CREDIT.md -->
@@ -42,11 +60,7 @@
           class="font-headline-sm text-body-sm text-primary font-semibold"
           href="challenge.html">Tantangan</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          href="survival.html">Survival</a><a
-          class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
           href="community.html">Komunitas</a><a
-          class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          href="index.html#faq">FAQ</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
           href="checkup.html">Check-Up</a>
       </nav>
@@ -64,9 +78,8 @@
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="index.html">Beranda</a>
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="learn.html">Belajar</a>
       <a class="px-3 py-2.5 rounded-xl text-body-sm font-semibold text-primary bg-primary-fixed/40" href="challenge.html" aria-current="page">Tantangan</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="survival.html">Survival</a>
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="community.html">Komunitas</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="index.html#faq">FAQ</a>
+      
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="checkup.html">Check-Up</a>
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="progress.html">My SIAGA</a>
     </nav>
@@ -84,12 +97,12 @@
           <section class="flex flex-col gap-space-xs max-w-2xl">
             <div class="inline-flex items-center gap-space-xs self-start px-space-sm py-space-2xs rounded-full bg-surface-container-high text-on-surface-variant font-code-telemetry text-code-telemetry">
               <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
-              <span class="font-semibold tracking-wider text-secondary">MISI MINGGUAN</span>
+              <span class="font-semibold tracking-wider text-secondary">PUSAT TANTANGAN</span>
               <span class="text-outline-variant">/</span>
-              <span class="text-on-surface-variant">WEEKLY_CHALLENGE</span>
+              <span class="text-on-surface-variant">CHALLENGE HUB</span>
             </div>
-            <h1 id="challenge-title" class="font-display-hero text-display-hero text-on-surface tracking-tight">Weekly Challenge</h1>
-            <p id="challenge-desc" class="font-body-lg text-body-lg text-on-surface-variant">Memuat misi minggu ini...</p>
+            <h1 class="font-display-hero text-display-hero text-on-surface tracking-tight">Tantangan</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">Misi harian, misi mingguan berhadiah, dan seluruh library skenario — dalam satu tempat.</p>
           </section>
 
           <!-- HERO CARD -->
@@ -128,6 +141,32 @@
             </div>
           </section>
 
+          <!-- MISI HARIAN -->
+          <section class="flex flex-col gap-space-md">
+            <div class="flex items-center gap-space-xs">
+              <span class="w-1.5 h-4 bg-secondary rounded-full"></span>
+              <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Misi Harian</span>
+            </div>
+            <div class="relative w-full rounded-2xl bg-inverse-surface text-inverse-on-surface p-space-lg md:p-space-xl overflow-hidden shadow-xl">
+              <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-secondary-container/10 blur-3xl pointer-events-none"></div>
+              <div class="flex flex-col gap-space-md relative z-10 max-w-2xl">
+                <span class="inline-flex items-center gap-1.5 self-start px-space-sm py-space-2xs rounded-full bg-secondary-container/20 text-secondary-fixed font-label-badge text-label-badge font-bold">
+                  <span class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></span>
+                  REKOMENDASI HARIAN
+                </span>
+                <h2 id="daily-title" class="font-headline-xl text-headline-lg md:text-headline-xl text-inverse-on-surface tracking-tight font-bold">Memuat skenario hari ini…</h2>
+                <p id="daily-desc" class="font-body-md text-body-md text-surface-variant/80 leading-relaxed line-clamp-2"></p>
+                <div class="pt-space-xs flex flex-wrap items-center gap-space-md">
+                  <button id="btn-daily-start" class="inline-flex items-center justify-center gap-space-xs px-space-xl py-space-sm rounded-full bg-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold shadow-lg hover:bg-primary transition-all transform active:scale-95">
+                    <span>Mulai Skenario</span>
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </button>
+                  <span id="daily-status" class="font-code-telemetry text-code-telemetry text-surface-variant/70"></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <!-- DAFTAR SKENARIO -->
           <section class="flex flex-col gap-space-md pb-space-3xl">
             <div class="flex items-center gap-space-xs">
@@ -135,6 +174,26 @@
               <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Daftar Skenario Misi</span>
             </div>
             <div id="challenge-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg"></div>
+          </section>
+
+          <!-- JELAJAHI SKENARIO -->
+          <section id="jelajahi" class="flex flex-col gap-space-md pb-space-3xl scroll-mt-24">
+            <div class="flex flex-col gap-space-2xs">
+              <div class="flex items-center gap-space-xs">
+                <span class="w-1.5 h-4 bg-primary rounded-full"></span>
+                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Library Skenario</span>
+              </div>
+              <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight font-bold">Jelajahi Semua Skenario</h2>
+              <p class="font-body-md text-body-md text-on-surface-variant">Latih satu skenario kapan pun — XP, skill, dan badge tetap berjalan.</p>
+            </div>
+            <div id="library-filter-bar" class="flex items-center gap-space-xs overflow-x-auto pb-space-2xs">
+              <button data-cat="all" class="cat-tab px-space-md py-space-xs rounded-full bg-inverse-surface text-inverse-on-surface font-headline-sm text-body-sm font-semibold shrink-0 shadow-xs">Semua</button>
+              <button data-cat="safety" class="cat-tab px-space-md py-space-xs rounded-full bg-surface-container-low hover:bg-surface-container font-headline-sm text-body-sm font-medium shrink-0 transition-colors flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">shield</span>Keamanan Digital</button>
+              <button data-cat="information" class="cat-tab px-space-md py-space-xs rounded-full bg-surface-container-low hover:bg-surface-container font-headline-sm text-body-sm font-medium shrink-0 transition-colors flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-secondary">newspaper</span>Informasi &amp; Berita</button>
+              <button data-cat="ai" class="cat-tab px-space-md py-space-xs rounded-full bg-surface-container-low hover:bg-surface-container font-headline-sm text-body-sm font-medium shrink-0 transition-colors flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-on-secondary-container">smart_toy</span>AI &amp; Sintetis</button>
+              <button data-cat="finance" class="cat-tab px-space-md py-space-xs rounded-full bg-surface-container-low hover:bg-surface-container font-headline-sm text-body-sm font-medium shrink-0 transition-colors flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary-container">credit_card</span>Finansial</button>
+            </div>
+            <div id="scenario-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg"></div>
           </section>
 
         </div>
@@ -148,7 +207,7 @@
         <div class="relative max-w-[1040px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex flex-col gap-space-xl">
 
           <!-- Progress misi mis 3/5 -->
-          <div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest px-space-lg py-space-sm rounded-xl shadow-sm">
+          <div id="drill-mission-bar" class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest px-space-lg py-space-sm rounded-xl shadow-sm">
             <div class="flex items-center gap-space-sm">
               <span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-primary-fixed text-primary font-label-badge text-label-badge tracking-wide uppercase font-bold">
                 <span class="material-symbols-outlined text-[15px]">flag</span>
@@ -161,7 +220,7 @@
               <span id="drill-score-label" class="font-code-telemetry text-code-telemetry text-on-surface-variant font-semibold">Skor: 0</span>
             </div>
           </div>
-          <div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+          <div id="drill-progress-wrap" class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
             <div id="drill-progress-bar" class="h-full rounded-full bg-primary transition-all duration-500" style="width:0%"></div>
           </div>
 
@@ -264,7 +323,7 @@
             <span class="material-symbols-outlined text-[20px]">replay</span>
             <span>Ulangi Misi</span>
           </button>
-          <a href="survival.html" class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-surface-container-high text-on-surface font-headline-sm text-body-md font-semibold transition-all">Latihan di Survival</a>
+          <a id="btn-to-library" href="#jelajahi" class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-surface-container-high text-on-surface font-headline-sm text-body-md font-semibold transition-all">Jelajahi Skenario</a>
           <a href="progress.html" class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-surface-container-low text-on-surface-variant font-headline-sm text-body-md font-semibold transition-all">Lihat My SIAGA</a>
         </div>
       </div>
@@ -289,7 +348,7 @@
           <p class="font-body-md text-body-sm text-on-surface-variant leading-relaxed">Simulator kelangsungan digital untuk membantu generasi muda menavigasi ancaman siber dengan percaya diri.</p>
         </div>
         <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
-          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html">Beranda</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="survival.html">Survival</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="community.html">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#faq">FAQ</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="progress.html">My SIAGA</a>
+          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html">Beranda</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="community.html">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="progress.html">My SIAGA</a>
         </nav>
       </div>
     </div>

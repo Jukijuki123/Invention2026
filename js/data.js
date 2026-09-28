@@ -1,4 +1,4 @@
-// js/data.js — Core Data Layer — SIAGA Semua konten statis: soal Check-Up, skenario Survival, microlesson Learn, We...
+// js/data.js — Core Data Layer SIAGA: soal Check-Up, skenario, microlesson, challenge, badge, story.
 // --- CHECK-UP QUESTIONS ---
 const checkupQuestions = [
     {

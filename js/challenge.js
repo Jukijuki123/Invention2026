@@ -14,6 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const challengeRewardLabel = document.getElementById("challenge-reward-label");
   const btnStartChallenge = document.getElementById("btn-start-challenge");
 
+  // DOM — misi harian & library (pengganti halaman Survival)
+  const dailyTitleEl = document.getElementById("daily-title");
+  const dailyDescEl = document.getElementById("daily-desc");
+  const btnDailyStart = document.getElementById("btn-daily-start");
+  const dailyStatusEl = document.getElementById("daily-status");
+  const libraryFilterBar = document.getElementById("library-filter-bar");
+  const scenarioGrid = document.getElementById("scenario-grid");
+  const drillMissionBar = document.getElementById("drill-mission-bar");
+  const drillProgressWrap = document.getElementById("drill-progress-wrap");
+  const btnToLibrary = document.getElementById("btn-to-library");
+
   // DOM — drill
   const challengeCounter = document.getElementById("challenge-counter");
   const drillProgressBar = document.getElementById("drill-progress-bar");
@@ -52,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     id: 1,
     title: "Minggu Ketahanan Digital #1",
     description: "Hadapi 5 skenario campuran untuk menguji seluruh skill SIAGA-mu minggu ini.",
-    scenarioIds: [1, 3, 4, 5, 6],
+    scenarioIds: [1, 3, 4, 5, 7],
     rewardXp: 250,
     rewardBadgeId: "digital-guardian"
   };
@@ -67,6 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedOptionIndex = null;
   let answered = false;
   let answers = [];
+  let drillMode = "mission"; // "mission" (5 beruntun) | "single" (latihan bebas)
+  let singleScenario = null;
+  let currentCategory = "all";
 
   // ---------- Helpers ----------
   function showToast(msg) {
@@ -133,8 +147,150 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshHeroProgress();
   }
 
+  // ---------- Misi harian & library (pengganti halaman Survival) ----------
+  const CATEGORY_META = {
+    safety: { label: "Keamanan Digital", icon: "shield" },
+    information: { label: "Informasi & Berita", icon: "newspaper" },
+    ai: { label: "AI & Sintetis", icon: "smart_toy" },
+    finance: { label: "Finansial", icon: "credit_card" }
+  };
+  const CATEGORY_TO_SKILL = {
+    safety: "safety",
+    information: "criticalThinking",
+    ai: "aiLiteracy",
+    finance: "financialSecurity"
+  };
+
+  function todayDaily() {
+    if (!allScenarios.length) return null;
+    const now = new Date();
+    const doy = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    return allScenarios[doy % allScenarios.length];
+  }
+
+  function renderDaily() {
+    const d = todayDaily();
+    if (!d) return;
+    if (dailyTitleEl) dailyTitleEl.textContent = d.title;
+    if (dailyDescEl) dailyDescEl.textContent = d.situation;
+    const todayStr = new Date().toISOString().split("T")[0];
+    const daily = store ? store.getDailyStatus() : null;
+    const done = daily && daily.date === todayStr && daily.scenarioId === d.id && daily.done;
+    if (dailyStatusEl) {
+      dailyStatusEl.textContent = done
+        ? "Selesai hari ini — ulangi untuk latihan."
+        : `+${d.xp || 50} XP • ±2 menit`;
+    }
+  }
+
+  function renderLibrary() {
+    if (!scenarioGrid) return;
+    scenarioGrid.innerHTML = "";
+    const list = currentCategory === "all"
+      ? allScenarios
+      : allScenarios.filter((s) => s.category === currentCategory);
+    if (!list.length) {
+      scenarioGrid.innerHTML = '<p class="col-span-full py-space-xl text-center text-on-surface-variant">Belum ada skenario pada kategori ini.</p>';
+      return;
+    }
+    list.forEach((sc) => {
+      const meta = CATEGORY_META[sc.category] || { label: sc.category, icon: "shield" };
+      const card = document.createElement("div");
+      card.className = "bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm hover:-translate-y-1";
+      card.innerHTML =
+        '<div class="flex items-center justify-between gap-2">' +
+          `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-caps text-label-badge font-bold uppercase"><span class="material-symbols-outlined text-[15px]">${meta.icon}</span>${meta.label}</span>` +
+          `<span class="text-[11px] font-bold text-primary">+${sc.xp || 50} XP</span>` +
+        "</div>" +
+        `<h3 class="font-bold">${sc.title}</h3>` +
+        `<p class="text-sm text-on-surface-variant line-clamp-2 leading-relaxed">${sc.situation}</p>` +
+        `<button type="button" data-id="${sc.id}" class="btn-start-scenario mt-auto self-start inline-flex items-center gap-1 font-headline-sm text-body-sm font-semibold text-primary">Mulai Skenario<span class="material-symbols-outlined text-[16px]">arrow_forward</span></button>`;
+      scenarioGrid.appendChild(card);
+    });
+    scenarioGrid.querySelectorAll(".btn-start-scenario").forEach((btn) => {
+      btn.addEventListener("click", () => openSingle(parseInt(btn.getAttribute("data-id"), 10)));
+    });
+  }
+
+  function setupLibraryFilters() {
+    if (!libraryFilterBar) return;
+    const tabs = libraryFilterBar.querySelectorAll(".cat-tab");
+    const idle = "cat-tab px-space-md py-space-xs rounded-full bg-surface-container-low hover:bg-surface-container font-headline-sm text-body-sm font-medium shrink-0 transition-colors flex items-center gap-1.5";
+    const on = "cat-tab px-space-md py-space-xs rounded-full bg-inverse-surface text-inverse-on-surface font-headline-sm text-body-sm font-semibold shrink-0 shadow-xs flex items-center gap-1.5";
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((x) => { x.className = idle; });
+        tab.className = on;
+        currentCategory = tab.getAttribute("data-cat");
+        renderLibrary();
+      });
+    });
+  }
+
+  function openSingle(id) {
+    const sc = allScenarios.find((s) => s.id === id);
+    if (!sc) return;
+    drillMode = "single";
+    singleScenario = sc;
+    selectedOptionIndex = null;
+    answered = false;
+    const meta = CATEGORY_META[sc.category] || { label: sc.category, icon: "shield" };
+    if (drillMissionBar) drillMissionBar.style.display = "none";
+    if (drillProgressWrap) drillProgressWrap.style.display = "none";
+    if (challengeCounter) challengeCounter.textContent = "Latihan Bebas";
+    if (activeCategory) activeCategory.textContent = meta.label.toUpperCase();
+    if (activeTitle) activeTitle.textContent = sc.title;
+    if (activeSituation) activeSituation.textContent = sc.situation;
+    if (feedbackBox) feedbackBox.classList.add("hidden");
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.remove("hidden"); }
+    if (btnNext) btnNext.classList.add("hidden");
+    renderOptions(sc);
+    showView(viewDrill);
+  }
+
+  function awardSingle(sc, isCorrect) {
+    if (!store) return;
+    store.markScenarioCompleted(sc.id, isCorrect);
+    const skill = CATEGORY_TO_SKILL[sc.category];
+    if (skill && store.updateSkillPoints) store.updateSkillPoints(skill, isCorrect ? 10 : 2);
+    try {
+      const todayStr = new Date().toISOString().split("T")[0];
+      const today = todayDaily();
+      if (today && sc.id === today.id) {
+        store.setDailyStatus({ date: todayStr, scenarioId: today.id, done: true });
+      }
+    } catch (e) { /* daily opsional */ }
+    checkAndUnlockBadges();
+    if (isCorrect) {
+      store.addXp(sc.xp || 50);
+      showToast(`Keputusan tepat! +${sc.xp || 50} XP.`);
+    } else {
+      showToast("Belum tepat — baca umpan baliknya lalu coba lagi.");
+    }
+    renderDaily();
+  }
+
+  function checkAndUnlockBadges() {
+    if (!store || !store.unlockBadge) return;
+    const done = store.getCompletedScenarios();
+    if (done.length >= 1) store.unlockBadge("first-decision");
+    const n = { safety: 0, information: 0, ai: 0, finance: 0 };
+    done.forEach((c) => {
+      const s = allScenarios.find((x) => x.id === c.scenarioId);
+      if (s && n[s.category] !== undefined) n[s.category] += 1;
+    });
+    if (n.safety >= 5) store.unlockBadge("scam-survivor");
+    if (n.information >= 5) store.unlockBadge("fact-finder");
+    if (n.ai >= 5) store.unlockBadge("ai-detector");
+    if (n.finance >= 5) store.unlockBadge("safe-trader");
+  }
+
   // ---------- Drill ----------
   function startChallenge() {
+    drillMode = "mission";
+    singleScenario = null;
+    if (drillMissionBar) drillMissionBar.style.display = "";
+    if (drillProgressWrap) drillProgressWrap.style.display = "";
     index = 0;
     score = 0;
     answers = [];
@@ -211,22 +367,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function submitAnswer() {
     if (selectedOptionIndex === null || answered) return;
-    const sc = missionScenarios[index];
+    const sc = drillMode === "single" ? singleScenario : missionScenarios[index];
+    if (!sc) return;
     const chosen = sc.options[selectedOptionIndex];
     const grade = gradeAnswer(sc, selectedOptionIndex);
     answered = true;
 
     const isCorrect = grade === "benar";
-    if (isCorrect) score += 1;
-    answers.push({ scenarioId: sc.id, title: sc.title, grade, feedback: chosen.feedback });
+    if (drillMode === "single") {
+      awardSingle(sc, isCorrect);
+    } else {
+      if (isCorrect) score += 1;
+      answers.push({ scenarioId: sc.id, title: sc.title, grade, feedback: chosen.feedback });
 
-    // Tandai selesai + update progress via setChallengeStatus
-    if (store) {
-      store.markScenarioCompleted(sc.id, isCorrect);
-      store.setChallengeStatus({ challengeId: challenge.id, progress: index + 1, done: false });
+      // Tandai selesai + update progress via setChallengeStatus
+      if (store) {
+        store.markScenarioCompleted(sc.id, isCorrect);
+        store.setChallengeStatus({ challengeId: challenge.id, progress: index + 1, done: false });
+      }
+      if (drillScoreLabel) drillScoreLabel.textContent = `Skor: ${score}`;
+      if (drillProgressBar) drillProgressBar.style.width = `${((index + 1) / missionScenarios.length) * 100}%`;
     }
-    if (drillScoreLabel) drillScoreLabel.textContent = `Skor: ${score}`;
-    if (drillProgressBar) drillProgressBar.style.width = `${((index + 1) / missionScenarios.length) * 100}%`;
 
     // Kunci opsi + tandai pilihan
     decisionOptions.querySelectorAll(".option-card").forEach((c) => {
@@ -263,12 +424,24 @@ document.addEventListener("DOMContentLoaded", () => {
     if (submitBtn) submitBtn.classList.add("hidden");
     if (btnNext) {
       btnNext.classList.remove("hidden");
-      btnNext.textContent = index === missionScenarios.length - 1 ? "Lihat Hasil" : "Lanjut";
+      btnNext.textContent = drillMode === "single"
+        ? "Kembali"
+        : (index === missionScenarios.length - 1 ? "Lihat Hasil" : "Lanjut");
     }
-    refreshHeroProgress();
+    if (drillMode === "single") {
+      renderDaily();
+    } else {
+      refreshHeroProgress();
+    }
   }
 
   function nextStep() {
+    if (drillMode === "single") {
+      showView(viewStart);
+      const lib = document.getElementById("jelajahi");
+      if (lib) lib.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
     if (index < missionScenarios.length - 1) {
       index += 1;
       renderScenario();
@@ -334,9 +507,28 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnNext) btnNext.addEventListener("click", nextStep);
   if (btnQuitChallenge) btnQuitChallenge.addEventListener("click", () => { refreshHeroProgress(); showView(viewStart); });
   if (btnRetry) btnRetry.addEventListener("click", startChallenge);
+  if (btnDailyStart) btnDailyStart.addEventListener("click", () => {
+    const d = todayDaily();
+    if (d) openSingle(d.id);
+  });
+  if (btnToLibrary) btnToLibrary.addEventListener("click", (e) => {
+    e.preventDefault();
+    showView(viewStart);
+    const lib = document.getElementById("jelajahi");
+    if (lib) lib.scrollIntoView({ behavior: "smooth" });
+  });
 
   // Init
   if (store && store.initializeIfFirstVisit) store.initializeIfFirstVisit();
   renderHero();
-  showView(viewStart);
+  renderDaily();
+  renderLibrary();
+  setupLibraryFilters();
+  const params = new URLSearchParams(window.location.search);
+  const deepId = parseInt(params.get("scenario"), 10);
+  if (deepId && allScenarios.some((s) => s.id === deepId)) {
+    openSingle(deepId);
+  } else {
+    showView(viewStart);
+  }
 });

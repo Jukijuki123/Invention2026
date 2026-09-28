@@ -4,11 +4,26 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Check-Up — SIAGA Digital Survival Skills</title>
-    <meta name="description"
-        content="Tes Check-Up SIAGA: ukur skor kesiapsiagaan digitalmu melalui 10 simulasi keputusan situasi nyata." />
-
-    <!-- Tailwind CSS & Custom Config -->
+    <title>Check-Up SIAGA — Cek Skor Keamanan Digitalmu</title>
+    <!-- Favicon: logo SIAGA lokal (assets/images/logo.png) -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png" />
+    <link rel="apple-touch-icon" href="assets/images/logo.png" />
+    <meta name="theme-color" content="#0B1220" />
+    <!-- SEO: ganti og:url & og:image ke URL absolut setelah domain deploy final -->
+    <meta name="description" content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
+    <meta name="author" content="Tim SIAGA" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="SIAGA" />
+    <meta property="og:title" content="Check-Up SIAGA — Cek Skor Keamanan Digitalmu" />
+    <meta property="og:description" content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
+    <meta property="og:image" content="assets/images/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Check-Up SIAGA — Cek Skor Keamanan Digitalmu" />
+    <meta name="twitter:description" content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
+    <meta name="twitter:image" content="assets/images/logo.png" />
+<!-- Tailwind CSS & Custom Config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config.js"></script>
 
@@ -76,29 +91,55 @@
 <body
     class="bg-cyber-grid text-on-surface font-sans min-h-full flex flex-col justify-between antialiased selection:bg-cyan-100 selection:text-primary relative overflow-x-hidden">
 
-    <!-- ============================ HEADER NAVBAR (Minimal — Logo + Keluar only) ============================ -->
-    <header class="w-full bg-white/90 backdrop-blur-md border-b border-outline-variant/30 sticky top-0 z-50">
-        <div
-            class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop h-16 flex items-center justify-between">
-            <!-- SIAGA Logo -->
-            <a href="index.html" class="flex items-center gap-3 shrink-0">
+    <!-- ============================ HEADER NAVBAR ============================ -->
+    <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-md shrink-0">
                 <!-- Logo SIAGA — aset tim (assets/images/logo.png) | Lihat ASSETS-CREDIT.md -->
-                <img src="assets/images/logo.png" alt="SIAGA Logo" class="h-7 w-auto object-contain" />
-                <span
-                    class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-extrabold">SIAGA</span>
-            </a>
+                <img alt="Logo SIAGA" class="h-8 w-8 object-contain rounded-lg" src="assets/images/logo.png" />
+                <a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold" href="index.html">SIAGA</a>
+            </div>
 
-            <!-- Exit Button — always visible, labeled simply as 'Keluar' -->
-            <a id="btn-exit-checkup" href="index.html"
-                class="text-sm font-semibold text-on-surface-variant hover:text-error transition-colors flex items-center gap-1.5 py-2 px-4 rounded-xl hover:bg-rose-50 border border-transparent hover:border-rose-100">
-                <span class="material-symbols-outlined text-[18px]">close</span>
-                <span>Keluar</span>
-            </a>
+            <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold">
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="index.html">Beranda</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="community.html">Komunitas</a><a aria-current="page" class="font-headline-sm text-body-sm text-primary font-semibold" href="checkup.html">Check-Up</a>
+            </nav>
+
+            <div class="flex items-center gap-space-md shrink-0">
+                <!-- Exit Button — selalu terlihat selama Check-Up -->
+                <a id="btn-exit-checkup" href="index.html"
+                    class="text-sm font-semibold text-on-surface-variant hover:text-error transition-colors hidden sm:flex items-center gap-1.5 py-2 px-4 rounded-xl hover:bg-rose-50 border border-transparent hover:border-rose-100">
+                    <span class="material-symbols-outlined text-[18px]">close</span>
+                    <span>Keluar</span>
+                </a>
+                <a href="progress.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center" aria-label="Profil saya">
+                    <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+                </a>
+                <button id="btn-mobile-nav" class="lg:hidden w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center" aria-label="Buka navigasi" aria-expanded="false">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
         </div>
+        <nav id="mobile-nav"
+            class="hidden lg:hidden border-t border-outline-variant/30 bg-surface px-margin-mobile py-space-sm flex flex-col gap-1">
+            <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+                href="index.html">Beranda</a>
+            <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+                href="learn.html">Belajar</a>
+            <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+                href="challenge.html">Tantangan</a>
+            <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+                href="community.html">Komunitas</a>
+            <a class="px-3 py-2.5 rounded-xl text-body-sm font-semibold text-primary bg-primary-fixed/40"
+                href="checkup.html" aria-current="page">Check-Up</a>
+            <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container"
+                href="progress.html">My SIAGA</a>
+            <a class="px-3 py-2.5 rounded-xl text-body-sm font-semibold text-error hover:bg-rose-50"
+                href="index.html">Keluar Check-Up</a>
+        </nav>
     </header>
 
     <!-- ============================ MAIN CONTENT ============================ -->
-    <main class="flex-1 w-full relative z-10">
+    <main class="flex-1 w-full relative z-10 pt-20">
 
         <!-- ==================== SECTION 1: INTRO VIEW ==================== -->
         <section id="checkup-intro" class="flex flex-col items-center justify-center px-4 py-12 md:py-16">
@@ -617,9 +658,9 @@
                             <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
                         </a>
                         <div class="flex items-center justify-center gap-space-md w-full">
-                            <a href="survival.html"
+                            <a href="challenge.html"
                                 class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
-                                <span>Coba Skenario Survival</span>
+                                <span>Coba Tantangan Harian</span>
                             </a>
                             <span class="text-outline-variant">•</span>
                             <a href="learn.html"
@@ -664,7 +705,7 @@
                     </p>
                 </div>
                 <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
-          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#tentang">Tentang</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="survival.html">Survival</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="community.html">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#faq">FAQ</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="progress.html">My SIAGA</a>
+          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#tentang">Tentang</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="community.html">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#faq">FAQ</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="progress.html">My SIAGA</a>
         </nav>
             </div>
             <div

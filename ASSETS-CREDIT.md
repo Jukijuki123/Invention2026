@@ -7,7 +7,7 @@ Komentar inline juga dicantumkan tepat di lokasi pemakaian di setiap file HTML/C
 
 | Aset | Lokasi pakai | Keterangan |
 |---|---|---|
-| Logo SIAGA (`assets/images/logo.png`, perisai navy–cyan) | Navbar + footer semua halaman (`index.html`, `checkup.html`, `survival.html`, `learn.html`, `challenge.html`, `community.html`, `progress.html`) | Original asset — dibuat oleh tim SIAGA, disimpan lokal di repo. |
+| Logo SIAGA (`assets/images/logo.png`, perisai navy–cyan) | Navbar + footer semua halaman (`index.html`, `checkup.html`, `learn.html`, `challenge.html`, `community.html`, `progress.html`) | Original asset — dibuat oleh tim SIAGA, disimpan lokal di repo. |
 | Ilustrasi Tentang SIAGA (`assets/images/siaga.svg`) | Section Tentang di `index.html` | Original asset — milik tim SIAGA, disimpan lokal di repo. |
 | Ilustrasi perisai / grid pertahanan (`...AEtjO1XusVpV...`) | Hero `index.html` (backdrop kanan) | Original asset — dibuat oleh tim SIAGA (AI-generated untuk prototipe lomba). |
 | Ilustrasi shield Check-Up (`...AEtjO1VjrN...`) | Intro `checkup.html` | Original asset — dibuat oleh tim SIAGA (AI-generated untuk prototipe lomba). |
@@ -33,14 +33,14 @@ Komentar inline juga dicantumkan tepat di lokasi pemakaian di setiap file HTML/C
 ## 4. Struktur folder yang diharapkan (PRD §10.3)
 
 ```
-SIAGA/
-├── index.html / checkup.html / survival.html / learn.html
-├── challenge.html / community.html / progress.html
+SIAGA/ (6 halaman — survival.html dilebur ke challenge.html)
+├── index.html / checkup.html / challenge.html / learn.html
+├── community.html / progress.html
 ├── assets/
-│   └── images/          ← unduhan logo & ilustrasi final ditaruh di sini
+│   └── images/          ← logo & ilustrasi final ditaruh di sini
 ├── css/style.css
 ├── js/app.js / data.js / storage.js / components.js
-│   / checkup.js / survival.js / learn.js / challenge.js
+│   / checkup.js / learn.js / challenge.js
 │   / community.js / progress.js / tailwind-config.js
 └── ASSETS-CREDIT.md     ← file ini
 ```

@@ -3,7 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>SIAGA - Community</title>
+  <title>Komunitas SIAGA — Cerita & Pengalaman Nyata</title>
+    <!-- Favicon: logo SIAGA lokal (assets/images/logo.png) -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png" />
+    <link rel="apple-touch-icon" href="assets/images/logo.png" />
+    <meta name="theme-color" content="#0B1220" />
+    <!-- SEO: ganti og:url & og:image ke URL absolut setelah domain deploy final -->
+    <meta name="description" content="Belajar dari pengalaman nyata pengguna SIAGA menghadapi penipuan digital, dan bagikan pengalamanmu untuk +75 XP." />
+    <meta name="author" content="Tim SIAGA" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="SIAGA" />
+    <meta property="og:title" content="Komunitas SIAGA — Cerita & Pengalaman Nyata" />
+    <meta property="og:description" content="Belajar dari pengalaman nyata pengguna SIAGA menghadapi penipuan digital, dan bagikan pengalamanmu untuk +75 XP." />
+    <meta property="og:image" content="assets/images/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Komunitas SIAGA — Cerita & Pengalaman Nyata" />
+    <meta name="twitter:description" content="Belajar dari pengalaman nyata pengguna SIAGA menghadapi penipuan digital, dan bagikan pengalamanmu untuk +75 XP." />
+    <meta name="twitter:image" content="assets/images/logo.png" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet" />
@@ -26,12 +44,12 @@
 <body class="bg-surface font-body-md text-on-surface antialiased">
 
   <!-- NAVBAR -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
     <div class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md">
       <div class="flex items-center gap-space-md shrink-0">
         <!-- Logo SIAGA — aset tim (assets/images/logo.png) | Lihat ASSETS-CREDIT.md -->
         <img alt="Logo SIAGA" class="h-8 w-8 object-contain rounded-lg" src="assets/images/logo.png"/>
-        <a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold" data-path="survival" href="index.html">SIAGA</a>
+        <a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold" href="index.html">SIAGA</a>
       </div>
       <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold">
         <a
@@ -40,13 +58,9 @@
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
           href="learn.html">Belajar</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          href="challenge.html">Tantangan</a><a
-          class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          href="survival.html">Survival</a><a aria-current="page"
+          href="challenge.html">Tantangan</a><a aria-current="page"
           class="font-headline-sm text-body-sm text-primary font-semibold"
           href="community.html">Komunitas</a><a
-          class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
-          href="index.html#faq">FAQ</a><a
           class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
           href="checkup.html">Check-Up</a>
       </nav>
@@ -64,9 +78,9 @@
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="index.html">Beranda</a>
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="learn.html">Belajar</a>
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="challenge.html">Tantangan</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="survival.html">Survival</a>
+      
       <a class="px-3 py-2.5 rounded-xl text-body-sm font-semibold text-primary bg-primary-fixed/40" href="community.html" aria-current="page">Komunitas</a>
-      <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="index.html#faq">FAQ</a>
+      
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="checkup.html">Check-Up</a>
       <a class="px-3 py-2.5 rounded-xl text-body-sm text-on-surface-variant hover:bg-surface-container" href="progress.html">My SIAGA</a>
     </nav>
@@ -166,7 +180,7 @@
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-space-md pt-space-xs">
-            <a id="detail-try-link" href="survival.html" class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-body-md font-bold shadow-md transition-all">
+            <a id="detail-try-link" href="challenge.html" class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-body-md font-bold shadow-md transition-all">
               <span class="material-symbols-outlined text-[20px]">play_arrow</span>
               <span>Try This Yourself</span>
             </a>
@@ -255,7 +269,7 @@
         <div class="rounded-xl bg-secondary-container/20 p-4"><p class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold mb-1">What I Learned</p><p id="modal-learned" class="font-body-md text-body-md leading-relaxed"></p></div>
       </div>
       <div class="flex flex-wrap items-center gap-space-sm pt-2">
-        <a id="modal-try-link" href="survival.html" class="inline-flex items-center gap-2 px-space-xl py-space-sm rounded-full bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-body-sm font-bold shadow-md transition-all">
+        <a id="modal-try-link" href="challenge.html" class="inline-flex items-center gap-2 px-space-xl py-space-sm rounded-full bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-body-sm font-bold shadow-md transition-all">
           <span class="material-symbols-outlined text-[18px]">play_arrow</span><span>Try This Yourself</span>
         </a>
         <button id="modal-helpful-btn" class="inline-flex items-center gap-2 px-space-lg py-space-sm rounded-full bg-surface-container-low hover:bg-surface-container font-headline-sm text-body-sm font-semibold transition-colors">
@@ -284,7 +298,7 @@
           <p class="font-body-md text-body-sm text-on-surface-variant leading-relaxed">Simulator kelangsungan digital untuk membantu generasi muda menavigasi ancaman siber dengan percaya diri.</p>
         </div>
         <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
-          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html">Beranda</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="survival.html">Survival</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="community.html">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#faq">FAQ</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="progress.html">My SIAGA</a>
+          <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html">Beranda</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="community.html">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="progress.html">My SIAGA</a>
         </nav>
       </div>
     </div>

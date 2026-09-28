@@ -204,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     highlightActiveNavLink();
     initModalListeners();
     initMobileNav();
+    initNavbarScroll();
 });
 
 // Hamburger (#btn-mobile-nav) membuka/menutup panel (#mobile-nav). Aman dipanggil
@@ -216,6 +217,26 @@ function initMobileNav() {
         const hidden = panel.classList.toggle("hidden");
         btn.setAttribute("aria-expanded", String(!hidden));
     });
+}
+
+// Morphing navbar: full-width di paling atas, pill melayang setelah scroll.
+// rAF-throttle + listener pasif agar tidak jank; aman bila header tak ada.
+function initNavbarScroll() {
+    const header = document.getElementById("site-header");
+    if (!header) return;
+    const THRESHOLD = 24;
+    let ticking = false;
+    const update = () => {
+        ticking = false;
+        header.classList.toggle("scrolled", window.scrollY > THRESHOLD);
+    };
+    update();
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+        }
+    }, { passive: true });
 }
 
 // --- EXPORT ---

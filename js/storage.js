@@ -263,7 +263,7 @@ window.SIAGA_STORAGE = {
     saveCheckupResult,
     getCheckupResult,
     addXP,
-    addXp: addXP, // alias huruf kecil, untuk kompatibilitas dengan survival.js versi baru
+    addXp: addXP, // alias huruf kecil, untuk kompatibilitas dengan challenge.js
     getXP,
     getLevel,
     getStats,

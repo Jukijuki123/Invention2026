@@ -212,7 +212,7 @@
     if (wrong) wrong.textContent = story.whatWentWrong;
     if (learned) learned.textContent = story.whatILearned;
     if (helpfulCount) helpfulCount.textContent = String(getHelpfulCount(story));
-    if (tryLink) tryLink.href = "survival.html?scenario=" + encodeURIComponent(story.relatedScenarioId);
+    if (tryLink) tryLink.href = "challenge.html?scenario=" + encodeURIComponent(story.relatedScenarioId);
 
     var label = "Terkait: " + getScenarioTitle(story.relatedScenarioId);
     if (prefix === "modal" && scenarioBadge) scenarioBadge.textContent = label;
