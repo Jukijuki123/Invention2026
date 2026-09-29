@@ -10,20 +10,23 @@
     <link rel="apple-touch-icon" href="assets/images/logo.png" />
     <meta name="theme-color" content="#0B1220" />
     <!-- SEO: ganti og:url & og:image ke URL absolut setelah domain deploy final -->
-    <meta name="description" content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
+    <meta name="description"
+        content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
     <meta name="author" content="Tim SIAGA" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="SIAGA" />
     <meta property="og:title" content="Check-Up SIAGA — Cek Skor Keamanan Digitalmu" />
-    <meta property="og:description" content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
+    <meta property="og:description"
+        content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
     <meta property="og:image" content="assets/images/logo.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Check-Up SIAGA — Cek Skor Keamanan Digitalmu" />
-    <meta name="twitter:description" content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
+    <meta name="twitter:description"
+        content="Ukur skor kesiapsiagaan digitalmu lewat 8 simulasi situasi nyata dan dapatkan rekomendasi latihan yang personal." />
     <meta name="twitter:image" content="assets/images/logo.png" />
-<!-- Tailwind CSS & Custom Config -->
+    <!-- Tailwind CSS & Custom Config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config.js"></script>
 
@@ -90,19 +93,30 @@
 
 <body
     class="bg-cyber-grid text-on-surface font-sans min-h-full flex flex-col justify-between antialiased selection:bg-cyan-100 selection:text-primary relative overflow-x-hidden">
-  <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
+    <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
 
     <!-- ============================ HEADER NAVBAR ============================ -->
-    <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-        <div class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md">
+    <header id="site-header"
+        class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div
+            class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md">
             <div class="flex items-center gap-space-md shrink-0">
                 <!-- Logo SIAGA — aset tim (assets/images/logo.png) | Lihat ASSETS-CREDIT.md -->
                 <img alt="Logo SIAGA" class="h-8 w-8 object-contain rounded-lg" src="assets/images/logo.png" />
-                <a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold" href="index.html">SIAGA</a>
+                <a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold"
+                    href="index.html">SIAGA</a>
             </div>
 
             <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold">
-                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="index.html">Beranda</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="community.html">Komunitas</a><a aria-current="page" class="font-headline-sm text-body-sm text-primary font-semibold" href="checkup.html">Check-Up</a>
+                <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    href="index.html">Beranda</a><a
+                    class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    href="learn.html">Belajar</a><a
+                    class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    href="challenge.html">Tantangan</a><a
+                    class="font-headline-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                    href="community.html">Komunitas</a><a aria-current="page"
+                    class="font-headline-sm text-body-sm text-primary font-semibold" href="checkup.html">Check-Up</a>
             </nav>
 
             <div class="flex items-center gap-space-md shrink-0">
@@ -112,10 +126,13 @@
                     <span class="material-symbols-outlined text-[18px]">close</span>
                     <span>Keluar</span>
                 </a>
-                <a href="progress.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center" aria-label="Profil saya">
+                <a href="progress.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+                    aria-label="Profil saya">
                     <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
                 </a>
-                <button id="btn-mobile-nav" class="lg:hidden w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center" aria-label="Buka navigasi" aria-expanded="false">
+                <button id="btn-mobile-nav"
+                    class="lg:hidden w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center"
+                    aria-label="Buka navigasi" aria-expanded="false">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
@@ -173,8 +190,7 @@
                     <h1
                         class="text-2xl sm:text-3xl md:text-[2rem] font-extrabold text-[#0B1220] tracking-tight leading-[1.2] mb-4">
                         Mari cek skill <br class="hidden sm:inline" />
-                        <span
-                            class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">survival
+                        <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">survival
                             digitalmu.</span>
                     </h1>
 
@@ -692,32 +708,44 @@
 
     <!-- ============================ FOOTER ============================ -->
     <footer class="w-full bg-surface-container-low border-t border-outline-variant/20 py-space-3xl">
-      <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-2xl pb-space-2xl border-b border-outline-variant/30">
-          <div class="max-w-md">
-            <div class="flex items-center gap-space-sm mb-space-sm">
-              <!-- Logo SIAGA — aset tim (assets/images/logo.png) | Lihat ASSETS-CREDIT.md -->
-              <img alt="Logo SIAGA" class="h-8 w-8 object-contain rounded-lg" src="assets/images/logo.png" />
-              <span class="font-headline-sm text-headline-sm font-bold text-on-surface">SIAGA</span>
+        <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin-desktop">
+            <div
+                class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-2xl pb-space-2xl border-b border-outline-variant/30">
+                <div class="max-w-md">
+                    <div class="flex items-center gap-space-sm mb-space-sm">
+                        <!-- Logo SIAGA — aset tim (assets/images/logo.png) | Lihat ASSETS-CREDIT.md -->
+                        <img alt="Logo SIAGA" class="h-8 w-8 object-contain rounded-lg" src="assets/images/logo.png" />
+                        <span class="font-headline-sm text-headline-sm font-bold text-on-surface">SIAGA</span>
+                    </div>
+                    <p class="font-body-md text-body-sm text-on-surface-variant leading-relaxed">
+                        Simulator survival digital yang membantu generasi muda
+                        menavigasi ancaman online dengan percaya diri.
+                    </p>
+                </div>
+                <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
+                    <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="index.html#tentang">Tentang</a><a
+                        class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="learn.html">Belajar</a><a
+                        class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="challenge.html">Tantangan</a><a
+                        class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="community.html">Komunitas</a><a
+                        class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="index.html#faq">FAQ</a><a
+                        class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="checkup.html">Check-Up</a><a
+                        class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+                        href="progress.html">My SIAGA</a>
+                </nav>
             </div>
-            <p class="font-body-md text-body-sm text-on-surface-variant leading-relaxed">
-              Simulator survival digital yang membantu generasi muda
-              menavigasi ancaman online dengan percaya diri.
-            </p>
-          </div>
-          <nav class="flex flex-wrap items-center gap-x-space-lg gap-y-space-sm">
-            <a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#tentang">Tentang</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="learn.html">Belajar</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="challenge.html">Tantangan</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="community.html">Komunitas</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#faq">FAQ</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="checkup.html">Check-Up</a><a class="font-headline-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="progress.html">My SIAGA</a>
-          </nav>
+            <div
+                class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left">
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                    © 2026 SIAGA. Built for digital resilience.
+                </p>
+            </div>
         </div>
-        <div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left">
-          <p class="font-body-sm text-body-sm text-on-surface-variant">
-            © 2026 SIAGA. Built for digital resilience.
-          </p>
-          <div class="flex items-center gap-space-sm font-code-telemetry text-code-telemetry text-on-surface-variant">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>SYSTEM_SECURE // READY</span>
-          </div>
-        </div>
-      </div>
     </footer>
 
     <!-- Scripts -->
