@@ -111,6 +111,13 @@
   }
 }
 
+/* Marquee miring: kanan lebih tinggi (hanya tablet ke atas) */
+@media (min-width: 768px) {
+  .siaga-marquee-tilt {
+    transform: rotate(-1.5deg) scale(1.03);
+  }
+}
+
 
 
 @media (prefers-reduced-motion: reduce) {
@@ -120,6 +127,83 @@
 
   .siaga-marquee-tilt {
     transform: none;
+  }
+
+  .feedback-benar,
+  .feedback-salah,
+  .xp-float {
+    animation: none !important;
+  }
+}
+
+/* Feedback drill Challenge: pulse benar, goyang salah, XP melayang */
+.feedback-benar {
+  animation: fb-benar 0.5s ease;
+}
+
+.feedback-salah {
+  animation: fb-salah 0.45s ease;
+}
+
+@keyframes fb-benar {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fb-salah {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.xp-float {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: 5;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  background: #2563eb;
+  color: #ffffff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.5);
+  animation: xp-naik 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes xp-naik {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-18px);
   }
 }
 

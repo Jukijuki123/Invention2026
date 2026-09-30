@@ -1,4 +1,3 @@
-// js/challenge.js — Logic Halaman Weekly Challenge (PRD F-07) Bergantung pada: window.SIAGA_DATA, window.SIAGA_STORAGE A...
 document.addEventListener("DOMContentLoaded", () => {
   // DOM — hero
   const viewStart = document.getElementById("view-start");
@@ -32,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const activeCategory = document.getElementById("active-category");
   const activeTitle = document.getElementById("active-title");
   const activeSituation = document.getElementById("active-situation");
+  const activeMeta = document.getElementById("active-meta");
+  const drillFrame = document.getElementById("drill-frame");
+  const btnFeedbackToggle = document.getElementById("btn-feedback-toggle");
   const decisionOptions = document.getElementById("decision-options");
   const submitBtn = document.getElementById("submit-btn");
   const btnNext = document.getElementById("btn-next");
@@ -78,11 +80,53 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedOptionIndex = null;
   let answered = false;
   let answers = [];
-  let drillMode = "mission"; // "mission" (5 beruntun) | "single" (latihan bebas)
+  let drillMode = "mission";
   let singleScenario = null;
   let currentCategory = "all";
 
-  // ---------- Helpers ----------
+  // Feedback multisensori: suara (Web Audio, tanpa file) + getar.
+  // Menghormati toggle pengguna & prefers-reduced-motion via components.js.
+  function buzz(style) {
+    try {
+      if (window.SIAGA_COMPONENTS && window.SIAGA_COMPONENTS.triggerHapticFeedback) {
+        window.SIAGA_COMPONENTS.triggerHapticFeedback(style || "light");
+      }
+    } catch (e) { /* abaikan */ }
+  }
+
+  function beep(style) {
+    try {
+      if (window.SIAGA_COMPONENTS && window.SIAGA_COMPONENTS.triggerSoundFeedback) {
+        window.SIAGA_COMPONENTS.triggerSoundFeedback(style || "tap");
+      }
+    } catch (e) { /* abaikan */ }
+  }
+
+  function floatXp(text) {
+    if (!drillFrame) return;
+    const chip = document.createElement("span");
+    chip.className = "xp-float";
+    chip.textContent = text;
+    chip.setAttribute("aria-hidden", "true");
+    drillFrame.appendChild(chip);
+    chip.addEventListener("animationend", () => chip.remove());
+    setTimeout(() => { if (chip.parentNode) chip.remove(); }, 1500);
+  }
+
+  function refreshFeedbackToggle() {
+    if (!btnFeedbackToggle) return;
+    let on = true;
+    try {
+      if (window.SIAGA_COMPONENTS && window.SIAGA_COMPONENTS.isFeedbackEnabled) {
+        on = window.SIAGA_COMPONENTS.isFeedbackEnabled();
+      }
+    } catch (e) { /* abaikan */ }
+    const icon = btnFeedbackToggle.querySelector(".material-symbols-outlined");
+    if (icon) icon.textContent = on ? "volume_up" : "volume_off";
+    btnFeedbackToggle.setAttribute("aria-pressed", String(on));
+  }
+
+  //  Helpers 
   function showToast(msg) {
     if (!toast || !toastText) return;
     toastText.textContent = msg;
@@ -147,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshHeroProgress();
   }
 
-  // ---------- Misi harian & library (pengganti halaman Survival) ----------
+  // Misi harian & library
   const CATEGORY_META = {
     safety: { label: "Keamanan Digital", icon: "shield" },
     information: { label: "Informasi & Berita", icon: "newspaper" },
@@ -199,8 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className = "bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm hover:-translate-y-1";
       card.innerHTML =
         '<div class="flex items-center justify-between gap-2">' +
-          `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-caps text-label-badge font-bold uppercase"><span class="material-symbols-outlined text-[15px]">${meta.icon}</span>${meta.label}</span>` +
-          `<span class="text-[11px] font-bold text-primary">+${sc.xp || 50} XP</span>` +
+        `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-caps text-label-badge font-bold uppercase"><span class="material-symbols-outlined text-[15px]">${meta.icon}</span>${meta.label}</span>` +
+        `<span class="text-[11px] font-bold text-primary">+${sc.xp || 50} XP</span>` +
         "</div>" +
         `<h3 class="font-bold">${sc.title}</h3>` +
         `<p class="text-sm text-on-surface-variant line-clamp-2 leading-relaxed">${sc.situation}</p>` +
@@ -230,6 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openSingle(id) {
     const sc = allScenarios.find((s) => s.id === id);
     if (!sc) return;
+    shuffleInPlace(sc.options || []);
     drillMode = "single";
     singleScenario = sc;
     selectedOptionIndex = null;
@@ -241,6 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (activeCategory) activeCategory.textContent = meta.label.toUpperCase();
     if (activeTitle) activeTitle.textContent = sc.title;
     if (activeSituation) activeSituation.textContent = sc.situation;
+    if (activeMeta) activeMeta.textContent = `${sc.difficulty || "Sedang"} • +${sc.xp || 50} XP`;
     if (feedbackBox) feedbackBox.classList.add("hidden");
     if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.remove("hidden"); }
     if (btnNext) btnNext.classList.add("hidden");
@@ -285,12 +331,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (n.finance >= 5) store.unlockBadge("safe-trader");
   }
 
-  // ---------- Drill ----------
+  // Fisher-Yates: acak urutan opsi agar posisi jawaban benar
+  // berbeda tiap sesi (anti-contekan positional).
+  function shuffleInPlace(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  //  Drill 
   function startChallenge() {
     drillMode = "mission";
     singleScenario = null;
     if (drillMissionBar) drillMissionBar.style.display = "";
     if (drillProgressWrap) drillProgressWrap.style.display = "";
+    missionScenarios.forEach((s) => shuffleInPlace(s.options || []));
     index = 0;
     score = 0;
     answers = [];
@@ -317,6 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (activeCategory) activeCategory.textContent = `SKENARIO ${index + 1} • ${(sc.category || "").toUpperCase()}`;
     if (activeTitle) activeTitle.textContent = sc.title;
     if (activeSituation) activeSituation.textContent = sc.situation;
+    if (activeMeta) activeMeta.textContent = `${sc.difficulty || "Sedang"} • +${sc.xp || 50} XP`;
     if (feedbackBox) feedbackBox.classList.add("hidden");
     if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.remove("hidden"); }
     if (btnNext) btnNext.classList.add("hidden");
@@ -351,12 +409,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (badge) { badge.classList.add("bg-primary-container", "text-on-primary"); badge.classList.remove("bg-surface-container-low"); }
         selectedOptionIndex = idx;
         if (submitBtn) submitBtn.disabled = false;
+        buzz("light");
+        beep("tap");
       });
       decisionOptions.appendChild(card);
     });
   }
 
-  // Tiga tingkat: benar (hijau) / kurang tepat (kuning, opsi pasif index non-benar terakhir) / salah (merah)
+  // Tiga tingkat: benar (hijau) / kurang tepat (kuning) / salah (merah)
   function gradeAnswer(sc, chosenIdx) {
     const chosen = sc.options[chosenIdx];
     if (chosen.correct) return "benar";
@@ -389,15 +449,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (drillProgressBar) drillProgressBar.style.width = `${((index + 1) / missionScenarios.length) * 100}%`;
     }
 
-    // Kunci opsi + tandai pilihan
+    // Kunci opsi + tandai pilihan + animasi penegas
     decisionOptions.querySelectorAll(".option-card").forEach((c) => {
       c.classList.add("pointer-events-none", "opacity-80");
       const i = parseInt(c.getAttribute("data-index"), 10);
       if (i === selectedOptionIndex) {
         c.classList.remove("border-primary");
-        if (grade === "benar") c.classList.add("border-green-600");
-        else if (grade === "kurang") c.classList.add("border-amber-500");
-        else c.classList.add("border-red-500");
+        if (grade === "benar") {
+          c.classList.add("border-green-600", "feedback-benar");
+          beep("success");
+          buzz("success");
+          floatXp(drillMode === "single" ? `+${sc.xp || 50} XP` : "+1");
+        } else if (grade === "kurang") {
+          c.classList.add("border-amber-500");
+          beep("tap");
+          buzz("light");
+        } else {
+          c.classList.add("border-red-500", "feedback-salah");
+          beep("error");
+          buzz("error");
+        }
       }
     });
 
@@ -469,13 +540,31 @@ document.addEventListener("DOMContentLoaded", () => {
         showToast("Misi selesai lagi! Hadiah sudah diklaim sebelumnya.");
       }
     }
+    beep("success");
+    buzz("success");
 
     if (resultScore) resultScore.textContent = `${score}/${total}`;
     if (resultXp) resultXp.textContent = firstTime ? `+${rewardXp} XP` : "Sudah diklaim";
     if (resultBadge) resultBadge.textContent = "Digital Guardian";
+    const perfect = score === total;
+    const missed = total - score;
     if (resultTitle) resultTitle.textContent = score === total
       ? "Sempurna! Kamu Digital Guardian!"
       : score >= 3 ? "Misi Selesai! Hampir sempurna." : "Misi Selesai! Terus berlatih.";
+    // Langkah selanjutnya kontekstual: sempurna -> pantau progres,
+    // ada yang meleset -> perkuat dulu di Learn (bukan mengulang buta).
+    const btnPrimaryNext = document.getElementById("btn-primary-next");
+    const btnPrimaryLabel = document.getElementById("btn-primary-next-label");
+    const nextDesc = document.getElementById("result-next-desc");
+    if (perfect) {
+      if (nextDesc) nextDesc.textContent = "Sempurna! Progres dan badge barumu sudah tercatat — pantau di My SIAGA, atau bagikan pengalamanmu agar orang lain ikut belajar.";
+      if (btnPrimaryNext) btnPrimaryNext.setAttribute("href", "progress.html");
+      if (btnPrimaryLabel) btnPrimaryLabel.textContent = "Lihat My SIAGA";
+    } else {
+      if (nextDesc) nextDesc.textContent = `Kamu meleset ${missed} dari ${total} skenario. Perkuat polanya lewat microlesson 4 menit di Learn, lalu kembali uji dirimu di sini.`;
+      if (btnPrimaryNext) btnPrimaryNext.setAttribute("href", "learn.html");
+      if (btnPrimaryLabel) btnPrimaryLabel.textContent = "Pelajari Polanya di Learn";
+    }
     if (resultDesc) resultDesc.textContent = firstTime
       ? `Kamu menjawab benar ${score} dari ${total} skenario dan meraih +${rewardXp} XP beserta badge Digital Guardian.`
       : `Kamu menjawab benar ${score} dari ${total} skenario. Hadiah +${rewardXp} XP sudah diklaim sebelumnya.`;
@@ -501,12 +590,21 @@ document.addEventListener("DOMContentLoaded", () => {
     showView(viewResult);
   }
 
-  // ---------- Events ----------
+  //  Events 
   if (btnStartChallenge) btnStartChallenge.addEventListener("click", startChallenge);
   if (submitBtn) submitBtn.addEventListener("click", submitAnswer);
   if (btnNext) btnNext.addEventListener("click", nextStep);
   if (btnQuitChallenge) btnQuitChallenge.addEventListener("click", () => { refreshHeroProgress(); showView(viewStart); });
   if (btnRetry) btnRetry.addEventListener("click", startChallenge);
+  if (btnFeedbackToggle) btnFeedbackToggle.addEventListener("click", () => {
+    try {
+      if (window.SIAGA_COMPONENTS && window.SIAGA_COMPONENTS.toggleFeedbackSetting) {
+        const on = window.SIAGA_COMPONENTS.toggleFeedbackSetting();
+        showToast(on ? "Suara & getar dinyalakan." : "Suara & getar dimatikan.");
+      }
+    } catch (e) { /* abaikan */ }
+    refreshFeedbackToggle();
+  });
   if (btnDailyStart) btnDailyStart.addEventListener("click", () => {
     const d = todayDaily();
     if (d) openSingle(d.id);
@@ -524,6 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderDaily();
   renderLibrary();
   setupLibraryFilters();
+  refreshFeedbackToggle();
   const params = new URLSearchParams(window.location.search);
   const deepId = parseInt(params.get("scenario"), 10);
   if (deepId && allScenarios.some((s) => s.id === deepId)) {

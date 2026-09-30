@@ -1,5 +1,3 @@
-// js/checkup.js — Logic Halaman Check-Up — Google Stitch Interactive Flow (Intro → Incident Drill Wizard → Diagnostic...
-//
 const VECTOR_META = {
     safety: {
         label: "Digital Safety",
@@ -74,7 +72,7 @@ let drillStartTime = null;
 let questionTimer = 0;
 let timerInterval = null;
 
-// ISOLATED MODE HELPERS — Activates browser restrictions during the active quiz session: - Disables right-click context menu -...
+// ISOLATED MODE HELPERS
 //
 function preventContextMenu(e) {
     e.preventDefault();
@@ -123,7 +121,7 @@ const dom = {
     resultSection: document.getElementById("checkup-result"),
     btnStart: document.getElementById("btn-start-checkup"),
     btnExit: document.getElementById("btn-exit-checkup"),
-    
+
     // Wizard
     questionCounter: document.getElementById("question-counter"),
     questionCategory: document.getElementById("question-category"),
@@ -223,6 +221,11 @@ function startCheckupDrill() {
     selectedOptionIndex = null;
     drillStartTime = Date.now();
 
+    // Anti-intip positional: acak urutan opsi tiap sesi agar "jawaban B"
+    // tidak pernah bisa dijadikan contekan. Penilaian membaca opsi yang
+    // sama sehingga skor tetap valid.
+    questions.forEach((q) => shuffleInPlace(q.options));
+
     dom.introSection.classList.add("hidden");
     dom.resultSection.classList.add("hidden");
     dom.wizardSection.classList.remove("hidden");
@@ -273,7 +276,7 @@ function renderQuestion(index) {
     // Nav Buttons
     dom.btnPrev.disabled = index === 0;
     dom.btnNext.disabled = selectedOptionIndex === null;
-    
+
     if (index === TOTAL_QUESTIONS - 1) {
         dom.btnNext.querySelector("span").textContent = "Lihat Hasil Diagnostic";
     } else {
@@ -307,13 +310,12 @@ function renderOptions(question, selectedIndex) {
                     ${letter}
                 </div>
                 <div>
-                    <div class="text-base md:text-lg font-semibold text-on-surface group-hover:text-on-surface tracking-tight flex items-center gap-2">
+                    <div class="text-base md:text-lg font-semibold text-on-surface tracking-tight">
                         <span>${opt.text}</span>
-                        ${isSelected ? '<span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed border border-secondary/40">Selected</span>' : ''}
                     </div>
                 </div>
             </div>
-            <div class="${isSelected ? 'bg-primary border-primary' : 'border-slate-300 group-hover:border-primary'} w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ml-3 transition-colors">
+            <div class="${isSelected ? 'bg-primary border-primary scale-110' : 'border-outline-variant group-hover:border-primary'} w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ml-3 transition-all">
                 ${isSelected ? '<span class="material-symbols-outlined text-white text-[16px]">check</span>' : '<div class="w-2.5 h-2.5 rounded-full bg-transparent group-hover:bg-primary/30 transition-colors"></div>'}
             </div>
         `;
@@ -326,7 +328,7 @@ function renderOptions(question, selectedIndex) {
 function getOptionButtonClasses(isSelected) {
     const base = "w-full text-left rounded-xl p-4 md:p-5 flex items-center justify-between transition-all duration-150 group focus:outline-none cursor-pointer ";
     if (isSelected) {
-        return base + "bg-blue-50/40 border-2 border-primary shadow-active-glow ring-1 ring-primary/30";
+        return base + "bg-primary-fixed/30 border-2 border-primary shadow-active-glow ring-1 ring-primary/30";
     } else {
         return base + "bg-surface-container-lowest hover:bg-primary-fixed/30 border-2 border-outline-variant hover:border-primary/60 shadow-sm hover:shadow-card-hover";
     }
@@ -346,6 +348,9 @@ function handleSelectOption(optionIndex) {
     if (window.SIAGA_COMPONENTS?.triggerHapticFeedback) {
         window.SIAGA_COMPONENTS.triggerHapticFeedback("light");
     }
+    if (window.SIAGA_COMPONENTS?.triggerSoundFeedback) {
+        window.SIAGA_COMPONENTS.triggerSoundFeedback("tap");
+    }
 
     renderOptions(q, selectedOptionIndex);
     dom.btnNext.disabled = false;
@@ -353,6 +358,13 @@ function handleSelectOption(optionIndex) {
 
 function handleNextClick() {
     if (selectedOptionIndex === null) return;
+
+    if (window.SIAGA_COMPONENTS?.triggerSoundFeedback) {
+        window.SIAGA_COMPONENTS.triggerSoundFeedback("tap");
+    }
+    if (window.SIAGA_COMPONENTS?.triggerHapticFeedback) {
+        window.SIAGA_COMPONENTS.triggerHapticFeedback("light");
+    }
 
     if (currentIndex < TOTAL_QUESTIONS - 1) {
         currentIndex += 1;
@@ -381,7 +393,7 @@ function handleSkipClick() {
 function startQuestionTimer() {
     questionTimer = 0;
     if (timerInterval) clearInterval(timerInterval);
-    
+
     dom.timerDisplay.textContent = `Waktu Keputusan: 0s`;
     timerInterval = setInterval(() => {
         questionTimer += 1;
@@ -437,6 +449,15 @@ function maxPerVectorThisVectorThisQuestion(vec, pts, map) {
     return map[vec] || 0;
 }
 
+// Fisher-Yates: acak urutan opsi di tempat.
+function shuffleInPlace(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 function determinePersona(score) {
     return PERSONA_TYPES.find(p => score >= p.min && score <= p.max) || PERSONA_TYPES[0];
 }
@@ -471,6 +492,12 @@ function finishCheckupDrill() {
 
     renderResults({ overallScore, vectorPercents, persona });
 
+    if (window.SIAGA_COMPONENTS?.triggerSoundFeedback) {
+        window.SIAGA_COMPONENTS.triggerSoundFeedback("success");
+    }
+    if (window.SIAGA_COMPONENTS?.triggerHapticFeedback) {
+        window.SIAGA_COMPONENTS.triggerHapticFeedback("success");
+    }
     if (window.SIAGA_COMPONENTS?.showToast) {
         window.SIAGA_COMPONENTS.showToast("Check-Up Selesai! +100 XP ditambahkan ke akunmu.", "success");
     }
@@ -552,7 +579,7 @@ function renderVectorBars(vectorPercents) {
 
     Object.entries(vectorPercents).forEach(([key, score]) => {
         const meta = VECTOR_META[key] || { label: key, subtext: "", icon: "shield", colorClass: "bg-primary" };
-        
+
         let tagText = "Solid Awareness";
         let tagClass = "text-primary font-medium";
         if (score >= 80) {

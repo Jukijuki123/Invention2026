@@ -300,6 +300,10 @@
               <span class="material-symbols-outlined text-[16px] text-primary">bolt</span>
               <span id="drill-score-label"
                 class="font-code-telemetry text-code-telemetry text-on-surface-variant font-semibold">Skor: 0</span>
+              <button id="btn-feedback-toggle" type="button" aria-label="Nyalakan atau matikan suara dan getar"
+                class="w-9 h-9 rounded-full bg-surface-container-low hover:bg-surface-container flex items-center justify-center text-on-surface-variant transition-colors">
+                <span class="material-symbols-outlined text-[20px]">volume_up</span>
+              </button>
             </div>
           </div>
           <div id="drill-progress-wrap" class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
@@ -308,7 +312,7 @@
           </div>
 
           <!-- Main frame -->
-          <div class="bg-surface-container-lowest rounded-2xl shadow-xl p-6 md:p-10 flex flex-col gap-space-xl">
+          <div id="drill-frame" class="relative bg-surface-container-lowest rounded-2xl shadow-xl p-6 md:p-10 flex flex-col gap-space-xl">
             <div class="flex flex-col gap-space-xs">
               <span id="active-category"
                 class="text-xs font-label-caps text-primary uppercase font-bold tracking-wider">SKENARIO 1</span>
@@ -316,26 +320,15 @@
                 Judul skenario</h2>
             </div>
 
-            <div class="rounded-xl overflow-hidden shadow-md bg-surface-container-high/40 flex flex-col">
-              <div class="bg-[#075E54] text-white px-4 py-3 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[20px]">chat_bubble</span>
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="font-headline-sm text-sm font-semibold tracking-wide">Situasi Masuk</span>
-                    <span class="text-[11px] text-white/80">Simulasi Interaktif</span>
-                  </div>
-                </div>
+            <div class="rounded-xl bg-surface-container-low border border-outline-variant/40 p-space-md md:p-space-lg flex flex-col gap-space-sm">
+              <div class="flex items-center justify-between gap-space-sm">
+                <span class="inline-flex items-center gap-1.5 font-label-caps text-label-caps text-primary font-bold uppercase tracking-widest">
+                  <span class="material-symbols-outlined text-[18px]">description</span>
+                  Berkas Situasi
+                </span>
+                <span id="active-meta" class="font-code-telemetry text-code-telemetry text-on-surface-variant"></span>
               </div>
-              <div class="p-4 md:p-6 bg-[#EFEAE2] flex flex-col gap-3">
-                <div class="self-start max-w-2xl bg-white rounded-2xl rounded-tl-sm p-5 shadow-sm">
-                  <div class="text-[12px] font-semibold text-[#008069] mb-1 flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[14px]">warning</span> Detail Situasi
-                  </div>
-                  <p id="active-situation" class="text-sm text-[#111B21] leading-relaxed">...</p>
-                </div>
-              </div>
+              <p id="active-situation" class="font-body-md text-body-md text-on-surface leading-relaxed">...</p>
             </div>
 
             <div class="flex flex-col gap-space-md">
@@ -411,21 +404,29 @@
       <div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
         <h2 class="font-headline-md text-headline-md font-bold">Ringkasan Jawaban</h2>
         <div id="result-summary" class="flex flex-col gap-2"></div>
-        <div class="pt-space-md flex flex-wrap items-center gap-space-md">
-          <button id="btn-retry"
+        <div class="mt-space-md rounded-2xl bg-inverse-surface text-inverse-on-surface p-space-lg flex flex-col gap-space-sm">
+          <p class="font-label-caps text-label-caps tracking-widest text-secondary-fixed font-extrabold">Langkah Selanjutnya</p>
+          <p id="result-next-desc" class="font-body-md text-body-md text-surface-variant/85 leading-relaxed"></p>
+          <a id="btn-primary-next" href="learn.html"
             class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-body-md font-bold shadow-md transition-all">
-            <span class="material-symbols-outlined text-[20px]">replay</span>
-            <span>Ulangi Misi</span>
-          </button>
-          <a id="btn-to-library" href="#jelajahi"
-            class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-surface-container-high text-on-surface font-headline-sm text-body-md font-semibold transition-all">Jelajahi
-            Skenario</a>
-          <a href="learn.html"
-            class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-surface-container-low text-on-surface-variant font-headline-sm text-body-md font-semibold transition-all">Pelajari
-            Polanya di Learn</a>
-          <a href="progress.html"
-            class="inline-flex items-center justify-center gap-2 px-space-xl py-space-sm rounded-full bg-surface-container-low text-on-surface-variant font-headline-sm text-body-md font-semibold transition-all">Lihat
-            My SIAGA</a>
+            <span id="btn-primary-next-label">Pelajari Polanya di Learn</span>
+            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+          </a>
+          <div class="flex flex-wrap items-center gap-x-space-md gap-y-space-xs pt-space-xs">
+            <button id="btn-retry"
+              class="inline-flex items-center gap-1.5 font-headline-sm text-body-sm font-semibold text-surface-variant/80 hover:text-inverse-on-surface transition-colors">
+              <span class="material-symbols-outlined text-[18px]">replay</span>
+              <span>Ulangi misi ini</span>
+            </button>
+            <a id="btn-to-library" href="#jelajahi"
+              class="inline-flex items-center gap-1.5 font-headline-sm text-body-sm font-semibold text-surface-variant/80 hover:text-inverse-on-surface transition-colors">
+              <span>Jelajahi skenario lain</span>
+            </a>
+            <a href="community.html"
+              class="inline-flex items-center gap-1.5 font-headline-sm text-body-sm font-semibold text-surface-variant/80 hover:text-inverse-on-surface transition-colors">
+              <span>Bagikan pengalamanmu</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

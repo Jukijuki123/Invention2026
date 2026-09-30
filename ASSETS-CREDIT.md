@@ -9,11 +9,9 @@ Komentar inline juga dicantumkan tepat di lokasi pemakaian di setiap file HTML/C
 |---|---|---|
 | Logo SIAGA (`assets/images/logo.png`, perisai navy–cyan) | Navbar + footer semua halaman (`index.html`, `checkup.html`, `learn.html`, `challenge.html`, `community.html`, `progress.html`) | Original asset — dibuat oleh tim SIAGA, disimpan lokal di repo. |
 | Ilustrasi Tentang SIAGA (`assets/images/siaga.svg`) | Section Tentang di `index.html` | Original asset — milik tim SIAGA, disimpan lokal di repo. |
-| Ilustrasi perisai / grid pertahanan (`...AEtjO1XusVpV...`) | Hero `index.html` (backdrop kanan) | Original asset — dibuat oleh tim SIAGA (AI-generated untuk prototipe lomba). |
+| Hero `index.html` (backdrop kanan) | Original asset — dibuat oleh tim SIAGA (AI-generated untuk prototipe lomba). |
 | Ilustrasi shield Check-Up (`...AEtjO1VjrN...`) | Intro `checkup.html` | Original asset — dibuat oleh tim SIAGA (AI-generated untuk prototipe lomba). |
 
-> Catatan juri: URL `lh3.googleusercontent.com/aida/...` bersifat sementara untuk prototipe.
-> Versi final disarankan mengunduh dan menyimpan sebagai `assets/images/*` agar tidak bergantung URL eksternal.
 
 ## 2. Font (pihak ketiga, gratis)
 
@@ -37,7 +35,7 @@ SIAGA/ (6 halaman — survival.html dilebur ke challenge.html)
 ├── index.html / checkup.html / challenge.html / learn.html
 ├── community.html / progress.html
 ├── assets/
-│   └── images/          ← logo & ilustrasi final ditaruh di sini
+│   └── images/          ← logo & ilustrasi ditaruh di sini
 ├── css/style.css
 ├── js/app.js / data.js / storage.js / components.js
 │   / checkup.js / learn.js / challenge.js

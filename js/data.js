@@ -286,6 +286,91 @@ const lessons = [
                 correctIndex: 0
             }
         }
+    },
+    {
+        id: 5,
+        title: "OTP Adalah Kunci: Jangan Dibagikan",
+        skillTag: "safety",
+        category: "Digital Safety",
+        xp: 40,
+        content: {
+            situation: "Kode OTP adalah kunci sekali pakai ke akunmu. Penipu menyamar sebagai pihak bank dan mendesakmu membacakannya lewat telepon.",
+            signals: ["Penelepon mengaku dari bank/pihak resmi", "Dibuat panik dengan transaksi misterius", "Diminta membacakan kode yang masuk ke HP-mu"],
+            whatToDo: "Tutup teleponnya. Bank tidak pernah meminta OTP. Hubungi nomor resmi bank bila perlu konfirmasi.",
+            quickCheck: {
+                question: "Pihak yang mengaku bank menelepon dan meminta kode OTP-mu. Apa yang benar?",
+                options: ["Bacakan kodenya karena mendesak", "Tutup telepon & hubungi nomor resmi bank", "Minta waktu berpikir sambil tetap tersambung"],
+                correctIndex: 1
+            }
+        }
+    },
+    {
+        id: 6,
+        title: "Waspadai Izin Aplikasi Berlebihan",
+        skillTag: "safety",
+        category: "Digital Safety",
+        xp: 40,
+        content: {
+            situation: "Aplikasi berbahaya sering meminta akses yang tidak ada hubungannya dengan fungsinya — misalnya kalkulator yang minta akses kontak dan galeri — untuk mencuri datamu.",
+            signals: ["Izin tidak relevan dengan fungsi aplikasi", "Diunduh dari luar toko aplikasi resmi", "Aplikasi memaksa: tolak izin berarti tidak bisa dipakai sama sekali"],
+            whatToDo: "Tolak izin yang tidak relevan. Bila ragu, copot aplikasi dan unduh ulang dari toko resmi.",
+            quickCheck: {
+                question: "Aplikasi kalkulator meminta akses kontak dan lokasi. Apa yang benar?",
+                options: ["Izinkan semua agar bisa dipakai", "Tolak izin yang tidak relevan dengan fungsinya", "Izinkan sementara, ubah belakangan"],
+                correctIndex: 1
+            }
+        }
+    },
+    {
+        id: 7,
+        title: "AI Bisa Ngawur: Selalu Verifikasi",
+        skillTag: "aiLiteracy",
+        category: "AI Literacy",
+        xp: 40,
+        content: {
+            situation: "Chatbot AI kadang mengarang jawaban yang terdengar sangat meyakinkan (halusinasi) — lengkap dengan angka, kutipan, dan sumber yang ternyata fiktif.",
+            signals: ["Angka statistik yang terasa janggal", "Kutipan jurnal/buku yang tidak bisa dilacak", "Nada terlalu yakin untuk topik yang diperdebatkan"],
+            whatToDo: "Verifikasi klaim penting ke sumber primer (mesin pencari, situs resmi, jurnal asli) sebelum dipakai untuk tugas atau keputusan.",
+            quickCheck: {
+                question: "Chatbot memberi jawaban tugas dengan data statistik yang janggal. Apa yang benar?",
+                options: ["Langsung kumpulkan karena terdengar profesional", "Verifikasi datanya ke sumber terpercaya", "Tanyakan ulang pertanyaan yang sama ke chatbot"],
+                correctIndex: 1
+            }
+        }
+    },
+    {
+        id: 8,
+        title: "Belanja Online Aman: Rekber & COD",
+        skillTag: "financialSecurity",
+        category: "Financial Security",
+        xp: 40,
+        content: {
+            situation: "Toko online palsu memancing dengan harga jauh di bawah pasar, lalu meminta transfer DP ke rekening pribadi agar transaksi tidak terlindungi platform.",
+            signals: ["Harga tidak masuk akal murahnya", "Diminta transfer ke rekening pribadi", "Toko baru tanpa testimoni dan menolak Rekber/COD"],
+            whatToDo: "Belanja hanya lewat jalur resmi platform dan gunakan Rekber/COD. Cek reputasi toko sebelum transfer apa pun.",
+            quickCheck: {
+                question: "Toko baru berharga sangat murah meminta DP via transfer pribadi. Apa yang benar?",
+                options: ["Transfer cepat sebelum kehabisan", "Desak pembayaran via Rekber/COD di platform resmi", "Batalkan tanpa memeriksa apa pun"],
+                correctIndex: 1
+            }
+        }
+    },
+    {
+        id: 9,
+        title: "Baca Isi, Bukan Cuma Judul",
+        skillTag: "criticalThinking",
+        category: "Information Literacy",
+        xp: 40,
+        content: {
+            situation: "Judul clickbait dirancang memancing emosi agar kamu langsung percaya dan membagikan — padahal isi beritanya sering berbeda, dipelintir, atau tanpa sumber.",
+            signals: ["Judul bombastis penuh huruf kapital dan tanda seru", "Isi artikel tidak mendukung klaim judulnya", "Tidak ada narasumber atau data yang bisa dilacak"],
+            whatToDo: "Baca seluruh isi sebelum percaya atau share, lalu bandingkan dengan minimal satu media kredibel lain.",
+            quickCheck: {
+                question: "Kamu menemukan berita berjudul heboh yang memancing emosi. Apa yang benar?",
+                options: ["Langsung bagikan agar viral", "Baca isinya lalu bandingkan ke media kredibel", "Percaya karena banyak yang komentar"],
+                correctIndex: 1
+            }
+        }
     }
 ];
 
