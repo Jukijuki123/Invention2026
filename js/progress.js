@@ -1,6 +1,5 @@
-// js/progress.js — My SIAGA (Progress) — F-11 & F-12 Load semua via SIAGA_STORAGE, render, edit nama, reset.
 (function () {
-  // LEVEL_THRESHOLDS disalin dari js/storage.js (tidak diekspor global)
+
   var LEVEL_THRESHOLDS = [
     { min: 0, max: 199, name: "Digital Rookie" },
     { min: 200, max: 499, name: "Aware User" },
@@ -51,22 +50,21 @@
       var pct = Math.round((v / max) * 100);
       return (
         '<div class="flex flex-col gap-1">' +
-          '<div class="flex items-center justify-between">' +
-            '<span class="inline-flex items-center gap-2 font-headline-sm text-body-sm font-semibold">' +
-              '<span class="material-symbols-outlined text-[18px] text-primary">' + m.icon + "</span>" + esc(m.label) +
-            "</span>" +
-            '<span class="font-code-telemetry text-code-telemetry text-on-surface-variant">' + v + " poin</span>" +
-          "</div>" +
-          '<div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">' +
-            '<div class="h-full rounded-full bg-gradient-to-r from-secondary-container to-primary transition-all duration-500" style="width:' + pct + '%"></div>' +
-          "</div>" +
+        '<div class="flex items-center justify-between">' +
+        '<span class="inline-flex items-center gap-2 font-headline-sm text-body-sm font-semibold">' +
+        '<span class="material-symbols-outlined text-[18px] text-primary">' + m.icon + "</span>" + esc(m.label) +
+        "</span>" +
+        '<span class="font-code-telemetry text-code-telemetry text-on-surface-variant">' + v + " poin</span>" +
+        "</div>" +
+        '<div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">' +
+        '<div class="h-full rounded-full bg-gradient-to-r from-secondary-container to-primary transition-all duration-500" style="width:' + pct + '%"></div>' +
+        "</div>" +
         "</div>"
       );
     }).join("");
   }
 
   // Misi berikutnya personal: arahkan ke modul skill terlemah.
-  // Bila belum ada poin sama sekali, tampilkan ajakan Check-Up di peta skill.
   function renderNextMission(skills) {
     var keys = ["safety", "criticalThinking", "aiLiteracy", "financialSecurity"];
     var total = keys.reduce(function (s, k) { return s + Number(skills[k] || 0); }, 0);
@@ -104,18 +102,18 @@
       var has = unlocked.indexOf(b.id) !== -1;
       return (
         '<div class="rounded-2xl border p-space-md flex flex-col items-center text-center gap-1 ' +
-          (has ? "border-primary/30 bg-primary-fixed/30" : "border-outline-variant/50 bg-surface-container-low opacity-70") + '">' +
-          '<div class="w-11 h-11 rounded-xl flex items-center justify-center ' +
-            (has ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant") + '">' +
-            '<span class="material-symbols-outlined text-[24px]" aria-hidden="true">' + esc(b.icon || "military_tech") + "</span>" +
-          "</div>" +
-          '<p class="font-headline-sm text-body-sm font-bold leading-tight">' + esc(b.title) + "</p>" +
-          '<p class="font-body-sm text-[12px] text-on-surface-variant leading-snug">' + esc(b.description) + "</p>" +
-          '<span class="mt-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-badge text-label-badge ' +
-            (has ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant") + '">' +
-            '<span class="material-symbols-outlined text-[14px]">' + (has ? "lock_open" : "lock") + "</span>" +
-            (has ? "Terbuka" : "Terkunci") +
-          "</span>" +
+        (has ? "border-primary/30 bg-primary-fixed/30" : "border-outline-variant/50 bg-surface-container-low opacity-70") + '">' +
+        '<div class="w-11 h-11 rounded-xl flex items-center justify-center ' +
+        (has ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant") + '">' +
+        '<span class="material-symbols-outlined text-[24px]" aria-hidden="true">' + esc(b.icon || "military_tech") + "</span>" +
+        "</div>" +
+        '<p class="font-headline-sm text-body-sm font-bold leading-tight">' + esc(b.title) + "</p>" +
+        '<p class="font-body-sm text-[12px] text-on-surface-variant leading-snug">' + esc(b.description) + "</p>" +
+        '<span class="mt-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-badge text-label-badge ' +
+        (has ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant") + '">' +
+        '<span class="material-symbols-outlined text-[14px]">' + (has ? "lock_open" : "lock") + "</span>" +
+        (has ? "Terbuka" : "Terkunci") +
+        "</span>" +
         "</div>"
       );
     }).join("");
@@ -129,12 +127,12 @@
     if (!completed.length) {
       log.innerHTML =
         '<div class="rounded-xl bg-surface-container-low p-space-md text-center">' +
-          '<p class="font-headline-sm text-body-sm font-semibold">Belum ada aktivitas.</p>' +
-          '<p class="font-body-sm text-body-sm text-on-surface-variant">Selesaikan skenario Tantangan untuk mengisi riwayatmu.</p>' +
-          '<a href="challenge.html" class="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary font-headline-sm text-body-sm font-semibold">' +
-            "<span>Mulai Tantangan</span>" +
-            '<span class="material-symbols-outlined text-[18px]">arrow_forward</span>' +
-          "</a>" +
+        '<p class="font-headline-sm text-body-sm font-semibold">Belum ada aktivitas.</p>' +
+        '<p class="font-body-sm text-body-sm text-on-surface-variant">Selesaikan skenario Tantangan untuk mengisi riwayatmu.</p>' +
+        '<a href="challenge.html" class="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary font-headline-sm text-body-sm font-semibold">' +
+        "<span>Mulai Tantangan</span>" +
+        '<span class="material-symbols-outlined text-[18px]">arrow_forward</span>' +
+        "</a>" +
         "</div>";
       return;
     }
@@ -146,13 +144,13 @@
       var ok = !!c.wasCorrect;
       return (
         '<div class="flex items-start gap-space-sm rounded-xl border border-outline-variant/50 bg-surface-container-low p-space-sm">' +
-          '<div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ' + (ok ? "bg-secondary-container/40 text-secondary" : "bg-error-container text-on-error-container") + '">' +
-            '<span class="material-symbols-outlined text-[20px]">' + (ok ? "check_circle" : "cancel") + "</span>" +
-          "</div>" +
-          '<div class="min-w-0 flex-1">' +
-            '<p class="font-headline-sm text-body-sm font-semibold truncate">' + esc(title) + "</p>" +
-            '<p class="font-body-sm text-[12px] text-on-surface-variant">' + (ok ? "Keputusan tepat" : "Keputusan kurang tepat") + " • " + esc(date) + "</p>" +
-          "</div>" +
+        '<div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ' + (ok ? "bg-secondary-container/40 text-secondary" : "bg-error-container text-on-error-container") + '">' +
+        '<span class="material-symbols-outlined text-[20px]">' + (ok ? "check_circle" : "cancel") + "</span>" +
+        "</div>" +
+        '<div class="min-w-0 flex-1">' +
+        '<p class="font-headline-sm text-body-sm font-semibold truncate">' + esc(title) + "</p>" +
+        '<p class="font-body-sm text-[12px] text-on-surface-variant">' + (ok ? "Keputusan tepat" : "Keputusan kurang tepat") + " • " + esc(date) + "</p>" +
+        "</div>" +
         "</div>"
       );
     }).join("");
@@ -169,7 +167,7 @@
     var completed = S.getCompletedScenarios() || [];
     var badges = S.getBadges() || [];
     var streak = { count: 0 };
-    try { streak = S.getStreakData() || streak; } catch (e) {}
+    try { streak = S.getStreakData() || streak; } catch (e) { }
 
     var nameEl = document.getElementById("greeting-name");
     if (nameEl) nameEl.textContent = profile.name || "Pengguna SIAGA";

@@ -1,5 +1,4 @@
-// js/components.js — Shared Components Helper — SIAGA Komponen reusable: Toast Notification, Modal Popup Engine, Navbar A...
-// --- TOAST NOTIFICATION SYSTEM ---
+// TOAST NOTIFICATION SYSTEM
 const TOAST_STYLES = {
     success: "bg-secondary-container text-on-secondary-container",
     warning: "bg-tertiary-container text-on-tertiary-container",
@@ -16,7 +15,6 @@ const TOAST_ICONS = {
 
 let toastContainer = null;
 
-// Memastikan container toast ada di DOM (dibuat sekali, reusable).
 function ensureToastContainer() {
     if (toastContainer) return toastContainer;
     toastContainer = document.createElement("div");
@@ -63,9 +61,8 @@ function showToast(message, type = "info", duration = 3500) {
     triggerHapticFeedback(type === "error" ? "error" : "light");
 }
 
-// --- MODAL POPUP ENGINE ---
+// MODAL POPUP ENGINE
 
-// Membuka modal berdasarkan ID elemen.
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) {
@@ -80,7 +77,6 @@ function openModal(modalId) {
     modal.dispatchEvent(new CustomEvent("siaga:modal-open"));
 }
 
-// Menutup modal berdasarkan ID elemen.
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
@@ -90,7 +86,6 @@ function closeModal(modalId) {
     modal.dispatchEvent(new CustomEvent("siaga:modal-close"));
 }
 
-// Inisialisasi listener global untuk semua modal:.
 function initModalListeners() {
     document.addEventListener("click", (e) => {
         const openTrigger = e.target.closest("[data-modal-open]");
@@ -120,9 +115,7 @@ function initModalListeners() {
     });
 }
 
-// --- NAVBAR ACTIVE STATE HIGHLIGHTER ---
-
-// Mengambil nama halaman aktif dari path URL, tanpa ekstensi.
+// NAVBAR ACTIVE STATE HIGHLIGHTER
 function getCurrentPageKey() {
     const path = window.location.pathname.split("/").pop();
     if (!path || path === "index.html") return "home";
@@ -143,7 +136,7 @@ function highlightActiveNavLink() {
     });
 }
 
-// --- SOUND / HAPTIC FEEDBACK TOGGLE ---
+// SOUND / HAPTIC FEEDBACK TOGGLE
 const FEEDBACK_SETTING_KEY = "siaga_feedback_enabled";
 
 // Mengecek apakah feedback sound/haptic sedang aktif.
@@ -172,7 +165,7 @@ function triggerHapticFeedback(style = "light") {
     navigator.vibrate(patterns[style] || patterns.light);
 }
 
-// Memicu bunyi "klik" singkat pakai Web Audio API (tanpa file audio.
+// Memicu bunyi "klik" singkat pakai Web Audio API (tanpa file audio)
 function triggerSoundFeedback(style = "tap") {
     if (!isFeedbackEnabled()) return;
 
@@ -199,7 +192,7 @@ function triggerSoundFeedback(style = "tap") {
     }
 }
 
-// --- INIT — dipanggil otomatis saat DOM siap ---
+// INIT
 document.addEventListener("DOMContentLoaded", () => {
     highlightActiveNavLink();
     initModalListeners();
@@ -207,8 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initNavbarScroll();
 });
 
-// Hamburger (#btn-mobile-nav) membuka/menutup panel (#mobile-nav). Aman dipanggil
-// di halaman mana pun: tidak melakukan apa-apa bila elemennya tidak ada.
+// Hamburger (#btn-mobile-nav) membuka/menutup panel (#mobile-nav)
 function initMobileNav() {
     const btn = document.getElementById("btn-mobile-nav");
     const panel = document.getElementById("mobile-nav");
@@ -219,8 +211,7 @@ function initMobileNav() {
     });
 }
 
-// Morphing navbar: full-width di paling atas, pill melayang setelah scroll.
-// rAF-throttle + listener pasif agar tidak jank; aman bila header tak ada.
+
 function initNavbarScroll() {
     const header = document.getElementById("site-header");
     if (!header) return;
@@ -239,7 +230,6 @@ function initNavbarScroll() {
     }, { passive: true });
 }
 
-// --- EXPORT ---
 window.SIAGA_COMPONENTS = {
     showToast,
     openModal,

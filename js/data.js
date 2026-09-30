@@ -1,5 +1,4 @@
-// js/data.js — Core Data Layer SIAGA: soal Check-Up, skenario, microlesson, challenge, badge, story.
-// --- CHECK-UP QUESTIONS ---
+// CHECK-UP QUESTIONS 
 const checkupQuestions = [
     {
         id: 1,
@@ -115,7 +114,7 @@ const checkupQuestions = [
     }
 ];
 
-// --- SURVIVAL SCENARIOS ---
+//  SURVIVAL SCENARIOS 
 const scenarios = [
     {
         id: 1,
@@ -217,7 +216,7 @@ const scenarios = [
     }
 ];
 
-// --- MICROLESSONS (Learn) ---
+// MICROLESSONS (Learn) 
 const lessons = [
     {
         id: 1,
@@ -374,7 +373,7 @@ const lessons = [
     }
 ];
 
-// --- WEEKLY CHALLENGES ---
+// WEEKLY CHALLENGES 
 const weeklyChallenges = [
     {
         id: 1,
@@ -386,7 +385,7 @@ const weeklyChallenges = [
     }
 ];
 
-// --- BADGES ---
+// BADGES 
 const badges = [
     { id: "first-decision", title: "First Decision", description: "Selesaikan skenario pertamamu.", icon: "shield" },
     { id: "scam-survivor", title: "Scam Survivor", description: "Selesaikan 5 skenario kategori safety.", icon: "verified_user" },
@@ -396,7 +395,7 @@ const badges = [
     { id: "digital-guardian", title: "Digital Guardian", description: "Capai rata-rata skill di atas ambang tertentu.", icon: "emoji_events" }
 ];
 
-// --- DEFAULT COMMUNITY STORIES ---
+// DEFAULT COMMUNITY STORIES 
 const defaultStories = [
     {
         id: "default-1",
@@ -424,7 +423,7 @@ const defaultStories = [
     }
 ];
 
-// --- EXPORT (diakses global lewat window jika tanpa module bundler) ---
+
 window.SIAGA_DATA = {
     checkupQuestions,
     scenarios,

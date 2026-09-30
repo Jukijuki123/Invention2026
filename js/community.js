@@ -1,4 +1,3 @@
-// js/community.js — Community — Story Feed + Story Detail + Share Experience Memenuhi PRD F-09 (Story Feed & Detail) & F...
 (function () {
   "use strict";
 
@@ -7,7 +6,7 @@
   var STORY_COOLDOWN_MS = 24 * 60 * 60 * 1000; // XP +75 hanya 1x per 24 jam
   var activeStoryId = null;
 
-  // ---------- Helpers ----------
+  // Helpers 
   function esc(str) {
     return String(str == null ? "" : str)
       .replace(/&/g, "&amp;")
@@ -39,10 +38,10 @@
   function writeHelpfulMap(map) {
     try {
       localStorage.setItem(HELPFUL_KEY, JSON.stringify(map));
-    } catch (e) { /* abaikan: kuota penuh */ }
+    } catch (e) { }
   }
 
-  // Satu vote per cerita per perangkat (toggle: klik lagi untuk batal).
+  // Satu vote per cerita per perangkat
   function hasVoted(storyId) {
     return !!readHelpfulMap()[String(storyId)];
   }
@@ -103,7 +102,7 @@
     }
   }
 
-  // ---------- Render: scenario select ----------
+  // Render: scenario select 
   function renderScenarioOptions() {
     var select = document.getElementById("story-scenario");
     if (!select) return;
@@ -117,7 +116,6 @@
     });
   }
 
-  // ---------- Render: feed ----------
   function renderFeed() {
     var feed = document.getElementById("story-feed");
     var empty = document.getElementById("feed-empty");
@@ -150,11 +148,11 @@
         '<p class="font-body-sm text-body-sm text-on-surface-variant">Oleh <span class="font-semibold text-on-surface">' + esc(story.author || "Anonim") + '</span></p>' +
         '<p class="font-body-md text-body-sm text-on-surface-variant leading-relaxed line-clamp-3">' + esc(story.whatHappened) + '</p>' +
         '<div class="pt-1 mt-auto flex items-center justify-between gap-2">' +
-          '<span class="inline-flex items-center gap-1.5 font-headline-sm text-body-sm font-semibold text-primary">Baca cerita <span class="material-symbols-outlined text-[18px]">arrow_forward</span></span>' +
-          '<button type="button" data-helpful="' + esc(story.id) + '" aria-pressed="' + (hasVoted(story.id) ? "true" : "false") + '" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-body-sm text-body-sm font-medium transition-colors" aria-label="Tandai membantu: ' + esc(story.title) + '">' +
-            '<span class="material-symbols-outlined text-[16px]">thumb_up</span>' +
-            '<span data-helpful-count="' + esc(story.id) + '">' + getHelpfulCount(story) + '</span>' +
-          '</button>' +
+        '<span class="inline-flex items-center gap-1.5 font-headline-sm text-body-sm font-semibold text-primary">Baca cerita <span class="material-symbols-outlined text-[18px]">arrow_forward</span></span>' +
+        '<button type="button" data-helpful="' + esc(story.id) + '" aria-pressed="' + (hasVoted(story.id) ? "true" : "false") + '" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-body-sm text-body-sm font-medium transition-colors" aria-label="Tandai membantu: ' + esc(story.title) + '">' +
+        '<span class="material-symbols-outlined text-[16px]">thumb_up</span>' +
+        '<span data-helpful-count="' + esc(story.id) + '">' + getHelpfulCount(story) + '</span>' +
+        '</button>' +
         '</div>';
 
       card.addEventListener("click", function (e) {
@@ -212,7 +210,7 @@
     return getAllStories().find(function (s) { return String(s.id) === String(id); });
   }
 
-  // ---------- Detail: modal + inline section ----------
+  // Detail: modal + inline section 
   function fillDetail(prefix, story) {
     var title = document.getElementById(prefix + "-title");
     var author = document.getElementById(prefix + "-author");
@@ -244,7 +242,7 @@
     if (!story) return;
     activeStoryId = story.id;
 
-    // Isi modal (utama) + section inline (cadangan / anchor)
+    // Isi modal (utama) + section inline
     fillDetail("modal", story);
     fillDetail("detail", story);
 
@@ -311,7 +309,7 @@
     }
   }
 
-  // ---------- Form: Share Experience ----------
+  // Form: Share Experience 
   function wireForm() {
     var form = document.getElementById("story-form");
     if (!form) return;
@@ -334,7 +332,6 @@
         return;
       }
 
-      // Anti-spam: tiap bagian minimal 20 karakter, tolak tautan, judul/nama wajar.
       var longFields = [happened, decision, wrong, learned];
       if (author.length < 3 || title.length < 10) {
         showFormError("Nama minimal 3 karakter dan judul minimal 10 karakter.");
@@ -366,17 +363,17 @@
         whatILearned: learned
       });
 
-      // XP +75 hanya untuk cerita pertama dalam 24 jam terakhir (anti-farming).
+      // XP +75 hanya untuk cerita pertama dalam 24 jam terakhir
       var now = Date.now();
       var lastAt = 0;
       try {
         lastAt = Number(localStorage.getItem(STORY_COOLDOWN_KEY) || 0);
-      } catch (e) { /* abaikan */ }
+      } catch (e) { }
       if (now - lastAt >= STORY_COOLDOWN_MS) {
         store.addXP(75);
         try {
           localStorage.setItem(STORY_COOLDOWN_KEY, String(now));
-        } catch (e) { /* abaikan */ }
+        } catch (e) { }
         showToast("Cerita terkirim! +75 XP untukmu.");
       } else {
         showToast("Cerita terkirim! Bonus XP berikutnya tersedia dalam 24 jam.");
@@ -388,7 +385,7 @@
     });
   }
 
-  // ---------- Init ----------
+  //  Init 
   document.addEventListener("DOMContentLoaded", function () {
     var store = getStore();
     if (store && store.initializeIfFirstVisit) store.initializeIfFirstVisit();

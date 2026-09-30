@@ -73,7 +73,6 @@ let questionTimer = 0;
 let timerInterval = null;
 
 // ISOLATED MODE HELPERS
-//
 function preventContextMenu(e) {
     e.preventDefault();
 }
@@ -97,14 +96,14 @@ function preventIsolationKeys(e) {
     }
 }
 
-//
+
 function enableIsolatedMode() {
     document.body.classList.add("checkup-isolated-mode");
     document.addEventListener("contextmenu", preventContextMenu);
     document.addEventListener("keydown", preventIsolationKeys);
 }
 
-//
+
 function disableIsolatedMode() {
     document.body.classList.remove("checkup-isolated-mode");
     document.removeEventListener("contextmenu", preventContextMenu);
@@ -221,9 +220,7 @@ function startCheckupDrill() {
     selectedOptionIndex = null;
     drillStartTime = Date.now();
 
-    // Anti-intip positional: acak urutan opsi tiap sesi agar "jawaban B"
-    // tidak pernah bisa dijadikan contekan. Penilaian membaca opsi yang
-    // sama sehingga skor tetap valid.
+    // Aacak urutan opsi tiap sesi 
     questions.forEach((q) => shuffleInPlace(q.options));
 
     dom.introSection.classList.add("hidden");
@@ -407,7 +404,6 @@ function calculateResults() {
     const maxVectors = { safety: 0, criticalThinking: 0, aiLiteracy: 0, financialSecurity: 0 };
 
     questions.forEach((q) => {
-        // Find max possible points per vector for this question
         const maxPerVectorThisQuestion = {};
         q.options.forEach((opt) => {
             Object.entries(opt.points || {}).forEach(([vec, pts]) => {
@@ -419,7 +415,6 @@ function calculateResults() {
             maxVectors[vec] = (maxVectors[vec] || 0) + maxPts;
         });
 
-        // Add user selected points
         const userAns = userAnswers.find(a => a.questionId === q.id);
         if (userAns) {
             const chosenOpt = q.options[userAns.optionIndex];
@@ -431,14 +426,13 @@ function calculateResults() {
         }
     });
 
-    // Calculate percentages
+    // Kalkulasi persentase
     const vectorPercents = {};
     Object.keys(maxVectors).forEach((vec) => {
         const max = maxVectors[vec] || 2;
         vectorPercents[vec] = Math.round(((vectors[vec] || 0) / max) * 100);
     });
 
-    // Overall Score = average of non-zero vectors
     const vecValues = Object.values(vectorPercents);
     const overallScore = Math.round(vecValues.reduce((sum, v) => sum + v, 0) / vecValues.length);
 
@@ -449,7 +443,7 @@ function maxPerVectorThisVectorThisQuestion(vec, pts, map) {
     return map[vec] || 0;
 }
 
-// Fisher-Yates: acak urutan opsi di tempat.
+
 function shuffleInPlace(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -474,13 +468,13 @@ function finishCheckupDrill() {
         return;
     }
 
-    // Disable isolation: user has completed the quiz
+
     disableIsolatedMode();
 
     const { vectorPercents, overallScore } = calculateResults();
     const persona = determinePersona(overallScore);
 
-    // Save to LocalStorage & Award 100 XP
+    // Simpan ke LocalStorage & 100 XP
     if (window.SIAGA_STORAGE) {
         window.SIAGA_STORAGE.saveCheckupResult({
             score: overallScore,
@@ -516,19 +510,15 @@ function renderResults({ overallScore, vectorPercents, persona }) {
         dom.scenariosNeutralizedBadge.innerHTML = `<span class="material-symbols-outlined text-[16px] text-emerald-400">task_alt</span><span>${userAnswers.length} dari ${TOTAL_QUESTIONS} Skenario Dinilai</span>`;
     }
 
-    // Score Counter Animation
     animateScoreCounter(overallScore);
 
-    // Persona Setup
     dom.personaIcon.textContent = persona.icon;
     dom.personaCode.textContent = persona.code;
     dom.resultPersonaName.textContent = persona.name;
     dom.resultPersonaDesc.textContent = persona.desc;
 
-    // Vector Breakdown Bars
     renderVectorBars(vectorPercents);
 
-    // Identify Strongest & Weakest Vector
     const sortedVectors = Object.entries(vectorPercents).sort((a, b) => b[1] - a[1]);
     const strongest = sortedVectors[0];
     const weakest = sortedVectors[sortedVectors.length - 1];
@@ -568,7 +558,6 @@ function animateScoreCounter(targetScore) {
         dom.scoreCounter.textContent = current;
     }, 25);
 
-    // Circular SVG dash offset
     const maxDash = 440;
     const offset = maxDash - (maxDash * (targetScore / 100));
     dom.scoreCircleBar.style.strokeDashoffset = offset;

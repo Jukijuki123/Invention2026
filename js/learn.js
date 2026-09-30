@@ -1,4 +1,3 @@
-// js/learn.js — Learn Microlesson Controller (SIAGA) — Grid dari window.SIAGA_DATA.lessons, rekomendasi skill terlemah, deep-link ?lesson=id, Quick Check i...
 (function () {
   "use strict";
 
@@ -59,11 +58,11 @@
       if (window.SIAGA_STORAGE && typeof window.SIAGA_STORAGE.isScenarioCompleted === "function") {
         return window.SIAGA_STORAGE.isScenarioCompleted(lessonDoneKey(id));
       }
-    } catch (e) { /* abaikan */ }
+    } catch (e) { }
     return false;
   }
 
-  // ---------- Rekomendasi ----------
+  // Rekomendasi 
   function renderRecommendation() {
     var lessons = getLessons();
     if (!lessons.length) return;
@@ -75,7 +74,7 @@
     try {
       var r = window.SIAGA_STORAGE.getCheckupResult();
       hasCheckup = r && r.score !== null && r.score !== undefined;
-    } catch (e) { /* abaikan */ }
+    } catch (e) { }
 
     document.getElementById("reco-badge").textContent = hasCheckup
       ? "BERDASARKAN SKILL TERLEMAH: " + (SKILL_LABELS[weak] || weak).toUpperCase()
@@ -89,7 +88,7 @@
     cta.onclick = function () { openLesson(match.id, true); };
   }
 
-  // ---------- Grid ----------
+  //  Grid 
   function renderGrid() {
     var lessons = getLessons();
     var grid = document.getElementById("lesson-grid");
@@ -115,14 +114,14 @@
       card.className = "bg-surface-container-lowest rounded-2xl border border-outline-variant/50 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all p-space-lg flex flex-col gap-space-md";
       card.innerHTML =
         '<div class="flex items-center justify-between">' +
-          '<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed/60 text-primary font-label-badge text-label-badge font-bold uppercase"><span class="material-symbols-outlined text-[15px]">' + icon + '</span>' + lesson.category + '</span>' +
-          (done ? '<span class="inline-flex items-center gap-1 text-emerald-600 font-label-badge text-label-badge font-bold"><span class="material-symbols-outlined text-[16px]">task_alt</span>SELESAI</span>' : "") +
+        '<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed/60 text-primary font-label-badge text-label-badge font-bold uppercase"><span class="material-symbols-outlined text-[15px]">' + icon + '</span>' + lesson.category + '</span>' +
+        (done ? '<span class="inline-flex items-center gap-1 text-emerald-600 font-label-badge text-label-badge font-bold"><span class="material-symbols-outlined text-[16px]">task_alt</span>SELESAI</span>' : "") +
         '</div>' +
         '<h3 class="font-headline-md text-headline-sm font-bold leading-snug">' + lesson.title + '</h3>' +
         '<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed line-clamp-3">' + lesson.content.situation + '</p>' +
         '<div class="flex items-center gap-2 font-code-telemetry text-code-telemetry text-on-surface-variant">' +
-          '<span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-primary">military_tech</span>+' + (lesson.xp || 40) + ' XP</span>' +
-          '<span>•</span><span>' + (SKILL_LABELS[lesson.skillTag] || lesson.skillTag) + '</span>' +
+        '<span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-primary">military_tech</span>+' + (lesson.xp || 40) + ' XP</span>' +
+        '<span>•</span><span>' + (SKILL_LABELS[lesson.skillTag] || lesson.skillTag) + '</span>' +
         '</div>' +
         '<button class="mt-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white font-bold text-body-sm hover:bg-blue-700 transition-all active:scale-95" data-lesson-id="' + lesson.id + '"><span>Pelajari Modul</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>';
       grid.appendChild(card);
@@ -135,7 +134,7 @@
     });
   }
 
-  // ---------- Detail ----------
+  //  Detail 
   function openLesson(id, pushState) {
     var lesson = getLessons().find(function (l) { return l.id === id; });
     if (!lesson) { toast("Modul tidak ditemukan.", "error"); return; }
@@ -260,7 +259,7 @@
     setTimeout(backToList, 900);
   }
 
-  // ---------- Init ----------
+  //  Init 
   document.addEventListener("DOMContentLoaded", function () {
     if (window.SIAGA_STORAGE && typeof window.SIAGA_STORAGE.initializeIfFirstVisit === "function") {
       window.SIAGA_STORAGE.initializeIfFirstVisit();
@@ -269,7 +268,6 @@
       window.SIAGA_COMPONENTS.highlightActiveNavLink();
     }
 
-    // Toggle hamburger ditangani global oleh js/components.js (initMobileNav).
 
     document.querySelectorAll("#category-filter-bar .cat-tab").forEach(function (tab) {
       tab.addEventListener("click", function () {

@@ -1,6 +1,3 @@
-// js/splash.js — Splashscreen "Security Scan Boot" (khusus index.html)
-// Overlay disuntik via JS agar aman: tanpa JS, splash tidak pernah muncul.
-// Tampil sekali per sesi (sessionStorage), hormati prefers-reduced-motion.
 (function () {
     "use strict";
 
@@ -19,7 +16,7 @@
     function markSeen() {
         try {
             sessionStorage.setItem(SEEN_KEY, "1");
-        } catch (e) { /* abaikan: mode privat */ }
+        } catch (e) { }
     }
 
     function reducedMotion() {

@@ -3,9 +3,8 @@
 > **Tagline:** Siap. Cek. Putuskan. Bertindak Aman.
 > **One-liner:** Platform interaktif yang melatih Gen Z mengambil keputusan aman melalui simulasi situasi digital nyata.
 
-SIAGA adalah *Continuous Digital Survival Training*: pengguna berulang kali berlatih
-menghadapi situasi digital nyata dengan alur
-**Situasi → Keputusan → Konsekuensi → Penjelasan → Pembelajaran → Latihan berikutnya**,
+SIAGA adalah platform literasi digital interaktif yang melatih pengguna, khususnya Gen Z, untuk mengambil keputusan yang aman dan tepat dalam menghadapi berbagai situasi di dunia digital melalui simulasi, pembelajaran singkat, dan tantangan.
+Dengan alur **Situasi → Keputusan → Konsekuensi → Penjelasan → Pembelajaran → Latihan berikutnya**,
 mengikuti framework **STOP → THINK → CHECK → DECIDE → SHARE**.
 
 Fokus pembelajaran (4 vektor): **Keamanan Digital**, **Informasi & Berita**,
@@ -50,7 +49,7 @@ untuk daftar dan atribusi aset lengkap.
 ```
 SIAGA/
 ├── index.html / checkup.html / challenge.html / learn.html
-├── community.html / progress.html (6 halaman)
+├── community.html / progress.html
 ├── assets/images/logo.png
 ├── css/style.css
 ├── js/

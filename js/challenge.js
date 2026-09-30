@@ -551,8 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (resultTitle) resultTitle.textContent = score === total
       ? "Sempurna! Kamu Digital Guardian!"
       : score >= 3 ? "Misi Selesai! Hampir sempurna." : "Misi Selesai! Terus berlatih.";
-    // Langkah selanjutnya kontekstual: sempurna -> pantau progres,
-    // ada yang meleset -> perkuat dulu di Learn (bukan mengulang buta).
+
     const btnPrimaryNext = document.getElementById("btn-primary-next");
     const btnPrimaryLabel = document.getElementById("btn-primary-next-label");
     const nextDesc = document.getElementById("result-next-desc");

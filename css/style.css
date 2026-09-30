@@ -23,8 +23,7 @@
   display: none;
 }
 
-/* Animated navbar: full-width bar morphs into a floating pill on scroll.
-         State dikendalikan class .scrolled (lihat initNavbarScroll di components.js). */
+/* Animated navbar */
 #site-header {
   transition:
     top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
@@ -51,7 +50,7 @@
   box-shadow: none;
 }
 
-/* Desktop/tablet: pil menyempit ke tengah, tidak selebar layar */
+/* Desktop/tablet */
 @media (min-width: 768px) {
   #site-header.scrolled {
     left: max(32px, calc((100% - 1024px) / 2));
@@ -75,7 +74,7 @@
   }
 }
 
-/* Marquee teks berjalan (kanan ke kiri, seamless loop) */
+/* Marquee teks berjalan */
 .siaga-marquee-track {
   display: flex;
   width: max-content;
@@ -111,7 +110,6 @@
   }
 }
 
-/* Marquee miring: kanan lebih tinggi (hanya tablet ke atas) */
 @media (min-width: 768px) {
   .siaga-marquee-tilt {
     transform: rotate(-1.5deg) scale(1.03);
@@ -136,7 +134,7 @@
   }
 }
 
-/* Feedback drill Challenge: pulse benar, goyang salah, XP melayang */
+/* Feedback drill Challenge */
 .feedback-benar {
   animation: fb-benar 0.5s ease;
 }
@@ -160,6 +158,7 @@
 }
 
 @keyframes fb-salah {
+
   0%,
   100% {
     transform: translateX(0);
@@ -446,33 +445,36 @@
     visibility: hidden;
   }
 }
-      /* Aksesibilitas: skip-link + fokus keyboard yang selalu terlihat */
-      .skip-link {
-        position: fixed;
-        top: -100px;
-        left: 1rem;
-        z-index: 200;
-        padding: 0.6rem 1.1rem;
-        border-radius: 0.75rem;
-        background: #0b1220;
-        color: #ffffff;
-        font-weight: 700;
-        font-size: 0.85rem;
-        transition: top 0.2s ease;
-      }
-      .skip-link:focus-visible {
-        top: 1rem;
-      }
-      a:focus-visible,
-      button:focus-visible,
-      input:focus-visible,
-      select:focus-visible,
-      textarea:focus-visible,
-      [tabindex]:focus-visible,
-      summary:focus-visible {
-        outline: 3px solid #004ac6;
-        outline-offset: 2px;
-      }
-      .cat-tab {
-        min-height: 40px;
-      }
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0.75rem;
+  background: #0b1220;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #004ac6;
+  outline-offset: 2px;
+}
+
+.cat-tab {
+  min-height: 40px;
+}
